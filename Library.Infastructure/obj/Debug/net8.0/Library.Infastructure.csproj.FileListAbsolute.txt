@@ -1,0 +1,17 @@
+C:\Users\Арам\source\repos\Library\Library.Infastructure\bin\Debug\net8.0\Library.Infastructure.deps.json
+C:\Users\Арам\source\repos\Library\Library.Infastructure\bin\Debug\net8.0\Library.Infastructure.runtimeconfig.json
+C:\Users\Арам\source\repos\Library\Library.Infastructure\bin\Debug\net8.0\Library.Infastructure.dll
+C:\Users\Арам\source\repos\Library\Library.Infastructure\bin\Debug\net8.0\Library.Infastructure.pdb
+C:\Users\Арам\source\repos\Library\Library.Infastructure\bin\Debug\net8.0\Library.Domain.dll
+C:\Users\Арам\source\repos\Library\Library.Infastructure\bin\Debug\net8.0\Library.Domain.pdb
+C:\Users\Арам\source\repos\Library\Library.Infastructure\obj\Debug\net8.0\Library.Infastructure.csproj.AssemblyReference.cache
+C:\Users\Арам\source\repos\Library\Library.Infastructure\obj\Debug\net8.0\Library.Infastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Арам\source\repos\Library\Library.Infastructure\obj\Debug\net8.0\Library.Infastructure.AssemblyInfoInputs.cache
+C:\Users\Арам\source\repos\Library\Library.Infastructure\obj\Debug\net8.0\Library.Infastructure.AssemblyInfo.cs
+C:\Users\Арам\source\repos\Library\Library.Infastructure\obj\Debug\net8.0\Library.Infastructure.csproj.CoreCompileInputs.cache
+C:\Users\Арам\source\repos\Library\Library.Infastructure\obj\Debug\net8.0\Library..E95524A0.Up2Date
+C:\Users\Арам\source\repos\Library\Library.Infastructure\obj\Debug\net8.0\Library.Infastructure.dll
+C:\Users\Арам\source\repos\Library\Library.Infastructure\obj\Debug\net8.0\refint\Library.Infastructure.dll
+C:\Users\Арам\source\repos\Library\Library.Infastructure\obj\Debug\net8.0\Library.Infastructure.pdb
+C:\Users\Арам\source\repos\Library\Library.Infastructure\obj\Debug\net8.0\Library.Infastructure.genruntimeconfig.cache
+C:\Users\Арам\source\repos\Library\Library.Infastructure\obj\Debug\net8.0\ref\Library.Infastructure.dll

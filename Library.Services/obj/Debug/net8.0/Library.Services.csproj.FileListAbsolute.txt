@@ -1,0 +1,15 @@
+C:\Users\Арам\source\repos\Library\Library.Services\obj\Debug\net8.0\Library.Services.csproj.AssemblyReference.cache
+C:\Users\Арам\source\repos\Library\Library.Services\obj\Debug\net8.0\Library.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Арам\source\repos\Library\Library.Services\obj\Debug\net8.0\Library.Services.AssemblyInfoInputs.cache
+C:\Users\Арам\source\repos\Library\Library.Services\obj\Debug\net8.0\Library.Services.AssemblyInfo.cs
+C:\Users\Арам\source\repos\Library\Library.Services\obj\Debug\net8.0\Library.Services.csproj.CoreCompileInputs.cache
+C:\Users\Арам\source\repos\Library\Library.Services\bin\Debug\net8.0\Library.Services.deps.json
+C:\Users\Арам\source\repos\Library\Library.Services\bin\Debug\net8.0\Library.Services.dll
+C:\Users\Арам\source\repos\Library\Library.Services\bin\Debug\net8.0\Library.Services.pdb
+C:\Users\Арам\source\repos\Library\Library.Services\bin\Debug\net8.0\Library.Domain.dll
+C:\Users\Арам\source\repos\Library\Library.Services\bin\Debug\net8.0\Library.Domain.pdb
+C:\Users\Арам\source\repos\Library\Library.Services\obj\Debug\net8.0\Library..9FA24DEF.Up2Date
+C:\Users\Арам\source\repos\Library\Library.Services\obj\Debug\net8.0\Library.Services.dll
+C:\Users\Арам\source\repos\Library\Library.Services\obj\Debug\net8.0\refint\Library.Services.dll
+C:\Users\Арам\source\repos\Library\Library.Services\obj\Debug\net8.0\Library.Services.pdb
+C:\Users\Арам\source\repos\Library\Library.Services\obj\Debug\net8.0\ref\Library.Services.dll

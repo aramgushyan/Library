@@ -1,0 +1,34 @@
+[
+  {
+    "ContainingType": "Library.Controllers.AuthorsController",
+    "Method": "AddAuthorAsync",
+    "RelativePath": "Author",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "author",
+        "Type": "Library.Services.Dto.AuthorDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Library.Controllers.AuthorsController",
+    "Method": "ViewAuthorByIdAsync",
+    "RelativePath": "author{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
