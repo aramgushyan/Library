@@ -21,6 +21,7 @@ namespace Library.Infastructure.Repository
         public async Task AddAuthorAsync(Author author)
         {
             await _library.Authors.AddAsync(author);
+
             await _library.SaveChangesAsync();
         }
 
@@ -30,15 +31,20 @@ namespace Library.Infastructure.Repository
             if (author != null) 
             {
                 _library.Authors.Remove(author);
+
                 await _library.SaveChangesAsync();
                 return true;
             }
-            return false;
+            else
+                return false;
         }
 
         public async Task<Author> GetAuthorById(int id)
         {
             var author = await _library.Authors.FindAsync(id);
+            if (author == null)
+                return null;
+
             return author;
         }
 
@@ -51,9 +57,13 @@ namespace Library.Infastructure.Repository
                 pastAuthor.Surname = author.Surname;
                 pastAuthor.Patronymic = author.Patronymic;
                 pastAuthor.Name = author.Name;
+
+                await _library.SaveChangesAsync();
+
                 return true;
             }
-            return false;
+            else
+                return false;
         }
     }
 }

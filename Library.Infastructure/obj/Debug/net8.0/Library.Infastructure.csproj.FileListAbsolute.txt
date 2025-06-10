@@ -15,3 +15,4 @@ C:\Users\Арам\source\repos\Library\Library.Infastructure\obj\Debug\net8.0\re
 C:\Users\Арам\source\repos\Library\Library.Infastructure\obj\Debug\net8.0\Library.Infastructure.pdb
 C:\Users\Арам\source\repos\Library\Library.Infastructure\obj\Debug\net8.0\Library.Infastructure.genruntimeconfig.cache
 C:\Users\Арам\source\repos\Library\Library.Infastructure\obj\Debug\net8.0\ref\Library.Infastructure.dll
+C:\Users\Арам\source\repos\Library\Library.Infastructure\obj\Debug\net8.0\Library.Infastructure.sourcelink.json

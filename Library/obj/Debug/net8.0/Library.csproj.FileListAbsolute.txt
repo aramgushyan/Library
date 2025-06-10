@@ -142,3 +142,4 @@ C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\runtimes\browser
 C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\Library.Services.dll
 C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\Library.Services.pdb
 C:\Users\Арам\source\repos\Library\Library\obj\Debug\net8.0\Library.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Арам\source\repos\Library\Library\obj\Debug\net8.0\Library.sourcelink.json

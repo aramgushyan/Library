@@ -9,3 +9,4 @@ C:\Users\Арам\source\repos\Library\Library.Domain\obj\Debug\net8.0\Library.D
 C:\Users\Арам\source\repos\Library\Library.Domain\obj\Debug\net8.0\refint\Library.Domain.dll
 C:\Users\Арам\source\repos\Library\Library.Domain\obj\Debug\net8.0\Library.Domain.pdb
 C:\Users\Арам\source\repos\Library\Library.Domain\obj\Debug\net8.0\ref\Library.Domain.dll
+C:\Users\Арам\source\repos\Library\Library.Domain\obj\Debug\net8.0\Library.Domain.sourcelink.json

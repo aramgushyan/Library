@@ -24,16 +24,41 @@ namespace Library.Controllers
                 return BadRequest(ModelState);
 
             await _service.AddAsync(author);
+
             return Ok();
         }
 
-        [HttpGet("/author{id}")]
+        [HttpGet("/author/{id}")]
         public async Task<ActionResult> ViewAuthorByIdAsync(int id) 
         {
             var author = await _service.GetAsync(id);
+
             if(author == null)
-                return BadRequest();
+                return NotFound();
+
             return Ok(author);
+        }
+
+        [HttpDelete("/author/{id}")]
+        public async Task<IActionResult> DeleteAuthorByIdAsync(int id)
+        {
+            var isComplited = await _service.DeleteAsync(id);
+
+            if (isComplited == false)
+                return NotFound();
+
+            return Ok();
+        }
+
+        [HttpPut("/author/update")]
+        public async Task<IActionResult> UpdateAuthorAsync([FromBody] AuthorDto author)
+        {
+            var isComplited = await _service.UpdateAsync(author);
+
+            if (isComplited == false)
+                return NotFound();
+
+            return Ok();
         }
     }
 }

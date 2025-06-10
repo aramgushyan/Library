@@ -13,3 +13,4 @@ C:\Users\Арам\source\repos\Library\Library.Services\obj\Debug\net8.0\Library
 C:\Users\Арам\source\repos\Library\Library.Services\obj\Debug\net8.0\refint\Library.Services.dll
 C:\Users\Арам\source\repos\Library\Library.Services\obj\Debug\net8.0\Library.Services.pdb
 C:\Users\Арам\source\repos\Library\Library.Services\obj\Debug\net8.0\ref\Library.Services.dll
+C:\Users\Арам\source\repos\Library\Library.Services\obj\Debug\net8.0\Library.Services.sourcelink.json

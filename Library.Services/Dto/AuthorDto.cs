@@ -10,11 +10,11 @@ namespace Library.Services.Dto
 {
     public class AuthorDto
     {
+        public int Id { get; set; }
         [Required]
-
         public string Name { get; set; }
-        [Required]
 
+        [Required]
         public string Surname { get; set; }
         public string? Patronymic { get; set; }
     }

@@ -2,7 +2,7 @@
   {
     "ContainingType": "Library.Controllers.AuthorsController",
     "Method": "AddAuthorAsync",
-    "RelativePath": "Author",
+    "RelativePath": "author",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -18,7 +18,7 @@
   {
     "ContainingType": "Library.Controllers.AuthorsController",
     "Method": "ViewAuthorByIdAsync",
-    "RelativePath": "author{id}",
+    "RelativePath": "author/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -26,6 +26,38 @@
       {
         "Name": "id",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Library.Controllers.AuthorsController",
+    "Method": "DeleteAuthorByIdAsync",
+    "RelativePath": "author/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Library.Controllers.AuthorsController",
+    "Method": "UpdateAuthorAsync",
+    "RelativePath": "author/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "author",
+        "Type": "Library.Services.Dto.AuthorDto",
         "IsRequired": true
       }
     ],
