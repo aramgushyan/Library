@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Library.Controllers
 {
     [ApiController]
-    [Route("Author/")]
+    [Route("api/author")]
     public class AuthorsController : ControllerBase
     {
         private IAuthorService _service;
@@ -17,19 +17,19 @@ namespace Library.Controllers
             _service = service;
         }
 
-        [HttpPost("/author")]
-        public async Task<IActionResult> AddAuthorAsync([FromBody] AuthorDto author) 
+        [HttpPost]
+        public async Task<IActionResult> AddAuthorAsync([FromBody] AddAuthorDto author) 
         {
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             await _service.AddAsync(author);
 
-            return Ok();
+            return NoContent();
         }
 
-        [HttpGet("/author/{id}")]
-        public async Task<ActionResult> ViewAuthorByIdAsync(int id) 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ShowAuthorDto>> ViewAuthorByIdAsync(int id) 
         {
             var author = await _service.GetAsync(id);
 
@@ -39,7 +39,7 @@ namespace Library.Controllers
             return Ok(author);
         }
 
-        [HttpDelete("/author/{id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAuthorByIdAsync(int id)
         {
             var isComplited = await _service.DeleteAsync(id);
@@ -47,18 +47,22 @@ namespace Library.Controllers
             if (isComplited == false)
                 return NotFound();
 
-            return Ok();
+            return NoContent();
         }
 
-        [HttpPut("/author/update")]
-        public async Task<IActionResult> UpdateAuthorAsync([FromBody] AuthorDto author)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateAuthorAsync(int id,[FromBody] UpdateAuthorDto author)
         {
-            var isComplited = await _service.UpdateAsync(author);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var isComplited = await _service.UpdateAsync(id,author);
 
             if (isComplited == false)
                 return NotFound();
 
-            return Ok();
+            return NoContent();
         }
     }
 }

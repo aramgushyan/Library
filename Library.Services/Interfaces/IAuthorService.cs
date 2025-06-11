@@ -10,9 +10,9 @@ namespace Library.Services.Interfaces
 {
     public interface IAuthorService
     {
-        public Task AddAsync(AuthorDto author);
-        public Task<AuthorDto> GetAsync(int id);
+        public Task AddAsync(AddAuthorDto author);
+        public Task<ShowAuthorDto> GetAsync(int id);
         public Task<bool> DeleteAsync(int id);
-        public Task<bool> UpdateAsync(AuthorDto author);
+        public Task<bool> UpdateAsync(int id, UpdateAuthorDto author);
     }
 }

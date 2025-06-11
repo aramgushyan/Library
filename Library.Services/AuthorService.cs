@@ -14,11 +14,8 @@ namespace Library.Services
             _repository = repository;
         }
 
-        public async Task AddAsync(AuthorDto authorDto)
+        public async Task AddAsync(AddAuthorDto authorDto)
         {
-            if (authorDto == null) throw new ArgumentNullException("Author cannot be null");
-
-
             await _repository.AddAuthorAsync(new Author()
             {
                 Name = authorDto.Name,
@@ -28,13 +25,13 @@ namespace Library.Services
             });
         }
 
-        public async Task<AuthorDto> GetAsync(int id)
+        public async Task<ShowAuthorDto> GetAsync(int id)
         {
             var author = await _repository.GetAuthorById(id);
             if(author == null)
                 return null;
 
-            return new AuthorDto()
+            return new ShowAuthorDto()
             {
                 Id = author.IdAuthor,
                 Name = author.Name,
@@ -49,12 +46,9 @@ namespace Library.Services
             return await _repository.DeleteAuthorAsync(id);
         }
 
-        public async Task<bool> UpdateAsync(AuthorDto author)
+        public async Task<bool> UpdateAsync(int id,UpdateAuthorDto author)
         {
-            if (author == null)
-                return false;
-
-            return await _repository.UpdateAuthorAsync(author.Id, new Author() 
+            return await _repository.UpdateAuthorAsync(id, new Author() 
             {
                 Name = author.Name,
                 Surname = author.Surname,

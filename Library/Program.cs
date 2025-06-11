@@ -12,6 +12,9 @@ builder.Services.AddDbContext<LibraryDbContext>(o => o.UseNpgsql(builder.Configu
 builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
 builder.Services.AddScoped<IAuthorService, AuthorService>();
 
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddScoped<IBookService, BookService>();
+
 builder.Services.AddControllers();
 
 builder.Services.AddSwaggerGen();

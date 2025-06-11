@@ -2,14 +2,14 @@
   {
     "ContainingType": "Library.Controllers.AuthorsController",
     "Method": "AddAuthorAsync",
-    "RelativePath": "author",
+    "RelativePath": "api/author",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "author",
-        "Type": "Library.Services.Dto.AuthorDto",
+        "Type": "Library.Services.Dto.AddAuthorDto",
         "IsRequired": true
       }
     ],
@@ -18,7 +18,7 @@
   {
     "ContainingType": "Library.Controllers.AuthorsController",
     "Method": "ViewAuthorByIdAsync",
-    "RelativePath": "author/{id}",
+    "RelativePath": "api/author/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -29,12 +29,22 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Library.Services.Dto.ShowAuthorDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Library.Controllers.AuthorsController",
     "Method": "DeleteAuthorByIdAsync",
-    "RelativePath": "author/{id}",
+    "RelativePath": "api/author/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -50,14 +60,98 @@
   {
     "ContainingType": "Library.Controllers.AuthorsController",
     "Method": "UpdateAuthorAsync",
-    "RelativePath": "author/update",
+    "RelativePath": "api/author/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
         "Name": "author",
-        "Type": "Library.Services.Dto.AuthorDto",
+        "Type": "Library.Services.Dto.UpdateAuthorDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Library.Controllers.BooksController",
+    "Method": "AddBookAsync",
+    "RelativePath": "api/book",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "bookDto",
+        "Type": "Library.Services.Dto.AddBookDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Library.Controllers.BooksController",
+    "Method": "GetBookAsync",
+    "RelativePath": "api/book/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Library.Services.Dto.ShowBookDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Library.Controllers.BooksController",
+    "Method": "DeleteBookAsync",
+    "RelativePath": "api/book/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Library.Controllers.BooksController",
+    "Method": "UpdateBookAsync",
+    "RelativePath": "api/book/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "bookDto",
+        "Type": "Library.Services.Dto.UpdateBookDto",
         "IsRequired": true
       }
     ],
