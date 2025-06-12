@@ -156,5 +156,84 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Library.Controllers.GenreController",
+    "Method": "AddGenreAsync",
+    "RelativePath": "api/genre",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "genreDto",
+        "Type": "Library.Services.Dto.AddGenreDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Library.Controllers.GenreController",
+    "Method": "ShowGenreAsync",
+    "RelativePath": "api/genre/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Library.Services.Dto.ShowGenreDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Library.Controllers.GenreController",
+    "Method": "DeleteGenreAsync",
+    "RelativePath": "api/genre/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Library.Controllers.GenreController",
+    "Method": "UpdateGenreAsync",
+    "RelativePath": "api/genre/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "genre",
+        "Type": "Library.Services.Dto.UpdateGenreDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]
