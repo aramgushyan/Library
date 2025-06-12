@@ -754,10 +754,6 @@
         ],
         "type": "object",
         "properties": {
-          "idGenre": {
-            "type": "integer",
-            "format": "int32"
-          },
           "name": {
             "maxLength": 50,
             "minLength": 1,

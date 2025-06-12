@@ -18,7 +18,7 @@ namespace Library.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ShowGenreDto>> ShowGenreAsync(int id)
+        public async Task<ActionResult<ShowGenreDto>> GetGenreByIdAsync(int id)
         {
             var genre = await _service.GetAsync(id);
             if (genre == null) 

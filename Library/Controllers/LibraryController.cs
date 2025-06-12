@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Library.Controllers
 {
     [ApiController]
-    [Route("api/library")]
+    [Route("api/libraries")]
     public class LibraryController : ControllerBase
     {
         private readonly ILibraryService _libraryService;
@@ -16,7 +16,7 @@ namespace Library.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ShowLibraryDto>> ShowLibraryById(int id) 
+        public async Task<ActionResult<ShowLibraryDto>> GetLibraryByIdAsync(int id) 
         {
             var library = await _libraryService.GetAsync(id);
 

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Library.Controllers
 {
     [ApiController]
-    [Route("api/author")]
+    [Route("api/authors")]
     public class AuthorsController : ControllerBase
     {
         private IAuthorService _service;
@@ -29,7 +29,7 @@ namespace Library.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ShowAuthorDto>> ViewAuthorByIdAsync(int id) 
+        public async Task<ActionResult<ShowAuthorDto>> GetAuthorByIdAsync(int id) 
         {
             var author = await _service.GetAsync(id);
 
