@@ -36,7 +36,7 @@ namespace Library.Infastructure.Repository
                 return true;
             }
             else
-                return false;
+                throw new ArgumentNullException(nameof(author));
         }
 
         public async Task<Author> GetAuthorById(int id)

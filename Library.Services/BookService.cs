@@ -30,10 +30,8 @@ namespace Library.Services
 
         public async Task<bool> DeleteAsync(int id)
         {
-           if(await _repository.DeleteBookAsync(id) == false)
-                return false;
+            return await _repository.DeleteBookAsync(id);
 
-           return true;
         }
 
         public async Task<ShowBookDto> GetAsync(int id)
@@ -42,7 +40,11 @@ namespace Library.Services
             if ( book == null)
                 return null;
 
-            return new ShowBookDto() {Title = book.Title, IdBook = book.IdBook };
+            return new ShowBookDto() 
+            {
+                Title = book.Title,
+                IdBook = book.IdBook 
+            };
         }
 
         public async Task<bool> UpdateAsync(int id, UpdateBookDto bookDto)

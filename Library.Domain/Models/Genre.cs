@@ -13,6 +13,7 @@ namespace Library.Domain.Models
         public int IdGenre { get; set; }
 
         [Required]
+        [MaxLength(50)]
         public string Name { get; set; }
 
         public List<BookGenre> BookGenres { get; set; }

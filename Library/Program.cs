@@ -4,6 +4,7 @@ using Library.Infastructure.Repository;
 using Library.Services;
 using Library.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +21,23 @@ builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseExceptionHandler(o => o.Run(
+    async context =>
+    {
+        context.Response.StatusCode = 500;
+        context.Response.ContentType = "text/plain";
+
+        var exceptionObject = context.Features.Get<IExceptionHandlerFeature>();
+
+        if (null != exceptionObject)
+        {
+            var errorMessage = $"Error: {exceptionObject.Error.Message}";
+            await context.Response.WriteAsync(errorMessage);
+
+        }
+    }
+));
 
 if (app.Environment.IsDevelopment())
 {
