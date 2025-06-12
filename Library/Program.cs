@@ -19,6 +19,9 @@ builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IGenreRepository, GenreRepository>();
 builder.Services.AddScoped<IGenreService, GenreService>();
 
+builder.Services.AddScoped<ILibraryRepository, LibraryRepository>();
+builder.Services.AddScoped<ILibraryService, LibraryService>();
+
 builder.Services.AddControllers();
 
 builder.Services.AddSwaggerGen();

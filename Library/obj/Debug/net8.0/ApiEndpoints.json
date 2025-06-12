@@ -235,5 +235,84 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Library.Controllers.LibraryController",
+    "Method": "AddLibrary",
+    "RelativePath": "api/library",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "libraryDto",
+        "Type": "Library.Services.Dto.AddLibraryDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Library.Controllers.LibraryController",
+    "Method": "ShowLibraryById",
+    "RelativePath": "api/library/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Library.Services.Dto.ShowLibraryDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Library.Controllers.LibraryController",
+    "Method": "DeleteLibraryById",
+    "RelativePath": "api/library/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Library.Controllers.LibraryController",
+    "Method": "UpdateLibraryById",
+    "RelativePath": "api/library/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "libraryDto",
+        "Type": "Library.Services.Dto.UpdateLibraryDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

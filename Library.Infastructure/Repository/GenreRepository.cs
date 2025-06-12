@@ -26,7 +26,7 @@ namespace Library.Infastructure.Repository
 
         public async Task<bool> DeleteGenreAsync(int id)
         {
-            var genre = await _context.Genres.FirstOrDefaultAsync(g => g.IdGenre == id);
+            var genre = await _context.Genres.FindAsync(id);
             if (genre != null) 
             {
                 _context.Genres.Remove(genre);
@@ -40,18 +40,12 @@ namespace Library.Infastructure.Repository
 
         public async Task<Genre> GetGenreByIdAsync(int id)
         {
-            var genre = await _context.Genres.FirstOrDefaultAsync(g => g.IdGenre == id);
-            if (genre != null)
-            {
-                return genre;
-            }
-
-            return null;
+            return await _context.Genres.FindAsync(id);
         }
 
         public async Task<bool> UpdateGenreAsync(int id, Genre genre)
         {
-            var previousGenre = await _context.Genres.FirstOrDefaultAsync(g => g.IdGenre == id);
+            var previousGenre = await _context.Genres.FindAsync(id);
             if (previousGenre == null) 
                 return false;
 

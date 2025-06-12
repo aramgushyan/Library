@@ -36,7 +36,7 @@ namespace Library.Services
 
         public async Task<ShowBookDto> GetAsync(int id)
         {
-            var book = await _repository.GetBookById(id);
+            var book = await _repository.GetBookByIdAsync(id);
             if ( book == null)
                 return null;
 

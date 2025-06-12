@@ -27,7 +27,7 @@ namespace Library.Services
 
         public async Task<ShowAuthorDto> GetAsync(int id)
         {
-            var author = await _repository.GetAuthorById(id);
+            var author = await _repository.GetAuthorByIdAsync(id);
             if(author == null)
                 return null;
 

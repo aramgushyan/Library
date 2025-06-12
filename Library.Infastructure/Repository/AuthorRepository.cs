@@ -36,16 +36,12 @@ namespace Library.Infastructure.Repository
                 return true;
             }
             else
-                throw new ArgumentNullException(nameof(author));
+                return false;
         }
 
-        public async Task<Author> GetAuthorById(int id)
+        public async Task<Author> GetAuthorByIdAsync(int id)
         {
-            var author = await _library.Authors.FindAsync(id);
-            if (author == null)
-                return null;
-
-            return author;
+            return await _library.Authors.FindAsync(id);
         }
 
         public async Task<bool> UpdateAuthorAsync(int id, Author author)

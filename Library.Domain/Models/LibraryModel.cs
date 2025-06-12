@@ -7,16 +7,18 @@ using System.Threading.Tasks;
 
 namespace Library.Domain.Models
 {
-    public class Library
+    public class LibraryModel
     {
         [Key]
         public int IdLibrary { get; set; }
 
         [Required]
+        [StringLength(100)]
         public string Street { get; set; }
         public int House { get; set; }
 
         [Required]
+        [Phone]
         public string PhoneNumber { get; set; }
 
         public List<Employee> Employees { get; set; }

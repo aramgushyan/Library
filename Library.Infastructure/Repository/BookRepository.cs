@@ -26,7 +26,7 @@ namespace Library.Infastructure.Repository
 
         public async Task<bool> DeleteBookAsync(int id)
         {
-            var book = await _context.Books.FirstOrDefaultAsync(b => b.IdBook==id);
+            var book = await _context.Books.FindAsync(id);
             if (book != null) 
             {
                  _context.Books.Remove(book);
@@ -38,20 +38,14 @@ namespace Library.Infastructure.Repository
             return false;
         }
 
-        public async Task<Book> GetBookById(int id)
+        public async Task<Book> GetBookByIdAsync(int id)
         {
-            var book = await _context.Books.FirstOrDefaultAsync(b => b.IdBook == id);
-            if (book != null)
-            {
-                return book;
-            }
-
-            return null;
+            return await _context.Books.FindAsync(id);
         }
 
         public async Task<bool> UpdateBookAsync(int id, Book book)
         {
-            var previousBook = await _context.Books.FirstOrDefaultAsync(b => b.IdBook == id);
+            var previousBook = await _context.Books.FindAsync(id);
             if (previousBook != null)
             {
                 previousBook.Title= book.Title;

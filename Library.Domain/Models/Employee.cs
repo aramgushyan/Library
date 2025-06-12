@@ -40,7 +40,7 @@ namespace Library.Domain.Models
         [Required]
         public Position Position { get; set; }
 
-        public Library Library { get; set; }
+        public LibraryModel Library { get; set; }
 
     }
 }

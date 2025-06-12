@@ -17,7 +17,7 @@ namespace Library.Domain.Models
         [Required]
         public string BookNumber { get; set; }
 
-        public Library Library { get; set; }
+        public LibraryModel Library { get; set; }
         public Book Book { get; set; }
         public List<BookLending> BookLendings { get; set; }
     }   
