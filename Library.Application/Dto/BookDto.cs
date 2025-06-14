@@ -10,10 +10,12 @@ namespace Library.Services.Dto
     public class ShowBookDto
     {
         public int IdBook { get; set; }
-
-        [Required]
-        [StringLength(100)]
         public string Title { get; set; }
+
+        public List<string> Authors { get; set; }
+        public List<string> Genres { get; set; }
+        public List<string> Instances { get; set; }
+
     }
 
     public class AddBookDto

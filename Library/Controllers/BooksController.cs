@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Library.Controllers
 {
     [ApiController]
-    [Route("api/book")]
+    [Route("api/books")]
     public class BooksController : ControllerBase
     {
         private IBookService _bookService;
@@ -27,7 +27,15 @@ namespace Library.Controllers
             return Ok(book);
         }
 
-        [HttpPost()]
+        [HttpGet]
+        public async Task<ActionResult<List<ShowBookDto>>> GetAllBooksAsync()
+        {
+            var book = await _bookService.GetAllBooksAsync();
+
+            return Ok(book);
+        }
+
+        [HttpPost]
         public async Task<IActionResult> AddBookAsync([FromBody] AddBookDto bookDto) 
         {
             if(!ModelState.IsValid)

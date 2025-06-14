@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/author": {
+    "/api/authors": {
       "post": {
         "tags": [
           "Authors"
@@ -34,9 +34,45 @@
             "description": "OK"
           }
         }
+      },
+      "get": {
+        "tags": [
+          "Authors"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShowAuthorDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShowAuthorDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShowAuthorDto"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
-    "/api/author/{id}": {
+    "/api/authors/{id}": {
       "get": {
         "tags": [
           "Authors"
@@ -137,7 +173,7 @@
         }
       }
     },
-    "/api/book/{id}": {
+    "/api/books/{id}": {
       "get": {
         "tags": [
           "Books"
@@ -238,7 +274,43 @@
         }
       }
     },
-    "/api/book": {
+    "/api/books": {
+      "get": {
+        "tags": [
+          "Books"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShowBookDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShowBookDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShowBookDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "post": {
         "tags": [
           "Books"
@@ -269,7 +341,7 @@
         }
       }
     },
-    "/api/genre/{id}": {
+    "/api/genres/{id}": {
       "get": {
         "tags": [
           "Genre"
@@ -370,7 +442,43 @@
         }
       }
     },
-    "/api/genre": {
+    "/api/genres": {
+      "get": {
+        "tags": [
+          "Genre"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShowGenreDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShowGenreDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShowGenreDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "post": {
         "tags": [
           "Genre"
@@ -401,7 +509,7 @@
         }
       }
     },
-    "/api/library/{id}": {
+    "/api/libraries/{id}": {
       "get": {
         "tags": [
           "Library"
@@ -502,7 +610,7 @@
         }
       }
     },
-    "/api/library": {
+    "/api/libraries": {
       "post": {
         "tags": [
           "Library"
@@ -603,6 +711,8 @@
             "type": "string"
           },
           "house": {
+            "maximum": 300,
+            "minimum": 1,
             "type": "integer",
             "format": "int32"
           },
@@ -614,11 +724,24 @@
         },
         "additionalProperties": false
       },
+      "BookAndInstancesDto": {
+        "type": "object",
+        "properties": {
+          "bookTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookNumbers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ShowAuthorDto": {
-        "required": [
-          "name",
-          "surname"
-        ],
         "type": "object",
         "properties": {
           "id": {
@@ -626,28 +749,28 @@
             "format": "int32"
           },
           "name": {
-            "maxLength": 100,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "surname": {
-            "maxLength": 100,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "patronymic": {
-            "maxLength": 100,
-            "minLength": 0,
             "type": "string",
+            "nullable": true
+          },
+          "books": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
       "ShowBookDto": {
-        "required": [
-          "title"
-        ],
         "type": "object",
         "properties": {
           "idBook": {
@@ -655,17 +778,34 @@
             "format": "int32"
           },
           "title": {
-            "maxLength": 100,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
+          },
+          "authors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "genres": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "instances": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
       },
       "ShowGenreDto": {
-        "required": [
-          "name"
-        ],
         "type": "object",
         "properties": {
           "idGenre": {
@@ -673,18 +813,20 @@
             "format": "int32"
           },
           "name": {
-            "maxLength": 50,
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
+          },
+          "books": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
       },
       "ShowLibraryDto": {
-        "required": [
-          "phoneNumber",
-          "street"
-        ],
         "type": "object",
         "properties": {
           "idLibrary": {
@@ -692,18 +834,30 @@
             "format": "int32"
           },
           "street": {
-            "maxLength": 100,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "house": {
             "type": "integer",
             "format": "int32"
           },
           "phoneNumber": {
-            "minLength": 1,
             "type": "string",
-            "format": "tel"
+            "nullable": true
+          },
+          "employees": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "booksAndInstances": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BookAndInstancesDto"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -775,6 +929,8 @@
             "type": "string"
           },
           "house": {
+            "maximum": 300,
+            "minimum": 1,
             "type": "integer",
             "format": "int32"
           },

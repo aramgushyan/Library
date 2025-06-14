@@ -39,9 +39,15 @@ namespace Library.Infastructure.Repository
                 return false;
         }
 
+        public async Task<List<Author>> GetAllAuthorsAsync()
+        {
+            return await _library.Authors.Include(a => a.AuthorBooks).ThenInclude(ab => ab.Book).ToListAsync();
+        }
+
         public async Task<Author> GetAuthorByIdAsync(int id)
         {
-            return await _library.Authors.FindAsync(id);
+            return await _library.Authors.Include(a => a.AuthorBooks).ThenInclude(ab => ab.Book)
+                .FirstOrDefaultAsync(a => a.IdAuthor == id);
         }
 
         public async Task<bool> UpdateAuthorAsync(int id, Author author)

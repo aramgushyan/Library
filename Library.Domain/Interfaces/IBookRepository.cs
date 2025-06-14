@@ -13,5 +13,6 @@ namespace Library.Domain.Interfaces
         public Task<bool> UpdateBookAsync(int id, Book book);
         public Task<bool> DeleteBookAsync(int id);
         public Task<Book> GetBookByIdAsync(int id);
+        public Task<List<Book>> GetAllBooksAsync();
     }
 }

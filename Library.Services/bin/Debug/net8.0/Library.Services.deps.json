@@ -8,10 +8,22 @@
     ".NETCoreApp,Version=v8.0": {
       "Library.Services/1.0.0": {
         "dependencies": {
+          "Library.Application": "1.0.0",
           "Library.Domain": "1.0.0"
         },
         "runtime": {
           "Library.Services.dll": {}
+        }
+      },
+      "Library.Application/1.0.0": {
+        "dependencies": {
+          "Library.Domain": "1.0.0"
+        },
+        "runtime": {
+          "Library.Application.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Library.Domain/1.0.0": {
@@ -26,6 +38,11 @@
   },
   "libraries": {
     "Library.Services/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Library.Application/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

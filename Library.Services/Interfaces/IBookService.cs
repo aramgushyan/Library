@@ -11,6 +11,7 @@ namespace Library.Services.Interfaces
     {
         public Task AddAsync(AddBookDto bookDto);
         public Task<ShowBookDto> GetAsync(int id);
+        public Task<List<ShowBookDto>> GetAllBooksAsync();
         public Task<bool> DeleteAsync(int id);
         public Task<bool> UpdateAsync(int id, UpdateBookDto bookDto);
     }

@@ -45,7 +45,14 @@ namespace Library.Services
                 Street = library.Street,
                 House = library.House,
                 PhoneNumber = library.PhoneNumber,
-                IdLibrary = library.IdLibrary
+                IdLibrary = library.IdLibrary,
+                Employees = library.Employees.Select(e => e.Name + " " + e.Surname + " " + " " + e.Patronymic).ToList(),
+                BooksAndInstances = library.Instances.GroupBy(i => i.Book.Title)
+                .Select(g => new BookAndInstancesDto
+                {
+                    BookTitle = g.Key,
+                    BookNumbers = g.Select(i => i.BookNumber).ToList()
+                }).ToList()
             };
         }
 

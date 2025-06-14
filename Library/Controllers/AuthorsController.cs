@@ -23,26 +23,35 @@ namespace Library.Controllers
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            await _service.AddAsync(author);
+            await _service.AddAuthorAsync(author);
 
             return NoContent();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ShowAuthorDto>> GetAuthorByIdAsync(int id) 
+        public async Task<ActionResult<ShowAuthorDto>> GetAuthorByIdAsync(int id)
         {
-            var author = await _service.GetAsync(id);
-
-            if(author == null)
-                return NotFound();
+            var author = await _service.GetAuthorByIdAsync(id);
 
             return Ok(author);
         }
 
+        [HttpGet]
+        public async Task<ActionResult<List<ShowAuthorDto>>> GetAuthorsAsync()
+        {
+            var authors = await _service.GetAllAuthorsAsync();
+
+            if (authors.Count==0)
+                return NoContent();
+
+            return Ok(authors);
+        }
+
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAuthorByIdAsync(int id)
         {
-            var isComplited = await _service.DeleteAsync(id);
+            var isComplited = await _service.DeleteAuhtorAsync(id);
 
             if (isComplited == false)
                 return NotFound();
@@ -57,7 +66,7 @@ namespace Library.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var isComplited = await _service.UpdateAsync(id,author);
+            var isComplited = await _service.UpdateAuthorAsync(id,author);
 
             if (isComplited == false)
                 return NotFound();

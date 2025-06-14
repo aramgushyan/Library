@@ -14,7 +14,7 @@ namespace Library.Services
             _repository = repository;
         }
 
-        public async Task AddAsync(AddAuthorDto authorDto)
+        public async Task AddAuthorAsync(AddAuthorDto authorDto)
         {
             await _repository.AddAuthorAsync(new Author()
             {
@@ -25,28 +25,12 @@ namespace Library.Services
             });
         }
 
-        public async Task<ShowAuthorDto> GetAsync(int id)
-        {
-            var author = await _repository.GetAuthorByIdAsync(id);
-            if(author == null)
-                return null;
-
-            return new ShowAuthorDto()
-            {
-                Id = author.IdAuthor,
-                Name = author.Name,
-                Surname = author.Surname,
-                Patronymic = author.Patronymic
-            };
-            
-        }
-
-        public async Task<bool> DeleteAsync(int id) 
+        public async Task<bool> DeleteAuhtorAsync(int id) 
         {
             return await _repository.DeleteAuthorAsync(id);
         }
 
-        public async Task<bool> UpdateAsync(int id,UpdateAuthorDto author)
+        public async Task<bool> UpdateAuthorAsync(int id,UpdateAuthorDto author)
         {
             return await _repository.UpdateAuthorAsync(id, new Author() 
             {
@@ -54,6 +38,36 @@ namespace Library.Services
                 Surname = author.Surname,
                 Patronymic = author.Patronymic
             });
+        }
+
+        public async Task<ShowAuthorDto> GetAuthorByIdAsync(int id)
+        {
+            var author = await _repository.GetAuthorByIdAsync(id);
+            if (author == null)
+                return null;
+
+            return new ShowAuthorDto()
+            {
+                Id = author.IdAuthor,
+                Name = author.Name,
+                Surname = author.Surname,
+                Patronymic = author.Patronymic,
+                Books = author.AuthorBooks.Select(x => x.Book.Title).ToList()
+            };
+        }
+
+        public async Task<List<ShowAuthorDto>> GetAllAuthorsAsync()
+        {
+            var list = await  _repository.GetAllAuthorsAsync();
+
+            return list.Select(a => new ShowAuthorDto
+            {
+                Id = a.IdAuthor,
+                Name = a.Name,
+                Surname = a.Surname,
+                Patronymic = a.Patronymic,
+                Books = a.AuthorBooks.Select(ab => ab.Book.Title).ToList()
+            }).ToList();
         }
     }
 }

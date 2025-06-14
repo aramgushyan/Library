@@ -2,7 +2,7 @@
   {
     "ContainingType": "Library.Controllers.AuthorsController",
     "Method": "AddAuthorAsync",
-    "RelativePath": "api/author",
+    "RelativePath": "api/authors",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -17,8 +17,28 @@
   },
   {
     "ContainingType": "Library.Controllers.AuthorsController",
-    "Method": "ViewAuthorByIdAsync",
-    "RelativePath": "api/author/{id}",
+    "Method": "GetAuthorsAsync",
+    "RelativePath": "api/authors",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Library.Services.Dto.ShowAuthorDto, Library.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Library.Controllers.AuthorsController",
+    "Method": "GetAuthorByIdAsync",
+    "RelativePath": "api/authors/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -44,7 +64,7 @@
   {
     "ContainingType": "Library.Controllers.AuthorsController",
     "Method": "DeleteAuthorByIdAsync",
-    "RelativePath": "api/author/{id}",
+    "RelativePath": "api/authors/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -60,7 +80,7 @@
   {
     "ContainingType": "Library.Controllers.AuthorsController",
     "Method": "UpdateAuthorAsync",
-    "RelativePath": "api/author/{id}",
+    "RelativePath": "api/authors/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -80,8 +100,28 @@
   },
   {
     "ContainingType": "Library.Controllers.BooksController",
+    "Method": "GetAllBooksAsync",
+    "RelativePath": "api/books",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Library.Services.Dto.ShowBookDto, Library.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Library.Controllers.BooksController",
     "Method": "AddBookAsync",
-    "RelativePath": "api/book",
+    "RelativePath": "api/books",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -96,8 +136,8 @@
   },
   {
     "ContainingType": "Library.Controllers.BooksController",
-    "Method": "GetBookAsync",
-    "RelativePath": "api/book/{id}",
+    "Method": "GetBookByIdAsync",
+    "RelativePath": "api/books/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -123,7 +163,7 @@
   {
     "ContainingType": "Library.Controllers.BooksController",
     "Method": "DeleteBookAsync",
-    "RelativePath": "api/book/{id}",
+    "RelativePath": "api/books/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -139,7 +179,7 @@
   {
     "ContainingType": "Library.Controllers.BooksController",
     "Method": "UpdateBookAsync",
-    "RelativePath": "api/book/{id}",
+    "RelativePath": "api/books/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -159,8 +199,28 @@
   },
   {
     "ContainingType": "Library.Controllers.GenreController",
+    "Method": "GetAllGenres",
+    "RelativePath": "api/genres",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Library.Services.Dto.ShowGenreDto, Library.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Library.Controllers.GenreController",
     "Method": "AddGenreAsync",
-    "RelativePath": "api/genre",
+    "RelativePath": "api/genres",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -175,8 +235,8 @@
   },
   {
     "ContainingType": "Library.Controllers.GenreController",
-    "Method": "ShowGenreAsync",
-    "RelativePath": "api/genre/{id}",
+    "Method": "GetGenreByIdAsync",
+    "RelativePath": "api/genres/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -202,7 +262,7 @@
   {
     "ContainingType": "Library.Controllers.GenreController",
     "Method": "DeleteGenreAsync",
-    "RelativePath": "api/genre/{id}",
+    "RelativePath": "api/genres/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -218,7 +278,7 @@
   {
     "ContainingType": "Library.Controllers.GenreController",
     "Method": "UpdateGenreAsync",
-    "RelativePath": "api/genre/{id}",
+    "RelativePath": "api/genres/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -239,7 +299,7 @@
   {
     "ContainingType": "Library.Controllers.LibraryController",
     "Method": "AddLibrary",
-    "RelativePath": "api/library",
+    "RelativePath": "api/libraries",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -254,8 +314,8 @@
   },
   {
     "ContainingType": "Library.Controllers.LibraryController",
-    "Method": "ShowLibraryById",
-    "RelativePath": "api/library/{id}",
+    "Method": "GetLibraryByIdAsync",
+    "RelativePath": "api/libraries/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -281,7 +341,7 @@
   {
     "ContainingType": "Library.Controllers.LibraryController",
     "Method": "DeleteLibraryById",
-    "RelativePath": "api/library/{id}",
+    "RelativePath": "api/libraries/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -297,7 +357,7 @@
   {
     "ContainingType": "Library.Controllers.LibraryController",
     "Method": "UpdateLibraryById",
-    "RelativePath": "api/library/{id}",
+    "RelativePath": "api/libraries/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,

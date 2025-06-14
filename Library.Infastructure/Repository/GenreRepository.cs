@@ -40,7 +40,14 @@ namespace Library.Infastructure.Repository
 
         public async Task<Genre> GetGenreByIdAsync(int id)
         {
-            return await _context.Genres.FindAsync(id);
+            return await _context.Genres.Include(g => g.BookGenres).ThenInclude(bg => bg.Book)
+                .FirstOrDefaultAsync(g => g.IdGenre ==id);
+        }
+
+        public async Task<List<Genre>> GetAllGenresAsync()
+        {
+            return await _context.Genres
+                .Include(g => g.BookGenres).ThenInclude(bg => bg.Book).ToListAsync();
         }
 
         public async Task<bool> UpdateGenreAsync(int id, Genre genre)

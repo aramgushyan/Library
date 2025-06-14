@@ -40,12 +40,25 @@ namespace Library.Services
             {
                 IdGenre = genre.IdGenre,
                 Name = genre.Name,
+                Books = genre.BookGenres.Select(bg => bg.Book.Title).ToList()
             };
         }
 
-        public Task<bool> UpdateAsync(int id, UpdateGenreDto genreDto)
+        public async Task<List<ShowGenreDto>> GetAllGenresAsync()
         {
-            return _repository.UpdateGenreAsync(id,new Genre() {Name = genreDto.Name});
+            var genres = await _repository.GetAllGenresAsync();
+
+            return genres.Select(g => new ShowGenreDto
+            {
+                IdGenre = g.IdGenre,
+                Name = g.Name,
+                Books = g.BookGenres.Select(bg => bg.Book.Title).ToList()
+            }).ToList();
+        }
+
+        public async Task<bool> UpdateAsync(int id, UpdateGenreDto genreDto)
+        {
+            return await _repository.UpdateGenreAsync(id,new Genre() {Name = genreDto.Name});
         }
     }
 }

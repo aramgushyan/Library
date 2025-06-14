@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Library.Controllers
 {
     [ApiController]
-    [Route("api/genre")]
+    [Route("api/genres")]
     public class GenreController : ControllerBase
     {
         private readonly IGenreService _service;
@@ -27,6 +27,17 @@ namespace Library.Controllers
             }
 
             return Ok(genre);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<ShowGenreDto>>> GetAllGenres()
+        {
+            var genres = await _service.GetAllGenresAsync();
+
+            if (genres.Count == 0)
+                return NoContent();
+
+            return Ok(genres);
         }
 
         [HttpPost]

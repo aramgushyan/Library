@@ -11,6 +11,7 @@ namespace Library.Services.Interfaces
     {
         public Task AddAsync(AddGenreDto genreDto);
         public Task<ShowGenreDto> GetAsync(int id);
+        public Task<List<ShowGenreDto>> GetAllGenresAsync();
         public Task<bool> DeleteAsync(int id);
         public Task<bool> UpdateAsync(int id, UpdateGenreDto genreDto);
     }

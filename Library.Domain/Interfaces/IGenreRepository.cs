@@ -13,5 +13,6 @@ namespace Library.Domain.Interfaces
         public Task<bool> UpdateGenreAsync(int id, Genre genre);
         public Task<bool> DeleteGenreAsync(int id);
         public Task<Genre> GetGenreByIdAsync(int id);
+        public Task<List<Genre>> GetAllGenresAsync();
     }
 }

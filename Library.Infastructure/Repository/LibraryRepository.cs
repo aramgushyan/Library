@@ -38,7 +38,8 @@ namespace Library.Infastructure.Repository
 
         public async Task<LibraryModel> GetLibraryByIdAsync(int id)
         {
-            return await _context.Libraries.FindAsync(id);
+            return await _context.Libraries.Include(l => l.Instances).ThenInclude(i => i.Book).Include(l => l.Employees)
+                .FirstOrDefaultAsync(l => l.IdLibrary == id);
         }
 
         public async Task<bool> UpdateLibraryAsync(int id, LibraryModel newLibrary)

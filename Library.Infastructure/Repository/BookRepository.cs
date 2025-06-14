@@ -40,7 +40,15 @@ namespace Library.Infastructure.Repository
 
         public async Task<Book> GetBookByIdAsync(int id)
         {
-            return await _context.Books.FindAsync(id);
+            return await _context.Books.Include(b => b.BookGenres).ThenInclude(bg => bg.Genre)
+                .Include(b => b.AuthorBooks).ThenInclude(ab => ab.Author).Include(b => b.Instances)
+                .FirstOrDefaultAsync(b => b.IdBook == id);
+        }
+
+        public async Task<List<Book>> GetAllBooksAsync()
+        {
+            return await _context.Books.Include(b => b.BookGenres).ThenInclude(bg => bg.Genre)
+                .Include(b => b.AuthorBooks).ThenInclude(ab => ab.Author).Include(b => b.Instances).ToListAsync();
         }
 
         public async Task<bool> UpdateBookAsync(int id, Book book)

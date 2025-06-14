@@ -697,6 +697,17 @@
         }
       },
       "System.Threading.Channels/7.0.0": {},
+      "Library.Application/1.0.0": {
+        "dependencies": {
+          "Library.Domain": "1.0.0"
+        },
+        "runtime": {
+          "Library.Application.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "Library.Domain/1.0.0": {
         "runtime": {
           "Library.Domain.dll": {
@@ -720,6 +731,7 @@
       },
       "Library.Services/1.0.0": {
         "dependencies": {
+          "Library.Application": "1.0.0",
           "Library.Domain": "1.0.0"
         },
         "runtime": {
@@ -1079,6 +1091,11 @@
       "sha512": "sha512-qmeeYNROMsONF6ndEZcIQ+VxR4Q/TX/7uIVLJqtwIWL7dDWeh0l1UIqgo4wYyjG//5lUNhwkLDSFl+pAWO6oiA==",
       "path": "system.threading.channels/7.0.0",
       "hashPath": "system.threading.channels.7.0.0.nupkg.sha512"
+    },
+    "Library.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "Library.Domain/1.0.0": {
       "type": "project",

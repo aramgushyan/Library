@@ -34,16 +34,34 @@ namespace Library.Services
 
         }
 
+        public async Task<List<ShowBookDto>> GetAllBooksAsync()
+        {
+            var list = await _repository.GetAllBooksAsync();
+            return list.Select(book => new ShowBookDto()
+            {
+                Title = book.Title,
+                IdBook = book.IdBook,
+                Genres = book.BookGenres.Select(g => g.Genre.Name).ToList(),
+                Authors = book.AuthorBooks.Select(a => a.Author.Name + " " + a.Author.Surname
+                + " " + a.Author.Patronymic).ToList(),
+                Instances = book.Instances.Select(i => i.BookNumber).ToList()
+            }).ToList();
+        }
+
         public async Task<ShowBookDto> GetAsync(int id)
         {
             var book = await _repository.GetBookByIdAsync(id);
             if ( book == null)
                 return null;
 
-            return new ShowBookDto() 
+            return new ShowBookDto()
             {
                 Title = book.Title,
-                IdBook = book.IdBook 
+                IdBook = book.IdBook,
+                Genres = book.BookGenres.Select(g => g.Genre.Name).ToList(),
+                Authors = book.AuthorBooks.Select(a => a.Author.Name + " " + a.Author.Surname
+                + " " + a.Author.Patronymic).ToList(),
+                Instances = book.Instances.Select(i => i.BookNumber).ToList()
             };
         }
 

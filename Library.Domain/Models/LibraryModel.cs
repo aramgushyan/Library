@@ -15,6 +15,8 @@ namespace Library.Domain.Models
         [Required]
         [StringLength(100)]
         public string Street { get; set; }
+
+        [Range(1, 300)]
         public int House { get; set; }
 
         [Required]

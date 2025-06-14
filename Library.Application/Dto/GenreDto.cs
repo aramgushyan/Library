@@ -10,10 +10,8 @@ namespace Library.Services.Dto
     public class ShowGenreDto
     {
         public int IdGenre { get; set; }
-
-        [Required]
-        [MaxLength(50)]
         public string Name { get; set; }
+        public List<string> Books { get; set; }
     }
 
     public class AddGenreDto 
