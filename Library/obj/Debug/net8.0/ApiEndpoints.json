@@ -9,7 +9,7 @@
     "Parameters": [
       {
         "Name": "author",
-        "Type": "Library.Services.Dto.AddAuthorDto",
+        "Type": "Library.Application.Dto.AddAuthorDto",
         "IsRequired": true
       }
     ],
@@ -25,7 +25,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[Library.Services.Dto.ShowAuthorDto, Library.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[Library.Application.Dto.ShowAuthorDto, Library.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -51,7 +51,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Library.Services.Dto.ShowAuthorDto",
+        "Type": "Library.Application.Dto.ShowAuthorDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -92,7 +92,7 @@
       },
       {
         "Name": "author",
-        "Type": "Library.Services.Dto.UpdateAuthorDto",
+        "Type": "Library.Application.Dto.UpdateAuthorDto",
         "IsRequired": true
       }
     ],
@@ -108,7 +108,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[Library.Services.Dto.ShowBookDto, Library.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[Library.Application.Dto.ShowBookDto, Library.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -128,7 +128,7 @@
     "Parameters": [
       {
         "Name": "bookDto",
-        "Type": "Library.Services.Dto.AddBookDto",
+        "Type": "Library.Application.Dto.AddBookDto",
         "IsRequired": true
       }
     ],
@@ -150,7 +150,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Library.Services.Dto.ShowBookDto",
+        "Type": "Library.Application.Dto.ShowBookDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -191,7 +191,7 @@
       },
       {
         "Name": "bookDto",
-        "Type": "Library.Services.Dto.UpdateBookDto",
+        "Type": "Library.Application.Dto.UpdateBookDto",
         "IsRequired": true
       }
     ],
@@ -207,7 +207,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[Library.Services.Dto.ShowGenreDto, Library.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[Library.Application.Dto.ShowGenreDto, Library.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -227,7 +227,7 @@
     "Parameters": [
       {
         "Name": "genreDto",
-        "Type": "Library.Services.Dto.AddGenreDto",
+        "Type": "Library.Application.Dto.AddGenreDto",
         "IsRequired": true
       }
     ],
@@ -249,7 +249,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Library.Services.Dto.ShowGenreDto",
+        "Type": "Library.Application.Dto.ShowGenreDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -290,7 +290,7 @@
       },
       {
         "Name": "genre",
-        "Type": "Library.Services.Dto.UpdateGenreDto",
+        "Type": "Library.Application.Dto.UpdateGenreDto",
         "IsRequired": true
       }
     ],
@@ -306,7 +306,7 @@
     "Parameters": [
       {
         "Name": "libraryDto",
-        "Type": "Library.Services.Dto.AddLibraryDto",
+        "Type": "Library.Application.Dto.AddLibraryDto",
         "IsRequired": true
       }
     ],
@@ -328,7 +328,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Library.Services.Dto.ShowLibraryDto",
+        "Type": "Library.Application.Dto.ShowLibraryDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -369,7 +369,7 @@
       },
       {
         "Name": "libraryDto",
-        "Type": "Library.Services.Dto.UpdateLibraryDto",
+        "Type": "Library.Application.Dto.UpdateLibraryDto",
         "IsRequired": true
       }
     ],

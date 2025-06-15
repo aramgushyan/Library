@@ -9,7 +9,7 @@ namespace Library.Domain.Interfaces
 {
     public interface ILibraryRepository
     {
-        public Task AddLibraryAsync(LibraryModel author);
+        public Task<int> AddLibraryAsync(LibraryModel author);
         public Task<bool> UpdateLibraryAsync(int id, LibraryModel author);
         public Task<bool> DeleteLibraryAsync(int id);
         public Task<LibraryModel> GetLibraryByIdAsync(int id);

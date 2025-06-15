@@ -9,7 +9,7 @@ namespace Library.Domain.Interfaces
 {
     public interface IAuthorRepository
     {
-        public Task AddAuthorAsync(Author author);
+        public Task<int> AddAuthorAsync(Author author);
         public Task<bool> UpdateAuthorAsync(int id,Author author);
         public Task<bool> DeleteAuthorAsync(int id);
         public Task<List<Author>> GetAllAuthorsAsync();

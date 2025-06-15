@@ -1,4 +1,4 @@
-﻿using Library.Services.Dto;
+﻿using Library.Application.Dto;
 using Library.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -41,8 +41,8 @@ namespace Library.Controllers
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            await _bookService.AddAsync(bookDto);
-            return NoContent();
+           int id = await _bookService.AddAsync(bookDto);
+            return Ok(id);
         }
 
         [HttpDelete("{id}")]

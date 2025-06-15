@@ -1,6 +1,6 @@
 ﻿using Library.Domain.Interfaces;
 using Library.Domain.Models;
-using Library.Services.Dto;
+using Library.Application.Dto;
 using Library.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -19,9 +19,9 @@ namespace Library.Services
             _repository = repository;
         }
 
-        public async Task AddAsync(AddGenreDto genreDto)
+        public async Task<int> AddAsync(AddGenreDto genreDto)
         {
-            await _repository.AddGenreAsync(new Genre() {Name = genreDto.Name });
+            return await _repository.AddGenreAsync(new Genre() {Name = genreDto.Name });
         }
 
         public async Task<bool> DeleteAsync(int id)

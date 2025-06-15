@@ -11,8 +11,8 @@ namespace Library.Domain.Models
     {
         [Key]
         public int IdAuthorBook { get; set; }
-        public int IdBook { get; set; } 
-        public int IdAuthor { get; set; }
+        public int BookId { get; set; } 
+        public int AuthorId { get; set; }
         public string? Comment { get; set; }
 
         public Book Book { get; set; }

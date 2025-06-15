@@ -1,5 +1,5 @@
 ﻿using Library.Services;
-using Library.Services.Dto;
+using Library.Application.Dto;
 using Library.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -46,9 +46,9 @@ namespace Library.Controllers
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            await _service.AddAsync(genreDto);
+            var id = await _service.AddAsync(genreDto);
 
-            return NoContent();
+            return Ok(id);
         }
 
         [HttpDelete("{id}")]

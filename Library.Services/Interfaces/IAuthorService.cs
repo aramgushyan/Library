@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Library.Domain.Models;
-using Library.Services.Dto;
+using Library.Application.Dto;
 
 namespace Library.Services.Interfaces
 {
     public interface IAuthorService
     {
-        public Task AddAuthorAsync(AddAuthorDto author);
+        public Task<int> AddAuthorAsync(AddAuthorDto author);
         public Task<ShowAuthorDto> GetAuthorByIdAsync(int id);
         public Task<List<ShowAuthorDto>> GetAllAuthorsAsync();
         public Task<bool> DeleteAuhtorAsync(int id);

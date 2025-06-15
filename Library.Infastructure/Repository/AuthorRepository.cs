@@ -18,11 +18,13 @@ namespace Library.Infastructure.Repository
             _library = library;
         }
 
-        public async Task AddAuthorAsync(Author author)
+        public async Task<int> AddAuthorAsync(Author author)
         {
             await _library.Authors.AddAsync(author);
 
             await _library.SaveChangesAsync();
+
+            return author.IdAuthor;
         }
 
         public async Task<bool> DeleteAuthorAsync(int id)
@@ -41,12 +43,14 @@ namespace Library.Infastructure.Repository
 
         public async Task<List<Author>> GetAllAuthorsAsync()
         {
-            return await _library.Authors.Include(a => a.AuthorBooks).ThenInclude(ab => ab.Book).ToListAsync();
+            return await _library.Authors.Include(a => a.AuthorBooks)
+                .ThenInclude(ab => ab.Book).ToListAsync();
         }
 
         public async Task<Author> GetAuthorByIdAsync(int id)
         {
-            return await _library.Authors.Include(a => a.AuthorBooks).ThenInclude(ab => ab.Book)
+            return await _library.Authors.Include(a => a.AuthorBooks)
+                .ThenInclude(ab => ab.Book)
                 .FirstOrDefaultAsync(a => a.IdAuthor == id);
         }
 

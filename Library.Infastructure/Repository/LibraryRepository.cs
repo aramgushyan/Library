@@ -18,10 +18,12 @@ namespace Library.Infastructure.Repository
             _context = context;
         }
 
-        public async Task AddLibraryAsync(LibraryModel library)
+        public async Task<int> AddLibraryAsync(LibraryModel library)
         {
             await _context.Libraries.AddAsync(library);
             await _context.SaveChangesAsync();
+
+            return library.IdLibrary;
         }
 
         public async Task<bool> DeleteLibraryAsync(int id)
@@ -38,8 +40,9 @@ namespace Library.Infastructure.Repository
 
         public async Task<LibraryModel> GetLibraryByIdAsync(int id)
         {
-            return await _context.Libraries.Include(l => l.Instances).ThenInclude(i => i.Book).Include(l => l.Employees)
-                .FirstOrDefaultAsync(l => l.IdLibrary == id);
+            return await _context.Libraries.Include(l => l.Instances)
+                .ThenInclude(i => i.Book)
+                .Include(l => l.Employees).FirstOrDefaultAsync(l => l.IdLibrary == id);
         }
 
         public async Task<bool> UpdateLibraryAsync(int id, LibraryModel newLibrary)

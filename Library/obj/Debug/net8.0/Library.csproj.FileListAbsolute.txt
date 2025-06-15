@@ -145,3 +145,4 @@ C:\Users\Арам\source\repos\Library\Library\obj\Debug\net8.0\Library.MvcAppli
 C:\Users\Арам\source\repos\Library\Library\obj\Debug\net8.0\Library.sourcelink.json
 C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\Library.Application.dll
 C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\Library.Application.pdb
+C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\AutoMapper.dll

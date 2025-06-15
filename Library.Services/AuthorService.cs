@@ -1,7 +1,7 @@
 ﻿using Library.Domain.Models;
 using Library.Domain.Interfaces;
 using Library.Services.Interfaces;
-using Library.Services.Dto;
+using Library.Application.Dto;
 
 namespace Library.Services
 {
@@ -14,9 +14,9 @@ namespace Library.Services
             _repository = repository;
         }
 
-        public async Task AddAuthorAsync(AddAuthorDto authorDto)
+        public async Task<int> AddAuthorAsync(AddAuthorDto authorDto)
         {
-            await _repository.AddAuthorAsync(new Author()
+           return await _repository.AddAuthorAsync(new Author()
             {
                 Name = authorDto.Name,
                 Surname = authorDto.Surname,

@@ -18,10 +18,12 @@ namespace Library.Infastructure.Repository
             _context = context;
         }
 
-        public async Task AddBookAsync(Book book)
+        public async Task<int> AddBookAsync(Book book)
         {
             await _context.Books.AddAsync(book);
             await _context.SaveChangesAsync();
+
+            return book.IdBook;
         }
 
         public async Task<bool> DeleteBookAsync(int id)
@@ -40,9 +42,11 @@ namespace Library.Infastructure.Repository
 
         public async Task<Book> GetBookByIdAsync(int id)
         {
-            return await _context.Books.Include(b => b.BookGenres).ThenInclude(bg => bg.Genre)
-                .Include(b => b.AuthorBooks).ThenInclude(ab => ab.Author).Include(b => b.Instances)
-                .FirstOrDefaultAsync(b => b.IdBook == id);
+            return await _context.Books.Include(b => b.BookGenres)
+                .ThenInclude(bg => bg.Genre)
+                .Include(b => b.AuthorBooks)
+                .ThenInclude(ab => ab.Author)
+                .Include(b => b.Instances).FirstOrDefaultAsync(b => b.IdBook == id);
         }
 
         public async Task<List<Book>> GetAllBooksAsync()

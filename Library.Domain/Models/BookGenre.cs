@@ -11,8 +11,8 @@ namespace Library.Domain.Models
     {
         [Key]
         public int IdBookGenre { get; set; }
-        public int IdBook {  get; set; }
-        public int IdGenre { get; set; }
+        public int BookId {  get; set; }
+        public int GenreId { get; set; }
         public int? SequenceNumber { get; set; }
 
         public Book Book { get; set; }

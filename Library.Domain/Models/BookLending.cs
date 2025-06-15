@@ -11,8 +11,8 @@ namespace Library.Domain.Models
     {
         [Key]
         public int IdBookLending { get; set; } 
-        public int IdReader { get; set; }
-        public int IdInstance { get; set; }
+        public int ReaderId { get; set; }
+        public int InstanceId { get; set; }
         public DateOnly DateIssue { get; set; }
         public int ReturnPeriod { get; set; }
         public DateOnly? DateReturn { get; set; }

@@ -1,6 +1,6 @@
 ﻿using Library.Domain.Interfaces;
 using Library.Domain.Models;
-using Library.Services.Dto;
+using Library.Application.Dto;
 using Library.Services.Interfaces;
 
 using System;
@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Library.Services.Helpers;
 
 namespace Library.Services
 {
@@ -20,9 +21,9 @@ namespace Library.Services
             _repository = repository;
         }
 
-        public async Task AddAsync(AddBookDto bookDto)
+        public async Task<int> AddAsync(AddBookDto bookDto)
         {
-            await _repository.AddBookAsync(new Book() 
+            return await _repository.AddBookAsync(new Book()
             {
                 Title = bookDto.Title,
             });
@@ -42,8 +43,8 @@ namespace Library.Services
                 Title = book.Title,
                 IdBook = book.IdBook,
                 Genres = book.BookGenres.Select(g => g.Genre.Name).ToList(),
-                Authors = book.AuthorBooks.Select(a => a.Author.Name + " " + a.Author.Surname
-                + " " + a.Author.Patronymic).ToList(),
+                Authors = book.AuthorBooks.Select(a => NameHelper.GetFullName(a.Author.Name, a.Author.Surname, a.Author.Patronymic))
+                .ToList(),
                 Instances = book.Instances.Select(i => i.BookNumber).ToList()
             }).ToList();
         }

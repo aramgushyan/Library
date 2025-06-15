@@ -1,4 +1,4 @@
-﻿using Library.Services.Dto;
+﻿using Library.Application.Dto;
 using Library.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,13 +27,13 @@ namespace Library.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddLibrary([FromBody] AddLibraryDto libraryDto ) 
+        public async Task<IActionResult> AddLibrary(AddLibraryDto libraryDto ) 
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            await _libraryService.AddAsync(libraryDto);
-            return NoContent();
+            var id = await _libraryService.AddAsync(libraryDto);
+            return Ok(id);
         }
 
         [HttpDelete("{id}")]

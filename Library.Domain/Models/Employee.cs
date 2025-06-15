@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.Domain.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,20 +8,12 @@ using System.Threading.Tasks;
 
 namespace Library.Domain.Models
 {
-
-    public enum Position 
-    {
-        Librarian,
-        Director, 
-        Cleaner,
-        Technician
-    }
     public class Employee
     {
         [Key]
         public int IdEmployee { get; set; }
 
-        public int IdLibrary { get; set; }
+        public int LibraryId { get; set; }
 
         [Required]
         public string Name { get; set; }

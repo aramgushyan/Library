@@ -18,10 +18,12 @@ namespace Library.Infastructure.Repository
             _context = context;
         }
 
-        public async Task AddGenreAsync(Genre genre)
+        public async Task<int> AddGenreAsync(Genre genre)
         {
             await _context.Genres.AddAsync(genre);
             await _context.SaveChangesAsync();
+
+            return genre.IdGenre;
         }
 
         public async Task<bool> DeleteGenreAsync(int id)
@@ -40,8 +42,8 @@ namespace Library.Infastructure.Repository
 
         public async Task<Genre> GetGenreByIdAsync(int id)
         {
-            return await _context.Genres.Include(g => g.BookGenres).ThenInclude(bg => bg.Book)
-                .FirstOrDefaultAsync(g => g.IdGenre ==id);
+            return await _context.Genres.Include(g => g.BookGenres)
+                .ThenInclude(bg => bg.Book).FirstOrDefaultAsync(g => g.IdGenre ==id);
         }
 
         public async Task<List<Genre>> GetAllGenresAsync()

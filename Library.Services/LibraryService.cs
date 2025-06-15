@@ -1,12 +1,13 @@
 ﻿using Library.Domain.Interfaces;
 using Library.Domain.Models;
-using Library.Services.Dto;
+using Library.Application.Dto;
 using Library.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Library.Services.Helpers;
 
 namespace Library.Services
 {
@@ -19,9 +20,9 @@ namespace Library.Services
             _repository = repository;
         }
 
-        public async Task AddAsync(AddLibraryDto libraryDto)
+        public async Task<int> AddAsync(AddLibraryDto libraryDto)
         {
-            await _repository.AddLibraryAsync(new LibraryModel()
+            return await _repository.AddLibraryAsync(new LibraryModel()
             {
                 Street = libraryDto.Street,
                 House = libraryDto.House,
@@ -46,7 +47,7 @@ namespace Library.Services
                 House = library.House,
                 PhoneNumber = library.PhoneNumber,
                 IdLibrary = library.IdLibrary,
-                Employees = library.Employees.Select(e => e.Name + " " + e.Surname + " " + " " + e.Patronymic).ToList(),
+                Employees = library.Employees.Select(e => NameHelper.GetFullName(e.Name,e.Surname,e.Patronymic)).ToList(),
                 BooksAndInstances = library.Instances.GroupBy(i => i.Book.Title)
                 .Select(g => new BookAndInstancesDto
                 {

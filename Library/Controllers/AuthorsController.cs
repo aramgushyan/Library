@@ -1,5 +1,5 @@
 ﻿using Library.Domain.Models;
-using Library.Services.Dto;
+using Library.Application.Dto;
 using Library.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -23,9 +23,9 @@ namespace Library.Controllers
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            await _service.AddAuthorAsync(author);
+            int id =await _service.AddAuthorAsync(author);
 
-            return NoContent();
+            return Ok(id);
         }
 
         [HttpGet("{id}")]

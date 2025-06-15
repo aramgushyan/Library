@@ -9,7 +9,7 @@ namespace Library.Domain.Interfaces
 {
     public interface IGenreRepository
     {
-        public Task AddGenreAsync(Genre genre);
+        public Task<int> AddGenreAsync(Genre genre);
         public Task<bool> UpdateGenreAsync(int id, Genre genre);
         public Task<bool> DeleteGenreAsync(int id);
         public Task<Genre> GetGenreByIdAsync(int id);

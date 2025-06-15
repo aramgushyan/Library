@@ -21,19 +21,19 @@ namespace Library.Infastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<AuthorBook>().HasOne(ab => ab.Author).WithMany(a => a.AuthorBooks).HasForeignKey(ab => ab.IdAuthor).OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<AuthorBook>().HasOne(ab => ab.Book).WithMany(b => b.AuthorBooks).HasForeignKey(ab => ab.IdBook).OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<AuthorBook>().HasOne(ab => ab.Author).WithMany(a => a.AuthorBooks).HasForeignKey(ab => ab.AuthorId).OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<AuthorBook>().HasOne(ab => ab.Book).WithMany(b => b.AuthorBooks).HasForeignKey(ab => ab.BookId).OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<BookGenre>().HasOne(bg => bg.Genre).WithMany(g => g.BookGenres).HasForeignKey(bg => bg.IdGenre).OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<BookGenre>().HasOne(bg => bg.Book).WithMany(b => b.BookGenres).HasForeignKey(bg => bg.IdBook).OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<BookGenre>().HasOne(bg => bg.Genre).WithMany(g => g.BookGenres).HasForeignKey(bg => bg.GenreId).OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<BookGenre>().HasOne(bg => bg.Book).WithMany(b => b.BookGenres).HasForeignKey(bg => bg.BookId).OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<BookLending>().HasOne(bl => bl.Reader).WithMany(r => r.BookLendings).HasForeignKey(bl => bl.IdReader).OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<BookLending>().HasOne(bl => bl.Instance).WithMany(i => i.BookLendings).HasForeignKey(bl => bl.IdInstance).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<BookLending>().HasOne(bl => bl.Reader).WithMany(r => r.BookLendings).HasForeignKey(bl => bl.ReaderId).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<BookLending>().HasOne(bl => bl.Instance).WithMany(i => i.BookLendings).HasForeignKey(bl => bl.InstanceId).OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Employee>().HasOne(e => e.Library).WithMany(l => l.Employees).HasForeignKey(e => e.IdLibrary).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Employee>().HasOne(e => e.Library).WithMany(l => l.Employees).HasForeignKey(e => e.LibraryId).OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Instance>().HasOne(i => i.Library).WithMany(l => l.Instances).HasForeignKey(i => i.IdLibrary).OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<Instance>().HasOne(i => i.Book).WithMany(b => b.Instances).HasForeignKey(i => i.IdBook).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Instance>().HasOne(i => i.Library).WithMany(l => l.Instances).HasForeignKey(i => i.LibraryId).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Instance>().HasOne(i => i.Book).WithMany(b => b.Instances).HasForeignKey(i => i.BookId).OnDelete(DeleteBehavior.Restrict);
         }
 
     }
