@@ -17,6 +17,12 @@ namespace Library.Controllers
             _service = service;
         }
 
+        /// <summary>
+        /// Возвращает жанр по Id.
+        /// </summary>
+        /// <param name="id">Id жанра.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>Данные жанра.</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<ShowGenreDto>> GetGenreByIdAsync(int id, CancellationToken token)
         {
@@ -29,19 +35,27 @@ namespace Library.Controllers
             return Ok(genre);
         }
 
+        /// <summary>
+        /// Возвращает все жанры.
+        /// </summary>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>Список жанров.</returns>
         [HttpGet]
         public async Task<ActionResult<List<ShowGenreDto>>> GetAllGenres(CancellationToken token)
         {
             var genres = await _service.GetAllGenresAsync(token);
 
-            if (genres.Count == 0)
-                return NoContent();
-
             return Ok(genres);
         }
 
+        /// <summary>
+        /// Добавляет новый жанр.
+        /// </summary>
+        /// <param name="genreDto">Данные жанра.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>Id добавленного жанра.</returns>
         [HttpPost]
-        public async Task<IActionResult> AddGenreAsync(CancellationToken token,[FromBody] AddGenreDto genreDto) 
+        public async Task<IActionResult> AddGenreAsync([FromBody] AddGenreDto genreDto, CancellationToken token) 
         {
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -51,6 +65,12 @@ namespace Library.Controllers
             return Ok(id);
         }
 
+        /// <summary>
+        /// Удаляет жанр по id.
+        /// </summary>
+        /// <param name="id">id жанра для удаления.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>Результат операции удаления.</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteGenreAsync(int id, CancellationToken token) 
         {
@@ -60,8 +80,15 @@ namespace Library.Controllers
             return NotFound();
         }
 
+        /// <summary>
+        /// Обновляет информацию о жанре.
+        /// </summary>
+        /// <param name="id">id жанра для обновления.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <param name="genre">Обновлённые данные жанра.</param>
+        /// <returns>Результат операции обновления.</returns>
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateGenreAsync(int id, CancellationToken token, [FromBody] UpdateGenreDto genre)
+        public async Task<IActionResult> UpdateGenreAsync([FromBody] UpdateGenreDto genre, int id, CancellationToken token)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

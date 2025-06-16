@@ -7,6 +7,7 @@ using Library.Middlewares;
 using Library.Application.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Logging.AddConsole();
 builder.Services.AddContext(builder.Configuration);
 
 builder.Services.AddLibraryMap();
@@ -16,6 +17,7 @@ builder.Services.AddLibraryServices();
 builder.Services.AddControllers();
 
 builder.Services.AddSwaggerGen();
+
 
 var app = builder.Build();
 

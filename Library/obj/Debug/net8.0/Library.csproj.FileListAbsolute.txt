@@ -148,3 +148,8 @@ C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\Library.Applicat
 C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\AutoMapper.dll
 C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\Library.Helpers.dll
 C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\Library.Helpers.pdb
+C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\Microsoft.Extensions.Configuration.dll
+C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Binder.dll
+C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\Microsoft.Extensions.Logging.Configuration.dll
+C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\Microsoft.Extensions.Logging.Console.dll
+C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll

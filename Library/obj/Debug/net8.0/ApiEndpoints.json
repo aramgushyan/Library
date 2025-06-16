@@ -1,5 +1,109 @@
 [
   {
+    "ContainingType": "Library.Controllers.AuthorBookController",
+    "Method": "GetAllAuthorBookAsync",
+    "RelativePath": "api/authorbooks",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Library.Application.Dto.ShowAuthorBookDto, Library.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Library.Controllers.AuthorBookController",
+    "Method": "AddAuthorBook",
+    "RelativePath": "api/authorbooks",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "authorBookDto",
+        "Type": "Library.Application.Dto.AddAuthorBookDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Library.Controllers.AuthorBookController",
+    "Method": "UpdateAuthorBook",
+    "RelativePath": "api/authorbooks",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "authorBookDto",
+        "Type": "Library.Application.Dto.UpdateAuthorBookDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Library.Controllers.AuthorBookController",
+    "Method": "GetAuthorBookByIdAsync",
+    "RelativePath": "api/authorbooks/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Library.Application.Dto.ShowAuthorBookDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Library.Controllers.AuthorBookController",
+    "Method": "DeleteAuthorBooksByIdAsync",
+    "RelativePath": "api/authorbooks/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Library.Controllers.AuthorsController",
     "Method": "AddAuthorAsync",
     "RelativePath": "api/authors",
@@ -86,13 +190,13 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
+        "Name": "author",
+        "Type": "Library.Application.Dto.UpdateAuthorDto",
         "IsRequired": true
       },
       {
-        "Name": "author",
-        "Type": "Library.Application.Dto.UpdateAuthorDto",
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -185,13 +289,13 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
+        "Name": "bookDto",
+        "Type": "Library.Application.Dto.UpdateBookDto",
         "IsRequired": true
       },
       {
-        "Name": "bookDto",
-        "Type": "Library.Application.Dto.UpdateBookDto",
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -284,13 +388,13 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
+        "Name": "genre",
+        "Type": "Library.Application.Dto.UpdateGenreDto",
         "IsRequired": true
       },
       {
-        "Name": "genre",
-        "Type": "Library.Application.Dto.UpdateGenreDto",
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -383,13 +487,13 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
+        "Name": "libraryDto",
+        "Type": "Library.Application.Dto.UpdateLibraryDto",
         "IsRequired": true
       },
       {
-        "Name": "libraryDto",
-        "Type": "Library.Application.Dto.UpdateLibraryDto",
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

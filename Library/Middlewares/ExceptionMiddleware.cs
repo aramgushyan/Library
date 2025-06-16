@@ -23,12 +23,12 @@ namespace Library.Middlewares
             catch (Exception ex)
             {
                 string message = "";
-                (context.Response.StatusCode,message)= ex switch 
+                (context.Response.StatusCode, message) = ex switch
                 {
-                    KeyNotFoundException => (404,ex.Message),
-                    ArgumentNullException => (400,ex.Message),
+                    KeyNotFoundException => (404, ex.Message),
+                    ArgumentNullException => (400, ex.Message),
                     ArgumentException => (400, ex.Message),
-                    _ => (500,"Ошибка на сервере")
+                    _ => (500, "Ошибка на сервере")
                 };
 
                 context.Response.ContentType = "application/json";

@@ -15,6 +15,12 @@ namespace Library.Controllers
             _libraryService = libraryService;
         }
 
+        /// <summary>
+        /// Возвращает библиотеку по Id.
+        /// </summary>
+        /// <param name="id">Id библиотеки.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>Данные библиотеки.</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<ShowLibraryDto>> GetLibraryByIdAsync(int id, CancellationToken token) 
         {
@@ -26,6 +32,11 @@ namespace Library.Controllers
             return Ok(library);
         }
 
+        /// <summary>
+        /// Возвращает все библиотеки.
+        /// </summary>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>Список библиотек.</returns>
         [HttpGet]
         public async Task<ActionResult<List<ShowLibraryWithoutDetailsDto>>> GetLibrariesAsync(CancellationToken token)
         {
@@ -35,7 +46,7 @@ namespace Library.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddLibrary(AddLibraryDto libraryDto, CancellationToken token) 
+        public async Task<IActionResult> AddLibrary([FromBody] AddLibraryDto libraryDto, CancellationToken token) 
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -54,7 +65,7 @@ namespace Library.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateLibraryById(int id, CancellationToken token, [FromBody] UpdateLibraryDto libraryDto) 
+        public async Task<IActionResult> UpdateLibraryById([FromBody] UpdateLibraryDto libraryDto, int id, CancellationToken token) 
         {
             if (await _libraryService.UpdateAsync(id, libraryDto, token))
                 return NoContent();

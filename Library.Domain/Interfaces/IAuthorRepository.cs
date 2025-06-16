@@ -10,8 +10,5 @@ namespace Library.Domain.Interfaces
         public Task<List<Author>> GetAllAuthorsAsync(CancellationToken token);
         public Task<Author> GetAuthorByIdAsync(int id, CancellationToken token);
         public Task<List<string>> GetBooksByAuthorIdAsync(int authorId, CancellationToken token);
-
-
-
     }
 }

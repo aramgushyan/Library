@@ -1,5 +1,6 @@
 ﻿using Library.Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Library.Infastructure
 {

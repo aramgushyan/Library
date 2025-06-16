@@ -30,15 +30,7 @@ namespace Library.Infastructure.Repository
 
         public async Task<bool> DeleteAuthorAsync(int id, CancellationToken token)
         {
-            var author = await _library.Authors.FindAsync(id, token);
-            if (author != null) 
-            {
-                await _library.Authors.Where(a => a.IdAuthor == id).ExecuteDeleteAsync(token);
-
-                return true;
-            }
-            else
-                return false;
+            return await _library.Authors.Where(a => a.IdAuthor == id).ExecuteDeleteAsync(token) > 0;
         }
 
         public async Task<List<Author>> GetAllAuthorsAsync(CancellationToken token)
