@@ -18,6 +18,14 @@ namespace Library.Application.Dto
         public List<BookAndInstancesDto> BooksAndInstances { get; set; }
     }
 
+    public class ShowLibraryWithoutDetailsDto
+    {
+        public int IdLibrary { get; set; }
+        public string Street { get; set; }
+        public int House { get; set; }
+        public string PhoneNumber { get; set; }
+    }
+
     public class AddLibraryDto
     {
         [Required]

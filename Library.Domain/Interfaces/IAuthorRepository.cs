@@ -1,19 +1,17 @@
 ﻿using Library.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Domain.Interfaces
 {
     public interface IAuthorRepository
     {
-        public Task<int> AddAuthorAsync(Author author);
-        public Task<bool> UpdateAuthorAsync(int id,Author author);
-        public Task<bool> DeleteAuthorAsync(int id);
-        public Task<List<Author>> GetAllAuthorsAsync();
-        public Task<Author> GetAuthorByIdAsync(int id);
+        public Task<int> AddAuthorAsync(Author author, CancellationToken token);
+        public Task<bool> UpdateAuthorAsync(int id,Author author, CancellationToken token);
+        public Task<bool> DeleteAuthorAsync(int id, CancellationToken token);
+        public Task<List<Author>> GetAllAuthorsAsync(CancellationToken token);
+        public Task<Author> GetAuthorByIdAsync(int id, CancellationToken token);
+        public Task<List<string>> GetBooksByAuthorIdAsync(int authorId, CancellationToken token);
+
+
 
     }
 }

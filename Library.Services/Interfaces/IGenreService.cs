@@ -9,10 +9,10 @@ namespace Library.Services.Interfaces
 {
     public interface IGenreService
     {
-        public Task<int> AddAsync(AddGenreDto genreDto);
-        public Task<ShowGenreDto> GetAsync(int id);
-        public Task<List<ShowGenreDto>> GetAllGenresAsync();
-        public Task<bool> DeleteAsync(int id);
-        public Task<bool> UpdateAsync(int id, UpdateGenreDto genreDto);
+        public Task<int> AddAsync(AddGenreDto genreDto, CancellationToken token);
+        public Task<ShowGenreDto> GetAsync(int id, CancellationToken token);
+        public Task<List<ShowGenreWithoutBooksDto>> GetAllGenresAsync(CancellationToken token);
+        public Task<bool> DeleteAsync(int id, CancellationToken token);
+        public Task<bool> UpdateAsync(int id, UpdateGenreDto genreDto, CancellationToken token);
     }
 }

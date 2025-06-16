@@ -1,4 +1,5 @@
 ﻿using Library.Application.Dto;
+using Library.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,10 @@ namespace Library.Services.Interfaces
 {
     public interface ILibraryService
     {
-        public Task<int> AddAsync(AddLibraryDto libraryDto);
-        public Task<ShowLibraryDto> GetAsync(int id);
-        public Task<bool> DeleteAsync(int id);
-        public Task<bool> UpdateAsync(int id, UpdateLibraryDto libraryDto);
+        public Task<int> AddAsync(AddLibraryDto libraryDto, CancellationToken token);
+        public Task<ShowLibraryDto> GetAsync(int id, CancellationToken token);
+        public Task<bool> DeleteAsync(int id, CancellationToken token);
+        public Task<bool> UpdateAsync(int id, UpdateLibraryDto libraryDto, CancellationToken token);
+        public Task<List<ShowLibraryWithoutDetailsDto>> GetAllLibrariesAsync(CancellationToken token);
     }
 }

@@ -33,13 +33,11 @@ namespace Library.Middlewares
 
                 context.Response.ContentType = "application/json";
 
-                var response = JsonSerializer.Serialize(new
+                await context.Response.WriteAsJsonAsync(new
                 {
                     status = context.Response.StatusCode,
                     Error = message
                 });
-
-                await context.Response.WriteAsync(response);
             }
             }
         }

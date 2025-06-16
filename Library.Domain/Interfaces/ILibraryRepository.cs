@@ -9,9 +9,13 @@ namespace Library.Domain.Interfaces
 {
     public interface ILibraryRepository
     {
-        public Task<int> AddLibraryAsync(LibraryModel author);
-        public Task<bool> UpdateLibraryAsync(int id, LibraryModel author);
-        public Task<bool> DeleteLibraryAsync(int id);
-        public Task<LibraryModel> GetLibraryByIdAsync(int id);
+        public Task<int> AddLibraryAsync(LibraryModel author, CancellationToken token);
+        public Task<bool> UpdateLibraryAsync(int id, LibraryModel author, CancellationToken token);
+        public Task<bool> DeleteLibraryAsync(int id, CancellationToken token);
+        public Task<LibraryModel> GetLibraryByIdAsync(int id, CancellationToken token);
+        public Task<List<string>> GetEmployeesByLibraryIdAsync(int id, CancellationToken token);
+        public Task<List<Instance>> GetInstancesByLibraryIdAsync(int id, CancellationToken token);
+
+        public Task<List<LibraryModel>> GetAllLibrariesAsync(CancellationToken token);
     }
 }

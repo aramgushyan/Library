@@ -14,8 +14,5 @@ namespace Library.Domain.Models
         [Required]
         public string Title { get; set; }
 
-        public List<BookGenre> BookGenres { get; set; }
-        public List<AuthorBook> AuthorBooks { get; set; }
-        public List<Instance> Instances { get; set; } 
     }
 }

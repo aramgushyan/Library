@@ -8,63 +8,72 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Library.Services.Helpers;
+using AutoMapper;
 
 namespace Library.Services
 {
     public class LibraryService : ILibraryService
     {
         private readonly ILibraryRepository _repository;
+        private readonly IMapper _mapper;
 
-        public LibraryService(ILibraryRepository repository) 
+        public LibraryService(ILibraryRepository repository, IMapper mapper) 
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
-        public async Task<int> AddAsync(AddLibraryDto libraryDto)
+        public async Task<int> AddAsync(AddLibraryDto libraryDto, CancellationToken token)
         {
             return await _repository.AddLibraryAsync(new LibraryModel()
             {
                 Street = libraryDto.Street,
                 House = libraryDto.House,
                 PhoneNumber = libraryDto.PhoneNumber
-            });
+            }, token);
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id, CancellationToken token)
         {
-            return await  _repository.DeleteLibraryAsync(id);
+            return await  _repository.DeleteLibraryAsync(id, token);
         }
 
-        public  async Task<ShowLibraryDto> GetAsync(int id)
+        public async Task<List<ShowLibraryWithoutDetailsDto>> GetAllLibrariesAsync(CancellationToken token)
         {
-            var library = await _repository.GetLibraryByIdAsync(id);
+            return  _mapper.Map<List<ShowLibraryWithoutDetailsDto>>(await _repository.GetAllLibrariesAsync(token));
+        }
+
+        public  async Task<ShowLibraryDto> GetAsync(int id, CancellationToken token)
+        {
+            var library = await _repository.GetLibraryByIdAsync(id, token);
             if (library == null)
                 return null;
 
-            return new ShowLibraryDto()
+            var employes = await _repository.GetEmployeesByLibraryIdAsync(id, token);
+
+            var instances = await _repository.GetInstancesByLibraryIdAsync(id, token);
+            var instancesAndBooks = instances.GroupBy(i => i.Book.Title).Select(g => new BookAndInstancesDto
             {
-                Street = library.Street,
-                House = library.House,
-                PhoneNumber = library.PhoneNumber,
-                IdLibrary = library.IdLibrary,
-                Employees = library.Employees.Select(e => NameHelper.GetFullName(e.Name,e.Surname,e.Patronymic)).ToList(),
-                BooksAndInstances = library.Instances.GroupBy(i => i.Book.Title)
-                .Select(g => new BookAndInstancesDto
-                {
-                    BookTitle = g.Key,
-                    BookNumbers = g.Select(i => i.BookNumber).ToList()
-                }).ToList()
-            };
+                BookTitle = g.Key,
+                BookNumbers = g.Select(i => i.BookNumber).ToList()
+            }).ToList();
+
+            var libraryWithDetails = _mapper.Map<ShowLibraryDto>(library);
+            libraryWithDetails.Employees = employes;
+            libraryWithDetails.BooksAndInstances = instancesAndBooks;
+
+            return libraryWithDetails ;
+            
         }
 
-        public async Task<bool> UpdateAsync(int id, UpdateLibraryDto libraryDto)
+        public async Task<bool> UpdateAsync(int id, UpdateLibraryDto libraryDto, CancellationToken token)
         {
             return await _repository.UpdateLibraryAsync(id, new LibraryModel()
             {
                 Street = libraryDto.Street,
                 House = libraryDto.House,
                 PhoneNumber = libraryDto.PhoneNumber
-            });
+            }, token);
         }
     }
 }

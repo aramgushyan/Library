@@ -7,58 +7,53 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 
 namespace Library.Services
 {
     public class GenreService : IGenreService
     {
         private readonly IGenreRepository _repository;
+        private readonly IMapper _mapper;
 
-        public GenreService(IGenreRepository repository) 
+        public GenreService(IGenreRepository repository,IMapper mapper) 
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
-        public async Task<int> AddAsync(AddGenreDto genreDto)
+        public async Task<int> AddAsync(AddGenreDto genreDto, CancellationToken token)
         {
-            return await _repository.AddGenreAsync(new Genre() {Name = genreDto.Name });
+            return await _repository.AddGenreAsync(new Genre() {Name = genreDto.Name }, token);
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id, CancellationToken token)
         {
-            return await _repository.DeleteGenreAsync(id);
+            return await _repository.DeleteGenreAsync(id, token);
         }
 
-        public async Task<ShowGenreDto> GetAsync(int id)
+        public async Task<ShowGenreDto> GetAsync(int id, CancellationToken token)
         {
-            var genre = await _repository.GetGenreByIdAsync(id);
+            var genre = await _repository.GetGenreByIdAsync(id, token);
 
             if (genre == null)
                 return null;
 
-            return new ShowGenreDto()
-            {
-                IdGenre = genre.IdGenre,
-                Name = genre.Name,
-                Books = genre.BookGenres.Select(bg => bg.Book.Title).ToList()
-            };
+            var books = await _repository.GetBooksByGenreIdAsync(id, token);
+
+            return _mapper.Map<ShowGenreDto>(books);
         }
 
-        public async Task<List<ShowGenreDto>> GetAllGenresAsync()
+        public async Task<List<ShowGenreWithoutBooksDto>> GetAllGenresAsync(CancellationToken token)
         {
-            var genres = await _repository.GetAllGenresAsync();
+            var genres = await _repository.GetAllGenresAsync(token);
 
-            return genres.Select(g => new ShowGenreDto
-            {
-                IdGenre = g.IdGenre,
-                Name = g.Name,
-                Books = g.BookGenres.Select(bg => bg.Book.Title).ToList()
-            }).ToList();
+            return _mapper.Map<List<ShowGenreWithoutBooksDto>>(genres);
         }
 
-        public async Task<bool> UpdateAsync(int id, UpdateGenreDto genreDto)
+        public async Task<bool> UpdateAsync(int id, UpdateGenreDto genreDto, CancellationToken token)
         {
-            return await _repository.UpdateGenreAsync(id,new Genre() {Name = genreDto.Name});
+            return await _repository.UpdateGenreAsync(id,new Genre() {Name = genreDto.Name}, token);
         }
     }
 }

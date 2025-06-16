@@ -19,6 +19,5 @@ namespace Library.Domain.Models
 
         public LibraryModel Library { get; set; }
         public Book Book { get; set; }
-        public List<BookLending> BookLendings { get; set; }
     }   
 }

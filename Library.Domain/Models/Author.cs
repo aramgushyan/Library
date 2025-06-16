@@ -24,7 +24,6 @@ namespace Library.Domain.Models
         [StringLength(100)]
         public string? Patronymic { get; set; }
 
-        public List<AuthorBook> AuthorBooks { get; set; }
 
     }
 }

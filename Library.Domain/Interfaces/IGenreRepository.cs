@@ -9,10 +9,11 @@ namespace Library.Domain.Interfaces
 {
     public interface IGenreRepository
     {
-        public Task<int> AddGenreAsync(Genre genre);
-        public Task<bool> UpdateGenreAsync(int id, Genre genre);
-        public Task<bool> DeleteGenreAsync(int id);
-        public Task<Genre> GetGenreByIdAsync(int id);
-        public Task<List<Genre>> GetAllGenresAsync();
+        public Task<int> AddGenreAsync(Genre genre, CancellationToken token);
+        public Task<bool> UpdateGenreAsync(int id, Genre genre, CancellationToken token);
+        public Task<bool> DeleteGenreAsync(int id, CancellationToken token);
+        public Task<Genre> GetGenreByIdAsync(int id, CancellationToken token);
+        public Task<List<string>> GetBooksByGenreIdAsync(int id, CancellationToken token);
+        public Task<List<Genre>> GetAllGenresAsync(CancellationToken token);
     }
 }

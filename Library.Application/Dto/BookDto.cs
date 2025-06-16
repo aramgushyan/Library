@@ -18,6 +18,13 @@ namespace Library.Application.Dto
 
     }
 
+    public class ShowBookWithoutDetailsDto
+    {
+        public int IdBook { get; set; }
+        public string Title { get; set; }
+
+    }
+
     public class AddBookDto
     {
         [Required]

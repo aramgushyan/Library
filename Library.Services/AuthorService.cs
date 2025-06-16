@@ -2,72 +2,56 @@
 using Library.Domain.Interfaces;
 using Library.Services.Interfaces;
 using Library.Application.Dto;
+using AutoMapper;
 
 namespace Library.Services
 {
     public class AuthorService : IAuthorService
     {
         private readonly IAuthorRepository _repository;
+        private readonly IMapper _mapper;
 
-        public AuthorService(IAuthorRepository repository)
+        public AuthorService(IAuthorRepository repository,IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
-        public async Task<int> AddAuthorAsync(AddAuthorDto authorDto)
+        public async Task<int> AddAuthorAsync(AddAuthorDto authorDto, CancellationToken token)
         {
-           return await _repository.AddAuthorAsync(new Author()
-            {
-                Name = authorDto.Name,
-                Surname = authorDto.Surname,
-                Patronymic = authorDto.Patronymic,
-
-            });
+            return await _repository.AddAuthorAsync(_mapper.Map<Author>(authorDto), token);
         }
 
-        public async Task<bool> DeleteAuhtorAsync(int id) 
+        public async Task<bool> DeleteAuhtorAsync(int id, CancellationToken token) 
         {
-            return await _repository.DeleteAuthorAsync(id);
+            return await _repository.DeleteAuthorAsync(id,token);
         }
 
-        public async Task<bool> UpdateAuthorAsync(int id,UpdateAuthorDto author)
+        public async Task<bool> UpdateAuthorAsync(int id,UpdateAuthorDto author, CancellationToken token)
         {
-            return await _repository.UpdateAuthorAsync(id, new Author() 
-            {
-                Name = author.Name,
-                Surname = author.Surname,
-                Patronymic = author.Patronymic
-            });
+
+            return await _repository.UpdateAuthorAsync(id, _mapper.Map<Author>(author), token);
         }
 
-        public async Task<ShowAuthorDto> GetAuthorByIdAsync(int id)
+        public async Task<ShowAuthorDto> GetAuthorByIdAsync(int id, CancellationToken token)
         {
-            var author = await _repository.GetAuthorByIdAsync(id);
+            var author = await _repository.GetAuthorByIdAsync(id, token);
             if (author == null)
                 return null;
 
-            return new ShowAuthorDto()
-            {
-                Id = author.IdAuthor,
-                Name = author.Name,
-                Surname = author.Surname,
-                Patronymic = author.Patronymic,
-                Books = author.AuthorBooks.Select(x => x.Book.Title).ToList()
-            };
+            var books = await _repository.GetBooksByAuthorIdAsync(id, token);
+
+            var authorWithBook = _mapper.Map<ShowAuthorDto>(author);
+            authorWithBook.Books = books;
+
+            return authorWithBook;
         }
 
-        public async Task<List<ShowAuthorDto>> GetAllAuthorsAsync()
+        public async Task<List<ShowAuthorWithoutBooksDto>> GetAllAuthorsAsync(CancellationToken token)
         {
-            var list = await  _repository.GetAllAuthorsAsync();
+            var list = await  _repository.GetAllAuthorsAsync(token);
 
-            return list.Select(a => new ShowAuthorDto
-            {
-                Id = a.IdAuthor,
-                Name = a.Name,
-                Surname = a.Surname,
-                Patronymic = a.Patronymic,
-                Books = a.AuthorBooks.Select(ab => ab.Book.Title).ToList()
-            }).ToList();
+            return _mapper.Map<List<ShowAuthorWithoutBooksDto>>(list);
         }
     }
 }

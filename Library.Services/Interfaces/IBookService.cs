@@ -9,10 +9,10 @@ namespace Library.Services.Interfaces
 {
     public interface IBookService
     {
-        public Task<int> AddAsync(AddBookDto bookDto);
-        public Task<ShowBookDto> GetAsync(int id);
-        public Task<List<ShowBookDto>> GetAllBooksAsync();
-        public Task<bool> DeleteAsync(int id);
-        public Task<bool> UpdateAsync(int id, UpdateBookDto bookDto);
+        public Task<int> AddAsync(AddBookDto bookDto, CancellationToken token);
+        public Task<ShowBookDto> GetAsync(int id, CancellationToken token);
+        public Task<List<ShowBookWithoutDetailsDto>> GetAllBooksAsync(CancellationToken token);
+        public Task<bool> DeleteAsync(int id, CancellationToken token);
+        public Task<bool> UpdateAsync(int id, UpdateBookDto bookDto, CancellationToken token);
     }
 }

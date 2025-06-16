@@ -4,15 +4,12 @@ using Library.Infastructure;
 using Library.Infastructure.Extensions;
 using Library.Infastructure.Repository;
 using Library.Middlewares;
-using Library.Services;
-using Library.Services.Interfaces;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.EntityFrameworkCore;
+using Library.Application.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddContext(builder.Configuration);
 
+builder.Services.AddLibraryMap();
 builder.Services.AddLibraryRepository();
 builder.Services.AddLibraryServices();
 

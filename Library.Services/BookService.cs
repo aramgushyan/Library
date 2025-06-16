@@ -9,66 +9,63 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Library.Services.Helpers;
+using AutoMapper;
 
 namespace Library.Services
 {
     public class BookService : IBookService
     {
         private readonly IBookRepository _repository;
+        private readonly IMapper _mapper;
 
-        public BookService(IBookRepository repository) 
+        public BookService(IBookRepository repository,IMapper mapper) 
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
-        public async Task<int> AddAsync(AddBookDto bookDto)
+        public async Task<int> AddAsync(AddBookDto bookDto, CancellationToken token)
         {
             return await _repository.AddBookAsync(new Book()
             {
                 Title = bookDto.Title,
-            });
+            }, token);
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id, CancellationToken token)
         {
-            return await _repository.DeleteBookAsync(id);
+            return await _repository.DeleteBookAsync(id, token);
 
         }
 
-        public async Task<List<ShowBookDto>> GetAllBooksAsync()
+        public async Task<List<ShowBookWithoutDetailsDto>> GetAllBooksAsync(CancellationToken token)
         {
-            var list = await _repository.GetAllBooksAsync();
-            return list.Select(book => new ShowBookDto()
-            {
-                Title = book.Title,
-                IdBook = book.IdBook,
-                Genres = book.BookGenres.Select(g => g.Genre.Name).ToList(),
-                Authors = book.AuthorBooks.Select(a => NameHelper.GetFullName(a.Author.Name, a.Author.Surname, a.Author.Patronymic))
-                .ToList(),
-                Instances = book.Instances.Select(i => i.BookNumber).ToList()
-            }).ToList();
+            var list = await _repository.GetAllBooksAsync(token);
+            return _mapper.Map<List<ShowBookWithoutDetailsDto>>(list);
         }
 
-        public async Task<ShowBookDto> GetAsync(int id)
+        public async Task<ShowBookDto> GetAsync(int id, CancellationToken token)
         {
-            var book = await _repository.GetBookByIdAsync(id);
+            var book = await _repository.GetBookByIdAsync(id, token);
             if ( book == null)
                 return null;
 
-            return new ShowBookDto()
-            {
-                Title = book.Title,
-                IdBook = book.IdBook,
-                Genres = book.BookGenres.Select(g => g.Genre.Name).ToList(),
-                Authors = book.AuthorBooks.Select(a => a.Author.Name + " " + a.Author.Surname
-                + " " + a.Author.Patronymic).ToList(),
-                Instances = book.Instances.Select(i => i.BookNumber).ToList()
-            };
+            var genries = await _repository.GetGenriesByBookIdAsync(id, token);
+            var author = await _repository.GetAuthorsByBookIdAsync(id, token);
+            var instances = await _repository.GetInstancesByBookIdAsync(id, token);
+
+            var bookwithDetails = _mapper.Map<ShowBookDto>(book);
+
+            bookwithDetails.Genres = genries;
+            bookwithDetails.Authors = author;
+            bookwithDetails.Instances = instances;
+
+            return bookwithDetails;
         }
 
-        public async Task<bool> UpdateAsync(int id, UpdateBookDto bookDto)
+        public async Task<bool> UpdateAsync(int id, UpdateBookDto bookDto, CancellationToken token)
         {
-            return await _repository.UpdateBookAsync(id, new Book() { Title = bookDto.Title });
+            return await _repository.UpdateBookAsync(id, new Book() { Title = bookDto.Title }, token);
         }
     }
 }

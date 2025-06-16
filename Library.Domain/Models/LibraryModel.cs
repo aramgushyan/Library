@@ -23,7 +23,5 @@ namespace Library.Domain.Models
         [Phone]
         public string PhoneNumber { get; set; }
 
-        public List<Employee> Employees { get; set; }
-        public List<Instance> Instances { get; set; }
     }
 }

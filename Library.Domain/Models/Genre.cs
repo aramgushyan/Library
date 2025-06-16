@@ -15,7 +15,5 @@ namespace Library.Domain.Models
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
-
-        public List<BookGenre> BookGenres { get; set; }
     }
 }

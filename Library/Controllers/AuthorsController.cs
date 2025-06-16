@@ -18,28 +18,28 @@ namespace Library.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddAuthorAsync([FromBody] AddAuthorDto author) 
+        public async Task<IActionResult> AddAuthorAsync([FromBody] AddAuthorDto author,CancellationToken token) 
         {
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            int id =await _service.AddAuthorAsync(author);
+            int id =await _service.AddAuthorAsync(author, token);
 
             return Ok(id);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ShowAuthorDto>> GetAuthorByIdAsync(int id)
+        public async Task<ActionResult<ShowAuthorDto>> GetAuthorByIdAsync(int id, CancellationToken token)
         {
-            var author = await _service.GetAuthorByIdAsync(id);
+            var author = await _service.GetAuthorByIdAsync(id, token);
 
             return Ok(author);
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<ShowAuthorDto>>> GetAuthorsAsync()
+        public async Task<ActionResult<List<ShowAuthorDto>>> GetAuthorsAsync(CancellationToken token)
         {
-            var authors = await _service.GetAllAuthorsAsync();
+            var authors = await _service.GetAllAuthorsAsync(token);
 
             if (authors.Count==0)
                 return NoContent();
@@ -49,9 +49,9 @@ namespace Library.Controllers
 
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAuthorByIdAsync(int id)
+        public async Task<IActionResult> DeleteAuthorByIdAsync(int id, CancellationToken token)
         {
-            var isComplited = await _service.DeleteAuhtorAsync(id);
+            var isComplited = await _service.DeleteAuhtorAsync(id, token);
 
             if (isComplited == false)
                 return NotFound();
@@ -60,13 +60,13 @@ namespace Library.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAuthorAsync(int id,[FromBody] UpdateAuthorDto author)
+        public async Task<IActionResult> UpdateAuthorAsync(int id, CancellationToken token, [FromBody] UpdateAuthorDto author)
         {
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var isComplited = await _service.UpdateAuthorAsync(id,author);
+            var isComplited = await _service.UpdateAuthorAsync(id,author, token);
 
             if (isComplited == false)
                 return NotFound();

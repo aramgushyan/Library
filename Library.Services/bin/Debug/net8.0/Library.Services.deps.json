@@ -10,6 +10,7 @@
         "dependencies": {
           "Library.Application": "1.0.0",
           "Library.Domain": "1.0.0",
+          "Library.Helpers": "1.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.4"
         },
         "runtime": {
@@ -74,6 +75,14 @@
             "fileVersion": "1.0.0.0"
           }
         }
+      },
+      "Library.Helpers/1.0.0": {
+        "runtime": {
+          "Library.Helpers.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -117,6 +126,11 @@
       "sha512": ""
     },
     "Library.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Library.Helpers/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

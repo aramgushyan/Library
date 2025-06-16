@@ -25,7 +25,5 @@ namespace Library.Domain.Models
 
         [Required]
         public string Email { get; set; }
-
-        public List<BookLending> BookLendings { get; set; }
     }
 }

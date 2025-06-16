@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Library.Application.Dto;
 
 namespace Library.Infastructure.Repository
 {
@@ -18,45 +19,47 @@ namespace Library.Infastructure.Repository
             _library = library;
         }
 
-        public async Task<int> AddAuthorAsync(Author author)
+        public async Task<int> AddAuthorAsync(Author author, CancellationToken token)
         {
-            await _library.Authors.AddAsync(author);
+            await _library.Authors.AddAsync(author, token);
 
-            await _library.SaveChangesAsync();
+            await _library.SaveChangesAsync(token);
 
             return author.IdAuthor;
         }
 
-        public async Task<bool> DeleteAuthorAsync(int id)
+        public async Task<bool> DeleteAuthorAsync(int id, CancellationToken token)
         {
-            var author = await _library.Authors.FindAsync(id);
+            var author = await _library.Authors.FindAsync(id, token);
             if (author != null) 
             {
-                _library.Authors.Remove(author);
+                await _library.Authors.Where(a => a.IdAuthor == id).ExecuteDeleteAsync(token);
 
-                await _library.SaveChangesAsync();
                 return true;
             }
             else
                 return false;
         }
 
-        public async Task<List<Author>> GetAllAuthorsAsync()
+        public async Task<List<Author>> GetAllAuthorsAsync(CancellationToken token)
         {
-            return await _library.Authors.Include(a => a.AuthorBooks)
-                .ThenInclude(ab => ab.Book).ToListAsync();
+            return await _library.Authors.ToListAsync(token);
         }
 
-        public async Task<Author> GetAuthorByIdAsync(int id)
+        public async Task<Author> GetAuthorByIdAsync(int id, CancellationToken token)
         {
-            return await _library.Authors.Include(a => a.AuthorBooks)
-                .ThenInclude(ab => ab.Book)
-                .FirstOrDefaultAsync(a => a.IdAuthor == id);
+            return await _library.Authors.FindAsync(id, token);
         }
 
-        public async Task<bool> UpdateAuthorAsync(int id, Author author)
+        public  async  Task<List<string>> GetBooksByAuthorIdAsync(int authorId, CancellationToken token)
         {
-            var pastAuthor = await _library.Authors.FindAsync(id);
+            return await _library.AuthorBooks.Where(ab => ab.AuthorId == authorId)
+                .Join(_library.Books,ab => ab.BookId,b=>b.IdBook,(ab,b) => b.Title).ToListAsync(token);
+        }
+
+        public async Task<bool> UpdateAuthorAsync(int id, Author author, CancellationToken token)
+        {
+            var pastAuthor = await _library.Authors.FindAsync(id, token);
 
             if (pastAuthor != null)
             {
@@ -64,7 +67,7 @@ namespace Library.Infastructure.Repository
                 pastAuthor.Patronymic = author.Patronymic;
                 pastAuthor.Name = author.Name;
 
-                await _library.SaveChangesAsync();
+                await _library.SaveChangesAsync(token);
 
                 return true;
             }

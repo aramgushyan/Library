@@ -18,50 +18,53 @@ namespace Library.Infastructure.Repository
             _context = context;
         }
 
-        public async Task<int> AddGenreAsync(Genre genre)
+        public async Task<int> AddGenreAsync(Genre genre, CancellationToken token)
         {
-            await _context.Genres.AddAsync(genre);
-            await _context.SaveChangesAsync();
+            await _context.Genres.AddAsync(genre, token);
+            await _context.SaveChangesAsync(token);
 
             return genre.IdGenre;
         }
 
-        public async Task<bool> DeleteGenreAsync(int id)
+        public async Task<bool> DeleteGenreAsync(int id, CancellationToken token)
         {
-            var genre = await _context.Genres.FindAsync(id);
+            var genre = await _context.Genres.FindAsync(id, token);
             if (genre != null) 
             {
-                _context.Genres.Remove(genre);
-                await _context.SaveChangesAsync();
+                await _context.Genres.Where(g => g.IdGenre == id).ExecuteDeleteAsync(token);
+                await _context.SaveChangesAsync(token);
 
                 return true;
             }
-
             return false;
         }
 
-        public async Task<Genre> GetGenreByIdAsync(int id)
+        public async Task<Genre> GetGenreByIdAsync(int id, CancellationToken token)
         {
-            return await _context.Genres.Include(g => g.BookGenres)
-                .ThenInclude(bg => bg.Book).FirstOrDefaultAsync(g => g.IdGenre ==id);
+            return await _context.Genres.FindAsync(id, token);
         }
 
-        public async Task<List<Genre>> GetAllGenresAsync()
+        public async Task<List<Genre>> GetAllGenresAsync(CancellationToken token)
         {
-            return await _context.Genres
-                .Include(g => g.BookGenres).ThenInclude(bg => bg.Book).ToListAsync();
+            return await _context.Genres.ToListAsync(token);
         }
 
-        public async Task<bool> UpdateGenreAsync(int id, Genre genre)
+        public async Task<bool> UpdateGenreAsync(int id, Genre genre, CancellationToken token)
         {
-            var previousGenre = await _context.Genres.FindAsync(id);
+            var previousGenre = await _context.Genres.FindAsync(id, token);
             if (previousGenre == null) 
                 return false;
 
             previousGenre.Name = genre.Name;
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(token);
 
             return true;
+        }
+
+        public async Task<List<string>> GetBooksByGenreIdAsync(int id, CancellationToken token)
+        {
+            return await _context.BookGenres.Where(bg => bg.IdBookGenre == id)
+                .Join(_context.Books, bg => bg.BookId, b => b.IdBook, (bg, b) => b.Title).ToListAsync(token);
         }
     }
 }

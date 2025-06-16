@@ -1,5 +1,6 @@
 ﻿using Library.Domain.Interfaces;
 using Library.Domain.Models;
+using Library.Services.Helpers;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,21 +19,20 @@ namespace Library.Infastructure.Repository
             _context = context;
         }
 
-        public async Task<int> AddBookAsync(Book book)
+        public async Task<int> AddBookAsync(Book book, CancellationToken token)
         {
-            await _context.Books.AddAsync(book);
-            await _context.SaveChangesAsync();
+            await _context.Books.AddAsync(book,token);
+            await _context.SaveChangesAsync(token);
 
             return book.IdBook;
         }
 
-        public async Task<bool> DeleteBookAsync(int id)
+        public async Task<bool> DeleteBookAsync(int id, CancellationToken token)
         {
-            var book = await _context.Books.FindAsync(id);
+            var book = await _context.Books.FindAsync(id,token);
             if (book != null) 
             {
-                 _context.Books.Remove(book);
-                await _context.SaveChangesAsync();
+                 await _context.Books.Where(b => b.IdBook == id).ExecuteDeleteAsync(token);
 
                 return true;
             }
@@ -40,32 +40,47 @@ namespace Library.Infastructure.Repository
             return false;
         }
 
-        public async Task<Book> GetBookByIdAsync(int id)
+        public async Task<Book> GetBookByIdAsync(int id, CancellationToken token)
         {
-            return await _context.Books.Include(b => b.BookGenres)
-                .ThenInclude(bg => bg.Genre)
-                .Include(b => b.AuthorBooks)
-                .ThenInclude(ab => ab.Author)
-                .Include(b => b.Instances).FirstOrDefaultAsync(b => b.IdBook == id);
+            return await _context.Books.FindAsync(id,token);
         }
 
-        public async Task<List<Book>> GetAllBooksAsync()
+        public async Task<List<Book>> GetAllBooksAsync(CancellationToken token)
         {
-            return await _context.Books.Include(b => b.BookGenres).ThenInclude(bg => bg.Genre)
-                .Include(b => b.AuthorBooks).ThenInclude(ab => ab.Author).Include(b => b.Instances).ToListAsync();
+            return await _context.Books.ToListAsync(token);
         }
 
-        public async Task<bool> UpdateBookAsync(int id, Book book)
+        public async Task<bool> UpdateBookAsync(int id, Book book, CancellationToken token)
         {
-            var previousBook = await _context.Books.FindAsync(id);
+            var previousBook = await _context.Books.FindAsync(id, token);
             if (previousBook != null)
             {
                 previousBook.Title= book.Title;
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(token);
                 return true;
             }
 
             return false;
         }
+
+        public async Task<List<string>> GetGenriesByBookIdAsync(int id,CancellationToken token)
+        {
+            return await _context.BookGenres.Where(bg => bg.BookId == id)
+                .Join(_context.Genres,bg => bg.GenreId,g => g.IdGenre,
+                (bg,g) => g.Name).ToListAsync(token);
+        }
+
+        public async Task<List<string>> GetAuthorsByBookIdAsync(int id, CancellationToken token)
+        {
+            return await _context.AuthorBooks.Where(ab => ab.BookId == id)
+                .Join(_context.Authors,ab => ab.AuthorId,a => a.IdAuthor,
+                (ab,a)=> NameHelper.GetFullName(a.Name, a.Surname, a.Patronymic)).ToListAsync(token);
+        }
+
+        public async Task<List<string>> GetInstancesByBookIdAsync(int id, CancellationToken token)
+        {
+            return await _context.Instances.Where(ab => ab.BookId == id).Select(ab => ab.BookNumber).ToListAsync(token);
+        }
+
     }
 }

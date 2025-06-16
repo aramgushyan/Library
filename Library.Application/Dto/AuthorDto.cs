@@ -18,6 +18,15 @@ namespace Library.Application.Dto
         public List<string> Books { get; set; }
     }
 
+    public class ShowAuthorWithoutBooksDto
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string? Patronymic { get; set; }
+
+    }
+
     public class AddAuthorDto
     {
         [Required]

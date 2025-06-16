@@ -18,9 +18,9 @@ namespace Library.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ShowGenreDto>> GetGenreByIdAsync(int id)
+        public async Task<ActionResult<ShowGenreDto>> GetGenreByIdAsync(int id, CancellationToken token)
         {
-            var genre = await _service.GetAsync(id);
+            var genre = await _service.GetAsync(id, token);
             if (genre == null) 
             {
                 return NotFound();
@@ -30,9 +30,9 @@ namespace Library.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<ShowGenreDto>>> GetAllGenres()
+        public async Task<ActionResult<List<ShowGenreDto>>> GetAllGenres(CancellationToken token)
         {
-            var genres = await _service.GetAllGenresAsync();
+            var genres = await _service.GetAllGenresAsync(token);
 
             if (genres.Count == 0)
                 return NoContent();
@@ -41,32 +41,32 @@ namespace Library.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddGenreAsync([FromBody] AddGenreDto genreDto) 
+        public async Task<IActionResult> AddGenreAsync(CancellationToken token,[FromBody] AddGenreDto genreDto) 
         {
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var id = await _service.AddAsync(genreDto);
+            var id = await _service.AddAsync(genreDto, token);
 
             return Ok(id);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteGenreAsync(int id) 
+        public async Task<IActionResult> DeleteGenreAsync(int id, CancellationToken token) 
         {
-            if(await _service.DeleteAsync(id))
+            if(await _service.DeleteAsync(id, token))
                 return NoContent();
 
             return NotFound();
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateGenreAsync(int id, [FromBody] UpdateGenreDto genre)
+        public async Task<IActionResult> UpdateGenreAsync(int id, CancellationToken token, [FromBody] UpdateGenreDto genre)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            if (await _service.UpdateAsync(id,genre))
+            if (await _service.UpdateAsync(id,genre, token))
                 return NoContent();
 
             return NotFound();

@@ -14,6 +14,12 @@ namespace Library.Application.Dto
         public List<string> Books { get; set; }
     }
 
+    public class ShowGenreWithoutBooksDto
+    {
+        public int IdGenre { get; set; }
+        public string Name { get; set; }
+    }
+
     public class AddGenreDto 
     {
         [Required]

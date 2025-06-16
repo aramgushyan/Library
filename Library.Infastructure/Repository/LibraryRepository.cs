@@ -1,5 +1,6 @@
 ﻿using Library.Domain.Interfaces;
 using Library.Domain.Models;
+using Library.Services.Helpers;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,36 +19,48 @@ namespace Library.Infastructure.Repository
             _context = context;
         }
 
-        public async Task<int> AddLibraryAsync(LibraryModel library)
+        public async Task<int> AddLibraryAsync(LibraryModel library, CancellationToken token)
         {
-            await _context.Libraries.AddAsync(library);
-            await _context.SaveChangesAsync();
+            await _context.Libraries.AddAsync(library, token);
+            await _context.SaveChangesAsync(token);
 
             return library.IdLibrary;
         }
 
-        public async Task<bool> DeleteLibraryAsync(int id)
+        public async Task<bool> DeleteLibraryAsync(int id, CancellationToken token)
         {
-            var library = await _context.Libraries.FindAsync(id);
-            if (library == null)
+            if (await _context.Libraries.FindAsync(id, token) == null)
                 return false;
 
-            _context.Libraries.Remove(library);
-            await _context.SaveChangesAsync();
+            await _context.Libraries.Where(l => l.IdLibrary == id).ExecuteDeleteAsync(token);
 
             return true;
         }
 
-        public async Task<LibraryModel> GetLibraryByIdAsync(int id)
+        public async Task<List<LibraryModel>> GetAllLibrariesAsync(CancellationToken token)
         {
-            return await _context.Libraries.Include(l => l.Instances)
-                .ThenInclude(i => i.Book)
-                .Include(l => l.Employees).FirstOrDefaultAsync(l => l.IdLibrary == id);
+            return await _context.Libraries.ToListAsync(token);
         }
 
-        public async Task<bool> UpdateLibraryAsync(int id, LibraryModel newLibrary)
+        public async Task<List<string>> GetEmployeesByLibraryIdAsync(int id, CancellationToken token)
         {
-            var library = await _context.Libraries.FindAsync(id);
+            return await _context.Employees.Where(e => e.LibraryId == id)
+                .Select(l => NameHelper.GetFullName(l.Name,l.Surname,l.Patronymic)).ToListAsync(token);
+        }
+
+        public async Task<List<Instance>> GetInstancesByLibraryIdAsync(int id, CancellationToken token)
+        {
+            return await _context.Instances.Where(e => e.LibraryId == id).ToListAsync(token);
+        }
+
+        public async Task<LibraryModel> GetLibraryByIdAsync(int id, CancellationToken token)
+        {
+            return await _context.Libraries.FindAsync(id, token);
+        }
+
+        public async Task<bool> UpdateLibraryAsync(int id, LibraryModel newLibrary, CancellationToken token)
+        {
+            var library = await _context.Libraries.FindAsync(id, token);
             if (library == null)
                 return false;
 
@@ -55,7 +68,7 @@ namespace Library.Infastructure.Repository
             library.PhoneNumber = newLibrary.PhoneNumber;
             library.House = newLibrary.House;
 
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(token);
             return true;
         }
     }

@@ -301,13 +301,13 @@ namespace Library.Infastructure.Migrations
             modelBuilder.Entity("Library.Domain.Models.AuthorBook", b =>
                 {
                     b.HasOne("Library.Domain.Models.Author", "Author")
-                        .WithMany("AuthorBooks")
+                        .WithMany()
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Library.Domain.Models.Book", "Book")
-                        .WithMany("AuthorBooks")
+                        .WithMany()
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -320,13 +320,13 @@ namespace Library.Infastructure.Migrations
             modelBuilder.Entity("Library.Domain.Models.BookGenre", b =>
                 {
                     b.HasOne("Library.Domain.Models.Book", "Book")
-                        .WithMany("BookGenres")
+                        .WithMany()
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Library.Domain.Models.Genre", "Genre")
-                        .WithMany("BookGenres")
+                        .WithMany()
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -339,13 +339,13 @@ namespace Library.Infastructure.Migrations
             modelBuilder.Entity("Library.Domain.Models.BookLending", b =>
                 {
                     b.HasOne("Library.Domain.Models.Instance", "Instance")
-                        .WithMany("BookLendings")
+                        .WithMany()
                         .HasForeignKey("InstanceId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Library.Domain.Models.Reader", "Reader")
-                        .WithMany("BookLendings")
+                        .WithMany()
                         .HasForeignKey("ReaderId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -358,7 +358,7 @@ namespace Library.Infastructure.Migrations
             modelBuilder.Entity("Library.Domain.Models.Employee", b =>
                 {
                     b.HasOne("Library.Domain.Models.LibraryModel", "Library")
-                        .WithMany("Employees")
+                        .WithMany()
                         .HasForeignKey("LibraryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -369,13 +369,13 @@ namespace Library.Infastructure.Migrations
             modelBuilder.Entity("Library.Domain.Models.Instance", b =>
                 {
                     b.HasOne("Library.Domain.Models.Book", "Book")
-                        .WithMany("Instances")
+                        .WithMany()
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Library.Domain.Models.LibraryModel", "Library")
-                        .WithMany("Instances")
+                        .WithMany()
                         .HasForeignKey("LibraryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -383,42 +383,6 @@ namespace Library.Infastructure.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("Library");
-                });
-
-            modelBuilder.Entity("Library.Domain.Models.Author", b =>
-                {
-                    b.Navigation("AuthorBooks");
-                });
-
-            modelBuilder.Entity("Library.Domain.Models.Book", b =>
-                {
-                    b.Navigation("AuthorBooks");
-
-                    b.Navigation("BookGenres");
-
-                    b.Navigation("Instances");
-                });
-
-            modelBuilder.Entity("Library.Domain.Models.Genre", b =>
-                {
-                    b.Navigation("BookGenres");
-                });
-
-            modelBuilder.Entity("Library.Domain.Models.Instance", b =>
-                {
-                    b.Navigation("BookLendings");
-                });
-
-            modelBuilder.Entity("Library.Domain.Models.LibraryModel", b =>
-                {
-                    b.Navigation("Employees");
-
-                    b.Navigation("Instances");
-                });
-
-            modelBuilder.Entity("Library.Domain.Models.Reader", b =>
-                {
-                    b.Navigation("BookLendings");
                 });
 #pragma warning restore 612, 618
         }
