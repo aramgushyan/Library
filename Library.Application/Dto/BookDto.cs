@@ -34,6 +34,8 @@ namespace Library.Application.Dto
 
     public class UpdateBookDto
     {
+        public int IdBook { get; set; }
+
         [Required]
         [StringLength(100)]
         public string Title { get; set; }

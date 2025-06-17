@@ -42,6 +42,8 @@ namespace Library.Application.Dto
 
     public class UpdateLibraryDto
     {
+        public int IdLibrary { get; set; }
+
         [Required]
         [StringLength(100)]
         public string Street { get; set; }

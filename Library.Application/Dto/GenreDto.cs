@@ -29,6 +29,8 @@ namespace Library.Application.Dto
 
     public class UpdateGenreDto
     {
+        public int IdGenre { get; set; }
+
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }

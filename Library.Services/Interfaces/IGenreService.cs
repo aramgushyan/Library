@@ -11,8 +11,8 @@ namespace Library.Services.Interfaces
     {
         public Task<int> AddAsync(AddGenreDto genreDto, CancellationToken token);
         public Task<ShowGenreDto> GetAsync(int id, CancellationToken token);
-        public Task<List<ShowGenreWithoutBooksDto>> GetAllGenresAsync(CancellationToken token);
+        public Task<List<ShowGenreWithoutBooksDto>> GetAllAsync(CancellationToken token);
         public Task<bool> DeleteAsync(int id, CancellationToken token);
-        public Task<bool> UpdateAsync(int id, UpdateGenreDto genreDto, CancellationToken token);
+        public Task<bool> UpdateAsync(UpdateGenreDto genreDto, CancellationToken token);
     }
 }

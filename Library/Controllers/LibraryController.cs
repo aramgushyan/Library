@@ -40,7 +40,7 @@ namespace Library.Controllers
         [HttpGet]
         public async Task<ActionResult<List<ShowLibraryWithoutDetailsDto>>> GetLibrariesAsync(CancellationToken token)
         {
-            var library = await _libraryService.GetAllLibrariesAsync(token);
+            var library = await _libraryService.GetAllAsync(token);
 
             return Ok(library);
         }
@@ -64,10 +64,13 @@ namespace Library.Controllers
             return NotFound();
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateLibraryById([FromBody] UpdateLibraryDto libraryDto, int id, CancellationToken token) 
+        [HttpPut]
+        public async Task<IActionResult> UpdateLibraryById([FromBody] UpdateLibraryDto libraryDto, CancellationToken token) 
         {
-            if (await _libraryService.UpdateAsync(id, libraryDto, token))
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (await _libraryService.UpdateAsync(libraryDto, token))
                 return NoContent();
 
             return NotFound();

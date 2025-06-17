@@ -26,10 +26,10 @@ namespace Library.Services
 
         public async Task<int> AddAsync(AddBookDto bookDto, CancellationToken token)
         {
-            return await _repository.AddBookAsync(new Book()
-            {
-                Title = bookDto.Title,
-            }, token);
+            if (bookDto == null)
+                throw new ArgumentNullException("BookDto не может быть null");
+
+            return await _repository.AddBookAsync(_mapper.Map<Book>(bookDto), token);
         }
 
         public async Task<bool> DeleteAsync(int id, CancellationToken token)
@@ -38,7 +38,7 @@ namespace Library.Services
 
         }
 
-        public async Task<List<ShowBookWithoutDetailsDto>> GetAllBooksAsync(CancellationToken token)
+        public async Task<List<ShowBookWithoutDetailsDto>> GetAllAsync(CancellationToken token)
         {
             var list = await _repository.GetAllBooksAsync(token);
             return _mapper.Map<List<ShowBookWithoutDetailsDto>>(list);
@@ -63,9 +63,12 @@ namespace Library.Services
             return bookwithDetails;
         }
 
-        public async Task<bool> UpdateAsync(int id, UpdateBookDto bookDto, CancellationToken token)
+        public async Task<bool> UpdateAsync(UpdateBookDto bookDto, CancellationToken token)
         {
-            return await _repository.UpdateBookAsync(id, new Book() { Title = bookDto.Title }, token);
+            if (bookDto == null)
+                throw new ArgumentNullException("BookDto не может быть null");
+
+            return await _repository.UpdateBookAsync(bookDto.IdBook, _mapper.Map<Book>(bookDto), token);
         }
     }
 }

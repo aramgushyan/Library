@@ -25,12 +25,10 @@ namespace Library.Services
 
         public async Task<int> AddAsync(AddLibraryDto libraryDto, CancellationToken token)
         {
-            return await _repository.AddLibraryAsync(new LibraryModel()
-            {
-                Street = libraryDto.Street,
-                House = libraryDto.House,
-                PhoneNumber = libraryDto.PhoneNumber
-            }, token);
+            if (libraryDto == null)
+                throw new ArgumentNullException("Библиотека не может быть null");
+
+            return await _repository.AddLibraryAsync(_mapper.Map<LibraryModel>(libraryDto), token);
         }
 
         public async Task<bool> DeleteAsync(int id, CancellationToken token)
@@ -38,7 +36,7 @@ namespace Library.Services
             return await  _repository.DeleteLibraryAsync(id, token);
         }
 
-        public async Task<List<ShowLibraryWithoutDetailsDto>> GetAllLibrariesAsync(CancellationToken token)
+        public async Task<List<ShowLibraryWithoutDetailsDto>> GetAllAsync(CancellationToken token)
         {
             return  _mapper.Map<List<ShowLibraryWithoutDetailsDto>>(await _repository.GetAllLibrariesAsync(token));
         }
@@ -66,14 +64,12 @@ namespace Library.Services
             
         }
 
-        public async Task<bool> UpdateAsync(int id, UpdateLibraryDto libraryDto, CancellationToken token)
+        public async Task<bool> UpdateAsync(UpdateLibraryDto libraryDto, CancellationToken token)
         {
-            return await _repository.UpdateLibraryAsync(id, new LibraryModel()
-            {
-                Street = libraryDto.Street,
-                House = libraryDto.House,
-                PhoneNumber = libraryDto.PhoneNumber
-            }, token);
+            if (libraryDto == null)
+                throw new ArgumentNullException("Библиотека не может быть null");
+
+            return await _repository.UpdateLibraryAsync(libraryDto.IdLibrary, _mapper.Map<LibraryModel>(libraryDto), token);
         }
     }
 }

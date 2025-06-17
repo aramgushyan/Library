@@ -13,7 +13,7 @@ namespace Library.Services.Interfaces
         public Task<int> AddAsync(AddLibraryDto libraryDto, CancellationToken token);
         public Task<ShowLibraryDto> GetAsync(int id, CancellationToken token);
         public Task<bool> DeleteAsync(int id, CancellationToken token);
-        public Task<bool> UpdateAsync(int id, UpdateLibraryDto libraryDto, CancellationToken token);
-        public Task<List<ShowLibraryWithoutDetailsDto>> GetAllLibrariesAsync(CancellationToken token);
+        public Task<bool> UpdateAsync(UpdateLibraryDto libraryDto, CancellationToken token);
+        public Task<List<ShowLibraryWithoutDetailsDto>> GetAllAsync(CancellationToken token);
     }
 }

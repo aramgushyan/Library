@@ -19,6 +19,8 @@ namespace Library.Extensions
 
             services.AddScoped<IAuthorBookService, AuthorBookService>();
 
+            services.AddScoped<IBookGenreService, BookGenreService>();
+
             return services;
         }
     }

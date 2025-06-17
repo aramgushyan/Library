@@ -36,6 +36,16 @@ namespace Library.Application.Mappings
             CreateMap<AuthorBook, ShowAuthorBookDto>().ReverseMap();
             CreateMap<AuthorBook, AddAuthorBookDto>().ReverseMap();
             CreateMap<AuthorBook, UpdateAuthorBookDto>().ReverseMap();
+
+            CreateMap<BookGenre, ShowBookGenreDto>().ReverseMap();
+            CreateMap<BookGenre, UpdateBookGenreDto>().ReverseMap();
+            CreateMap<BookGenre, AddBookGenreDto>().ReverseMap();
+
+            CreateMap<Instance, ShowInstanceDto>().ReverseMap();
+            CreateMap<Instance, ShowInstanceWithoutDetailsDto>().ReverseMap();
+            CreateMap<Instance, AddInstanceDto>().ReverseMap();
+            CreateMap<Instance, UpdateInstanceDto>().ReverseMap();
+
         }
     }
 }

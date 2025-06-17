@@ -24,7 +24,10 @@ namespace Library.Services
 
         public async Task<int> AddAsync(AddGenreDto genreDto, CancellationToken token)
         {
-            return await _repository.AddGenreAsync(new Genre() {Name = genreDto.Name }, token);
+            if (genreDto == null)
+                throw new ArgumentNullException("Жанр не может быть null");
+
+            return await _repository.AddGenreAsync(_mapper.Map<Genre>(genreDto), token);
         }
 
         public async Task<bool> DeleteAsync(int id, CancellationToken token)
@@ -44,16 +47,19 @@ namespace Library.Services
             return _mapper.Map<ShowGenreDto>(books);
         }
 
-        public async Task<List<ShowGenreWithoutBooksDto>> GetAllGenresAsync(CancellationToken token)
+        public async Task<List<ShowGenreWithoutBooksDto>> GetAllAsync(CancellationToken token)
         {
             var genres = await _repository.GetAllGenresAsync(token);
 
             return _mapper.Map<List<ShowGenreWithoutBooksDto>>(genres);
         }
 
-        public async Task<bool> UpdateAsync(int id, UpdateGenreDto genreDto, CancellationToken token)
+        public async Task<bool> UpdateAsync(UpdateGenreDto genreDto, CancellationToken token)
         {
-            return await _repository.UpdateGenreAsync(id,new Genre() {Name = genreDto.Name}, token);
+            if (genreDto == null)
+                throw new ArgumentNullException("Жанр не может быть null");
+
+            return await _repository.UpdateGenreAsync(genreDto.IdGenre, _mapper.Map<Genre>(genreDto), token);
         }
     }
 }

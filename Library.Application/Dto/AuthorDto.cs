@@ -44,6 +44,8 @@ namespace Library.Application.Dto
 
     public class UpdateAuthorDto
     {
+        public int IdAuthor { get; set; }
+
         [Required]
         [StringLength(100)]
         public string Name { get; set; }

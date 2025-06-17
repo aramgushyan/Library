@@ -24,6 +24,9 @@ namespace Library.Services
 
         public async Task<int> AddAsync(AddAuthorBookDto authorBookDto, CancellationToken token)
         {
+            if (authorBookDto == null)
+                throw new ArgumentNullException("AuthorBook не может быть null");
+
             return await _repository.AddAuthorBookAsync(_mapper.Map<AuthorBook>(authorBookDto), token);
         }
 
@@ -44,6 +47,9 @@ namespace Library.Services
 
         public async Task<bool> UpdateAsync(UpdateAuthorBookDto authorBookDto, CancellationToken token)
         {
+            if (authorBookDto == null)
+                throw new ArgumentNullException("AuthorBook не может быть null");
+
             return await _repository.UpdateAuthorBookAsync(authorBookDto.IdAuthorBook,_mapper.Map<AuthorBook>(authorBookDto), token);
         }
     }

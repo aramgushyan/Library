@@ -43,7 +43,7 @@ namespace Library.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ShowAuthorDto>> GetAuthorByIdAsync(int id, CancellationToken token)
         {
-            var author = await _service.GetAuthorByIdAsync(id, token);
+            var author = await _service.GetAsync(id, token);
 
             if (author == null)
                 return NotFound();
@@ -59,7 +59,7 @@ namespace Library.Controllers
         [HttpGet]
         public async Task<ActionResult<List<ShowAuthorDto>>> GetAuthorsAsync(CancellationToken token)
         {
-            var authors = await _service.GetAllAuthorsAsync(token);
+            var authors = await _service.GetAllAsync(token);
             return Ok(authors);
         }
 
@@ -87,14 +87,14 @@ namespace Library.Controllers
         /// <param name="token">Токен отмены.</param>
         /// <param name="author"> Обновлённые  данные автора.</param>
         /// <returns> Результат обновления. </returns>
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAuthorAsync([FromBody] UpdateAuthorDto author, int id, CancellationToken token)
+        [HttpPut()]
+        public async Task<IActionResult> UpdateAuthorAsync([FromBody] UpdateAuthorDto author,CancellationToken token)
         {
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var isComplited = await _service.UpdateAuthorAsync(id,author, token);
+            var isComplited = await _service.UpdateAuthorAsync(author, token);
 
             if (isComplited == false)
                 return NotFound();

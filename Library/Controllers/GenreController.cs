@@ -43,7 +43,7 @@ namespace Library.Controllers
         [HttpGet]
         public async Task<ActionResult<List<ShowGenreDto>>> GetAllGenres(CancellationToken token)
         {
-            var genres = await _service.GetAllGenresAsync(token);
+            var genres = await _service.GetAllAsync(token);
 
             return Ok(genres);
         }
@@ -87,13 +87,13 @@ namespace Library.Controllers
         /// <param name="token">Токен отмены.</param>
         /// <param name="genre">Обновлённые данные жанра.</param>
         /// <returns>Результат операции обновления.</returns>
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateGenreAsync([FromBody] UpdateGenreDto genre, int id, CancellationToken token)
+        [HttpPut()]
+        public async Task<IActionResult> UpdateGenreAsync([FromBody] UpdateGenreDto genre, CancellationToken token)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            if (await _service.UpdateAsync(id,genre, token))
+            if (await _service.UpdateAsync(genre, token))
                 return NoContent();
 
             return NotFound();

@@ -6,11 +6,11 @@ namespace Library.Controllers
 {
     [ApiController]
     [Route("api/books")]
-    public class BooksController : ControllerBase
+    public class BookController : ControllerBase
     {
         private IBookService _bookService;
 
-        public BooksController(IBookService bookService)
+        public BookController(IBookService bookService)
         {
             _bookService = bookService;
         }
@@ -41,7 +41,7 @@ namespace Library.Controllers
         [HttpGet]
         public async Task<ActionResult<List<ShowBookDto>>> GetAllBooksAsync(CancellationToken token)
         {
-            var books = await _bookService.GetAllBooksAsync(token);
+            var books = await _bookService.GetAllAsync(token);
 
             return Ok(books);
         }
@@ -85,13 +85,13 @@ namespace Library.Controllers
         /// <param name="token">Токен отмены.</param>
         /// <param name="bookDto">Обновлённые данные книги.</param>
         /// <returns>Результат операции обновления.</returns>
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateBookAsync([FromBody] UpdateBookDto bookDto,int id, CancellationToken token)
+        [HttpPut()]
+        public async Task<IActionResult> UpdateBookAsync([FromBody] UpdateBookDto bookDto, CancellationToken token)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var isCorrect = await _bookService.UpdateAsync(id, bookDto, token);
+            var isCorrect = await _bookService.UpdateAsync(bookDto, token);
             if (isCorrect == false)
                 return NotFound();
 
