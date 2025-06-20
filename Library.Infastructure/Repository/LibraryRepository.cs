@@ -1,6 +1,6 @@
 ﻿using Library.Domain.Interfaces;
 using Library.Domain.Models;
-using Library.Services.Helpers;
+using Library.Infastructure.Helpers;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -50,7 +50,7 @@ namespace Library.Infastructure.Repository
 
         public async Task<List<Instance>> GetInstancesByLibraryIdAsync(int id, CancellationToken token)
         {
-            return await _context.Instances.Where(e => e.LibraryId == id).ToListAsync(token);
+            return await _context.Instances.Where(e => e.LibraryId == id).Include(l=> l.Book).ToListAsync(token);
         }
 
         public async Task<LibraryModel> GetLibraryByIdAsync(int id, CancellationToken token)

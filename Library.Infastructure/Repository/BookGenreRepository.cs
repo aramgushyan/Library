@@ -52,6 +52,8 @@ namespace Library.Infastructure.Repository
             previousBookGenre.GenreId = bookGenre.GenreId;
             previousBookGenre.BookId = bookGenre.BookId;
 
+            await _context.SaveChangesAsync(token);
+
             return true;
         }
     }

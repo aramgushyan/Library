@@ -1,6 +1,7 @@
 ﻿using Library.Application.Dto;
 using Library.Services;
 using Library.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library.Controllers
@@ -26,6 +27,7 @@ namespace Library.Controllers
             return Ok(authorBook);
         }
 
+        [Authorize(Roles = "Admin,Librarian")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAuthorBooksByIdAsync(int id, CancellationToken token) 
         {
@@ -41,19 +43,19 @@ namespace Library.Controllers
             return Ok(await _serivce.GetAllAsync(token));
         }
 
+        [Authorize(Roles = "Admin,Librarian")]
         [HttpPost]
-        public async Task<ActionResult<int>> AddAuthorBook(AddAuthorBookDto authorBookDto, CancellationToken token) 
+        public async Task<ActionResult<int>> AddAuthorBookAsync(AddAuthorBookDto authorBookDto, CancellationToken token) 
         {
             if (authorBookDto == null)
                 return BadRequest();
 
-            int id = await _serivce.AddAsync(authorBookDto, token);
-
-            return Ok(id);
+            return Ok(await _serivce.AddAsync(authorBookDto, token));
         }
 
+        [Authorize(Roles = "Admin,Librarian")]
         [HttpPut]
-        public async Task<IActionResult> UpdateAuthorBook([FromBody] UpdateAuthorBookDto authorBookDto, CancellationToken token) 
+        public async Task<IActionResult> UpdateAuthorBookAsync([FromBody] UpdateAuthorBookDto authorBookDto, CancellationToken token) 
         {
             if (authorBookDto == null)
                 return BadRequest();

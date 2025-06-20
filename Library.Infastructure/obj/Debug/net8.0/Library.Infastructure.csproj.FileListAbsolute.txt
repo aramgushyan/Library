@@ -17,6 +17,4 @@ C:\Users\Арам\source\repos\Library\Library.Infastructure\obj\Debug\net8.0\Li
 C:\Users\Арам\source\repos\Library\Library.Infastructure\obj\Debug\net8.0\ref\Library.Infastructure.dll
 C:\Users\Арам\source\repos\Library\Library.Infastructure\obj\Debug\net8.0\Library.Infastructure.sourcelink.json
 C:\Users\Арам\source\repos\Library\Library.Infastructure\bin\Debug\net8.0\Library.Application.dll
-C:\Users\Арам\source\repos\Library\Library.Infastructure\bin\Debug\net8.0\Library.Helpers.dll
 C:\Users\Арам\source\repos\Library\Library.Infastructure\bin\Debug\net8.0\Library.Application.pdb
-C:\Users\Арам\source\repos\Library\Library.Infastructure\bin\Debug\net8.0\Library.Helpers.pdb

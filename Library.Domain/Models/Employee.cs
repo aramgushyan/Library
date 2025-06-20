@@ -13,6 +13,14 @@ namespace Library.Domain.Models
         [Key]
         public int IdEmployee { get; set; }
 
+        [Required]
+        [StringLength(10)]
+        public string Login { get; set; }
+
+        [Required]
+        [StringLength(128)]
+        public string PasswordHash { get; set; }
+
         public int LibraryId { get; set; }
 
         [Required]
@@ -25,13 +33,19 @@ namespace Library.Domain.Models
         public DateOnly DateBirth { get; set; }
 
         [Required]
+        [Phone]
         public string PhoneNumber { get; set; }
 
         [Required]
+        [EmailAddress]
         public string Email { get; set; }
 
+        public string? RefreshToken { get; set; }
+
+        public DateTime ExpireTime { get; set; }
+
         [Required]
-        public Position Position { get; set; }
+        public Role Role { get; set; }
 
         public LibraryModel Library { get; set; }
 

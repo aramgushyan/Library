@@ -3,6 +3,7 @@ using Library.Application.Dto;
 using Library.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Library.Controllers
 {
@@ -41,7 +42,7 @@ namespace Library.Controllers
         /// <param name="token">Токен отмены.</param>
         /// <returns>Список жанров.</returns>
         [HttpGet]
-        public async Task<ActionResult<List<ShowGenreDto>>> GetAllGenres(CancellationToken token)
+        public async Task<ActionResult<List<ShowGenreDto>>> GetAllGenresAsync(CancellationToken token)
         {
             var genres = await _service.GetAllAsync(token);
 
@@ -54,15 +55,14 @@ namespace Library.Controllers
         /// <param name="genreDto">Данные жанра.</param>
         /// <param name="token">Токен отмены.</param>
         /// <returns>Id добавленного жанра.</returns>
+        [Authorize(Roles = "Admin,Librarian")]
         [HttpPost]
         public async Task<IActionResult> AddGenreAsync([FromBody] AddGenreDto genreDto, CancellationToken token) 
         {
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var id = await _service.AddAsync(genreDto, token);
-
-            return Ok(id);
+            return Ok(await _service.AddAsync(genreDto, token));
         }
 
         /// <summary>
@@ -71,6 +71,7 @@ namespace Library.Controllers
         /// <param name="id">id жанра для удаления.</param>
         /// <param name="token">Токен отмены.</param>
         /// <returns>Результат операции удаления.</returns>
+        [Authorize(Roles = "Admin,Librarian")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteGenreAsync(int id, CancellationToken token) 
         {
@@ -87,6 +88,7 @@ namespace Library.Controllers
         /// <param name="token">Токен отмены.</param>
         /// <param name="genre">Обновлённые данные жанра.</param>
         /// <returns>Результат операции обновления.</returns>
+        [Authorize(Roles = "Admin,Librarian")]
         [HttpPut()]
         public async Task<IActionResult> UpdateGenreAsync([FromBody] UpdateGenreDto genre, CancellationToken token)
         {

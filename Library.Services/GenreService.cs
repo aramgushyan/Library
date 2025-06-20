@@ -44,7 +44,9 @@ namespace Library.Services
 
             var books = await _repository.GetBooksByGenreIdAsync(id, token);
 
-            return _mapper.Map<ShowGenreDto>(books);
+            var genreDto = _mapper.Map<ShowGenreDto>(genre);
+            genreDto.Books = books;
+            return genreDto;
         }
 
         public async Task<List<ShowGenreWithoutBooksDto>> GetAllAsync(CancellationToken token)

@@ -32,7 +32,6 @@ namespace Library.Infastructure.Repository
             if (genre != null) 
             {
                 await _context.Genres.Where(g => g.IdGenre == id).ExecuteDeleteAsync(token);
-                await _context.SaveChangesAsync(token);
 
                 return true;
             }

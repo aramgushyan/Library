@@ -46,6 +46,21 @@ namespace Library.Application.Mappings
             CreateMap<Instance, AddInstanceDto>().ReverseMap();
             CreateMap<Instance, UpdateInstanceDto>().ReverseMap();
 
+            CreateMap<BookLending, ShowBookLendingDto>().ReverseMap();
+            CreateMap<BookLending, ShowBookLendingWithoutDetailsDto>().ReverseMap();
+            CreateMap<BookLending, UpdateBookLendingDto>().ReverseMap();
+            CreateMap<BookLending, AddBookLendingDto>().ReverseMap();
+
+            CreateMap<Reader, ShowReaderDto>().ReverseMap();
+            CreateMap<Reader, ShowReaderWithoutDetailsDto>().ReverseMap();
+            CreateMap<Reader, UpdateReaderDto>().ReverseMap();
+            CreateMap<Reader, AddReaderDto>().ReverseMap();
+
+            CreateMap<Employee, ShowEmployeeDto>().ReverseMap();
+            CreateMap<Employee, ShowEmployeeWithoutDetailsDto>().ReverseMap();
+            CreateMap<Employee, UpdateEmployeeDto>().ReverseMap();
+            CreateMap<Employee, AddEmployeeDto>().ReverseMap();
+            CreateMap<Employee, ShowEmployeeForTokensDto>().ReverseMap();
         }
     }
 }

@@ -21,6 +21,16 @@ namespace Library.Extensions
 
             services.AddScoped<IBookGenreRepository, BookGenreRepository>();
 
+            services.AddScoped<IInstanceRepository, InstanceRepository>();
+
+            services.AddScoped<IBookLendingRepository, BookLendingRepository>();
+
+            services.AddScoped<IReaderRepository, ReaderRepository>();
+
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+
+            services.AddScoped<IAccountRepository, AccountRepository>();
+
             return services;
         }
     }

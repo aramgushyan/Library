@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Library.Services.Helpers;
 using AutoMapper;
 
 namespace Library.Services
@@ -50,11 +49,7 @@ namespace Library.Services
             var employes = await _repository.GetEmployeesByLibraryIdAsync(id, token);
 
             var instances = await _repository.GetInstancesByLibraryIdAsync(id, token);
-            var instancesAndBooks = instances.GroupBy(i => i.Book.Title).Select(g => new BookAndInstancesDto
-            {
-                BookTitle = g.Key,
-                BookNumbers = g.Select(i => i.BookNumber).ToList()
-            }).ToList();
+            var instancesAndBooks = GetBookAndInstances(instances);
 
             var libraryWithDetails = _mapper.Map<ShowLibraryDto>(library);
             libraryWithDetails.Employees = employes;
@@ -70,6 +65,19 @@ namespace Library.Services
                 throw new ArgumentNullException("Библиотека не может быть null");
 
             return await _repository.UpdateLibraryAsync(libraryDto.IdLibrary, _mapper.Map<LibraryModel>(libraryDto), token);
+        }
+
+        private List<BookAndInstancesDto> GetBookAndInstances(List<Instance> instances) 
+        {
+            if (instances == null)
+                return null;
+
+            return instances.GroupBy(i => i.Book.Title).Select(g => new BookAndInstancesDto
+            {
+                BookTitle = g.Key,
+                BookNumbers = g.Select(i => i.BookNumber).ToList()
+            }).ToList();
+            
         }
     }
 }

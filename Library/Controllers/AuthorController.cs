@@ -8,11 +8,11 @@ namespace Library.Controllers
 {
     [ApiController]
     [Route("api/authors")]
-    public class AuthorsController : ControllerBase
+    public class AuthorController : ControllerBase
     {
         private IAuthorService _service;
 
-        public AuthorsController (IAuthorService service) 
+        public AuthorController (IAuthorService service) 
         {
             _service = service;
         }
@@ -23,15 +23,14 @@ namespace Library.Controllers
         /// <param name="author">Данные нового автора </param>
         /// <param name="token"> Токен отмены </param>
         /// <returns>ID созданного автора.</returns>
+        [Authorize(Roles = "Admin,Librarian")]
         [HttpPost]
         public async Task<IActionResult> AddAuthorAsync([FromBody] AddAuthorDto author,CancellationToken token) 
         {
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            int id =await _service.AddAuthorAsync(author, token);
-
-            return Ok(id);
+            return Ok(await _service.AddAuthorAsync(author, token));
         }
 
         /// <summary>
@@ -69,6 +68,7 @@ namespace Library.Controllers
         /// <param name="id">id автора для удаления.</param>
         /// <param name="token">Токен отмены.</param>
         /// <returns>Результат удаления.</returns>
+        [Authorize(Roles = "Admin,Librarian")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAuthorByIdAsync(int id, CancellationToken token)
         {
@@ -87,6 +87,7 @@ namespace Library.Controllers
         /// <param name="token">Токен отмены.</param>
         /// <param name="author"> Обновлённые  данные автора.</param>
         /// <returns> Результат обновления. </returns>
+        [Authorize(Roles = "Admin,Librarian")]
         [HttpPut()]
         public async Task<IActionResult> UpdateAuthorAsync([FromBody] UpdateAuthorDto author,CancellationToken token)
         {

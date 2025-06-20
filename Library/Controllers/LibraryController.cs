@@ -1,5 +1,6 @@
 ﻿using Library.Application.Dto;
 using Library.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library.Controllers
@@ -45,18 +46,19 @@ namespace Library.Controllers
             return Ok(library);
         }
 
+        [Authorize(Roles = "Admin,Librarian")]
         [HttpPost]
-        public async Task<IActionResult> AddLibrary([FromBody] AddLibraryDto libraryDto, CancellationToken token) 
+        public async Task<IActionResult> AddLibraryAsync([FromBody] AddLibraryDto libraryDto, CancellationToken token) 
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var id = await _libraryService.AddAsync(libraryDto, token);
-            return Ok(id);
+            return Ok(await _libraryService.AddAsync(libraryDto, token));
         }
 
+        [Authorize(Roles = "Admin,Librarian")]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteLibraryById(int id, CancellationToken token) 
+        public async Task<IActionResult> DeleteLibraryByIdAsync(int id, CancellationToken token) 
         {
             if(await _libraryService.DeleteAsync(id, token))
                 return NoContent();
@@ -64,8 +66,9 @@ namespace Library.Controllers
             return NotFound();
         }
 
+        [Authorize(Roles = "Admin,Librarian")]
         [HttpPut]
-        public async Task<IActionResult> UpdateLibraryById([FromBody] UpdateLibraryDto libraryDto, CancellationToken token) 
+        public async Task<IActionResult> UpdateLibraryByIdAsync([FromBody] UpdateLibraryDto libraryDto, CancellationToken token) 
         {
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);

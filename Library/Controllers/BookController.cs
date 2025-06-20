@@ -1,5 +1,6 @@
 ﻿using Library.Application.Dto;
 using Library.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library.Controllers
@@ -52,14 +53,14 @@ namespace Library.Controllers
         /// <param name="bookDto">Данные новой книги.</param>
         /// <param name="token">Токен отмены.</param>
         /// <returns>ID добавленной книги.</returns>
+        [Authorize(Roles = "Admin,Librarian")]
         [HttpPost]
         public async Task<IActionResult> AddBookAsync([FromBody] AddBookDto bookDto, CancellationToken token) 
         {
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-           int id = await _bookService.AddAsync(bookDto, token);
-            return Ok(id);
+            return Ok(await _bookService.AddAsync(bookDto, token));
         }
 
         /// <summary>
@@ -68,6 +69,7 @@ namespace Library.Controllers
         /// <param name="id">Id книги для удаления.</param>
         /// <param name="token">Токен отмены.</param>
         /// <returns>Результат операции удаления.</returns>
+        [Authorize(Roles = "Admin,Librarian")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBookAsync(int id, CancellationToken token) 
         {
@@ -85,6 +87,7 @@ namespace Library.Controllers
         /// <param name="token">Токен отмены.</param>
         /// <param name="bookDto">Обновлённые данные книги.</param>
         /// <returns>Результат операции обновления.</returns>
+        [Authorize(Roles = "Admin,Librarian")]
         [HttpPut()]
         public async Task<IActionResult> UpdateBookAsync([FromBody] UpdateBookDto bookDto, CancellationToken token)
         {

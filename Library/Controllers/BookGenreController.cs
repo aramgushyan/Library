@@ -1,5 +1,6 @@
 ﻿using Library.Application.Dto;
 using Library.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library.Controllers
@@ -32,6 +33,7 @@ namespace Library.Controllers
             return await _service.GetAllAsync(token);
         }
 
+        [Authorize(Roles = "Admin,Librarian")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBookGenreByIdAsync(int id, CancellationToken token) 
         {
@@ -41,12 +43,14 @@ namespace Library.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = "Admin,Librarian")]
         [HttpPost]
         public async Task<ActionResult<int>> AddBookGenreAsync(AddBookGenreDto bookGenreDto, CancellationToken token) 
         {
-            return await _service.AddAsync(bookGenreDto, token);
+            return Ok(await _service.AddAsync(bookGenreDto, token));
         }
 
+        [Authorize(Roles = "Admin,Librarian")]
         [HttpPut]
         public async Task<IActionResult> UpdateBookGenreAsync([FromBody] UpdateBookGenreDto bookGenreDto, CancellationToken token) 
         {

@@ -165,12 +165,25 @@ namespace Library.Infastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<DateTime>("ExpireTime")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<int>("LibraryId")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Login")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
 
                     b.Property<string>("Patronymic")
                         .HasColumnType("text");
@@ -179,7 +192,10 @@ namespace Library.Infastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("Position")
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Role")
                         .HasColumnType("integer");
 
                     b.Property<string>("Surname")
@@ -280,10 +296,12 @@ namespace Library.Infastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<string>("Patronymic")
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
@@ -291,7 +309,8 @@ namespace Library.Infastructure.Migrations
 
                     b.Property<string>("Surname")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.HasKey("IdReader");
 

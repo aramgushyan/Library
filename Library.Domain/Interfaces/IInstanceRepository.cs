@@ -14,5 +14,8 @@ namespace Library.Domain.Interfaces
         public Task<bool> DeleteInstanceAsync(int id, CancellationToken token);
         public Task<List<Instance>> GetAllInstancesAsync(CancellationToken token);
         public Task<Instance> GetInstanceByIdAsync(int id, CancellationToken token);
+        public Task<string> GetLibraryByIdAsync(int id, CancellationToken token);
+        public Task<string> GetBookByIdAsync(int id, CancellationToken token);
+
     }
 }

@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Library.Domain.Enums
 {
-    public enum Position
+    public enum Role
     {
         Librarian,
         Director,
         Cleaner,
-        Technician
+        Technician,
+        Admin
     }
 }
