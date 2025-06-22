@@ -8,7 +8,7 @@ namespace Library.Application.Dto
 {
     public class ShowBookGenreDto
     {
-        public int IdBookGenre { get; set; }
+        public int Id { get; set; }
         public int BookId { get; set; }
         public int GenreId { get; set; }
         public int? SequenceNumber { get; set; }
@@ -16,7 +16,7 @@ namespace Library.Application.Dto
 
     public class UpdateBookGenreDto
     {
-        public int IdBookGenre { get; set; }
+        public int Id { get; set; }
         public int BookId { get; set; }
         public int GenreId { get; set; }
         public int? SequenceNumber { get; set; }

@@ -9,7 +9,7 @@ namespace Library.Application.Dto
 {
     public class ShowReaderDto
     {
-        public int IdReader { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string? Patronymic { get; set; }
@@ -22,7 +22,7 @@ namespace Library.Application.Dto
 
     public class ShowReaderWithoutDetailsDto 
     {
-        public int IdReader { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string? Patronymic { get; set; }
@@ -53,7 +53,7 @@ namespace Library.Application.Dto
 
     public class UpdateReaderDto
     {
-        public int IdReader { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(50)]

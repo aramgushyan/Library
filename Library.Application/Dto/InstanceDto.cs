@@ -10,7 +10,7 @@ namespace Library.Application.Dto
 {
     public class ShowInstanceDto
     {
-        public int IdInstance { get; set; }
+        public int Id { get; set; }
         public int LibraryId { get; set; }
         public int BookId { get; set; }
 
@@ -22,7 +22,7 @@ namespace Library.Application.Dto
 
     public class ShowInstanceWithoutDetailsDto 
     {
-        public int IdInstance { get; set; }
+        public int Id { get; set; }
         public int LibraryId { get; set; }
         public int BookId { get; set; }
 
@@ -31,7 +31,7 @@ namespace Library.Application.Dto
 
     public class UpdateInstanceDto 
     {
-        public int IdInstance { get; set; }
+        public int Id { get; set; }
         public int LibraryId { get; set; }
         public int BookId { get; set; }
 

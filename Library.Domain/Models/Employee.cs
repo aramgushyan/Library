@@ -11,7 +11,7 @@ namespace Library.Domain.Models
     public class Employee
     {
         [Key]
-        public int IdEmployee { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(10)]

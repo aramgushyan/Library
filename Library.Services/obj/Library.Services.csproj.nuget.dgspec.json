@@ -57,6 +57,10 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[14.0.0, )"
+            },
+            "Scrutor": {
+              "target": "Package",
+              "version": "[6.1.0, )"
             }
           },
           "imports": [
@@ -208,6 +212,10 @@
             "Microsoft.Extensions.DependencyInjection.Abstractions": {
               "target": "Package",
               "version": "[9.0.4, )"
+            },
+            "Scrutor": {
+              "target": "Package",
+              "version": "[6.1.0, )"
             }
           },
           "imports": [

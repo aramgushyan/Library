@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "iX+OA2y/k6w=",
+  "dgSpecHash": "dgY+NxSABgY=",
   "success": true,
   "projectFilePath": "C:\\Users\\Арам\\source\\repos\\Library\\Library.Services\\Library.Services.csproj",
   "expectedPackageFiles": [
@@ -25,6 +25,7 @@
     "C:\\Users\\Арам\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\Арам\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.1\\microsoft.extensions.dependencyinjection.8.0.1.nupkg.sha512",
     "C:\\Users\\Арам\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.4\\microsoft.extensions.dependencyinjection.abstractions.9.0.4.nupkg.sha512",
+    "C:\\Users\\Арам\\.nuget\\packages\\microsoft.extensions.dependencymodel\\8.0.2\\microsoft.extensions.dependencymodel.8.0.2.nupkg.sha512",
     "C:\\Users\\Арам\\.nuget\\packages\\microsoft.extensions.diagnostics.abstractions\\8.0.1\\microsoft.extensions.diagnostics.abstractions.8.0.1.nupkg.sha512",
     "C:\\Users\\Арам\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\8.0.0\\microsoft.extensions.fileproviders.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\Арам\\.nuget\\packages\\microsoft.extensions.hosting.abstractions\\8.0.1\\microsoft.extensions.hosting.abstractions.8.0.1.nupkg.sha512",
@@ -44,6 +45,7 @@
     "C:\\Users\\Арам\\.nuget\\packages\\microsoft.net.http.headers\\2.3.0\\microsoft.net.http.headers.2.3.0.nupkg.sha512",
     "C:\\Users\\Арам\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
     "C:\\Users\\Арам\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
+    "C:\\Users\\Арам\\.nuget\\packages\\scrutor\\6.1.0\\scrutor.6.1.0.nupkg.sha512",
     "C:\\Users\\Арам\\.nuget\\packages\\system.buffers\\4.6.0\\system.buffers.4.6.0.nupkg.sha512",
     "C:\\Users\\Арам\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
     "C:\\Users\\Арам\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.1.2\\system.identitymodel.tokens.jwt.7.1.2.nupkg.sha512",

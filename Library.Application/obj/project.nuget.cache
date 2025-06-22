@@ -1,13 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "Gox7xUHIFOA=",
+  "dgSpecHash": "SMDYMa1ViDs=",
   "success": true,
   "projectFilePath": "C:\\Users\\Арам\\source\\repos\\Library\\Library.Application\\Library.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Арам\\.nuget\\packages\\automapper\\14.0.0\\automapper.14.0.0.nupkg.sha512",
-    "C:\\Users\\Арам\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\Арам\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.1\\microsoft.extensions.dependencyinjection.abstractions.8.0.1.nupkg.sha512",
+    "C:\\Users\\Арам\\.nuget\\packages\\microsoft.extensions.dependencymodel\\8.0.2\\microsoft.extensions.dependencymodel.8.0.2.nupkg.sha512",
     "C:\\Users\\Арам\\.nuget\\packages\\microsoft.extensions.options\\8.0.0\\microsoft.extensions.options.8.0.0.nupkg.sha512",
-    "C:\\Users\\Арам\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512"
+    "C:\\Users\\Арам\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "C:\\Users\\Арам\\.nuget\\packages\\scrutor\\6.1.0\\scrutor.6.1.0.nupkg.sha512"
   ],
   "logs": []
 }

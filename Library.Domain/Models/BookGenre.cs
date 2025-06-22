@@ -10,7 +10,7 @@ namespace Library.Domain.Models
     public class BookGenre
     {
         [Key]
-        public int IdBookGenre { get; set; }
+        public int Id { get; set; }
         public int BookId {  get; set; }
         public int GenreId { get; set; }
         public int? SequenceNumber { get; set; }

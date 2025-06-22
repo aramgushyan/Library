@@ -10,7 +10,7 @@ namespace Library.Domain.Models
     public class Instance
     {
         [Key]
-        public int IdInstance { get; set; }
+        public int Id { get; set; }
         public int LibraryId { get; set; }
         public int BookId { get; set; }
 

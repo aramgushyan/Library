@@ -614,7 +614,7 @@
           "System.Text.Json": "9.0.4"
         },
         "compile": {
-          "lib/net8.0/_._": {
+          "lib/net8.0/Microsoft.Extensions.DependencyModel.dll": {
             "related": ".xml"
           }
         },
@@ -823,6 +823,23 @@
         "runtime": {
           "lib/net8.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {
             "related": ".xml"
+          }
+        }
+      },
+      "Scrutor/6.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.1",
+          "Microsoft.Extensions.DependencyModel": "8.0.2"
+        },
+        "compile": {
+          "lib/net8.0/Scrutor.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Scrutor.dll": {
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -1098,7 +1115,8 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "AutoMapper": "14.0.0",
-          "Library.Domain": "1.0.0"
+          "Library.Domain": "1.0.0",
+          "Scrutor": "6.1.0"
         },
         "compile": {
           "bin/placeholder/Library.Application.dll": {}
@@ -2781,6 +2799,27 @@
         "postgresql.png"
       ]
     },
+    "Scrutor/6.1.0": {
+      "sha512": "m4+0RdgnX+jeiaqteq9x5SwEtuCjWG0KTw1jBjCzn7V8mCanXKoeF8+59E0fcoRbAjdEq6YqHFCmxZ49Kvqp3g==",
+      "type": "package",
+      "path": "scrutor/6.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net462/Scrutor.dll",
+        "lib/net462/Scrutor.pdb",
+        "lib/net462/Scrutor.xml",
+        "lib/net8.0/Scrutor.dll",
+        "lib/net8.0/Scrutor.pdb",
+        "lib/net8.0/Scrutor.xml",
+        "lib/netstandard2.0/Scrutor.dll",
+        "lib/netstandard2.0/Scrutor.pdb",
+        "lib/netstandard2.0/Scrutor.xml",
+        "scrutor.6.1.0.nupkg.sha512",
+        "scrutor.nuspec"
+      ]
+    },
     "System.CodeDom/6.0.0": {
       "sha512": "CPc6tWO1LAer3IzfZufDBRL+UZQcj5uS207NHALQzP84Vp/z6wF0Aa0YZImOQY8iStY0A2zI/e3ihKNPfUm8XA==",
       "type": "package",
@@ -3248,7 +3287,8 @@
       "Microsoft.EntityFrameworkCore.Design >= 9.0.4",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.4",
       "Microsoft.Extensions.Logging.Console >= 9.0.4",
-      "Npgsql.EntityFrameworkCore.PostgreSQL >= 9.0.4"
+      "Npgsql.EntityFrameworkCore.PostgreSQL >= 9.0.4",
+      "Scrutor >= 6.1.0"
     ]
   },
   "packageFolders": {
@@ -3331,6 +3371,10 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL": {
             "target": "Package",
             "version": "[9.0.4, )"
+          },
+          "Scrutor": {
+            "target": "Package",
+            "version": "[6.1.0, )"
           }
         },
         "imports": [

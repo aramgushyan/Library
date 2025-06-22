@@ -37,6 +37,8 @@ namespace Library.Services.Jwt
 
             var token = new JwtSecurityToken(
                 claims:claims,
+                issuer: _options.Issuer,
+                audience: _options.Audience,
                 expires: DateTime.UtcNow.AddMinutes(_options.ExpirationMinutes),
                 signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes
                     (_options.SecretKey)), SecurityAlgorithms.HmacSha256)

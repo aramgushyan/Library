@@ -62,7 +62,7 @@ namespace Library.Services
             if (bookLending == null)
                 throw new ArgumentNullException("BookLending не может быть null");
 
-            return await _repository.UpdateBookLendingAsync(bookLending.IdBookLending, _mapper.Map<BookLending>(bookLending), token);
+            return await _repository.UpdateBookLendingAsync(bookLending.Id, _mapper.Map<BookLending>(bookLending), token);
         }
     }
 }

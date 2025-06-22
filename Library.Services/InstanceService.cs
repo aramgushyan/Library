@@ -63,7 +63,7 @@ namespace Library.Services
             if (instance == null)
                 return false;
 
-            return await _repository.UpdateInstanceAsync(instance.IdInstance, _mapper.Map<Instance>(instance), token);
+            return await _repository.UpdateInstanceAsync(instance.Id, _mapper.Map<Instance>(instance), token);
         }
     }
 }

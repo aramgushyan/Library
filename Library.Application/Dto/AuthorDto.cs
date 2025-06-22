@@ -10,7 +10,7 @@ namespace Library.Application.Dto
 {
     public class ShowAuthorDto
     {
-        public int IdAuthor { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string? Patronymic { get; set; }
@@ -20,7 +20,7 @@ namespace Library.Application.Dto
 
     public class ShowAuthorWithoutBooksDto
     {
-        public int IdAuthor { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string? Patronymic { get; set; }

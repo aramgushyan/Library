@@ -12,7 +12,8 @@
           "Library.Domain": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.17",
           "Microsoft.AspNetCore.Identity": "2.3.1",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.4"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.4",
+          "Scrutor": "6.1.0"
         },
         "runtime": {
           "Library.Services.dll": {}
@@ -166,6 +167,14 @@
           "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
             "assemblyVersion": "9.0.0.0",
             "fileVersion": "9.0.425.16305"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyModel/8.0.2": {
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.DependencyModel.dll": {
+            "assemblyVersion": "8.0.0.2",
+            "fileVersion": "8.0.1024.46610"
           }
         }
       },
@@ -344,6 +353,18 @@
           "System.Security.Principal.Windows": "5.0.0"
         }
       },
+      "Scrutor/6.1.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.4",
+          "Microsoft.Extensions.DependencyModel": "8.0.2"
+        },
+        "runtime": {
+          "lib/net8.0/Scrutor.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.0.0"
+          }
+        }
+      },
       "System.Buffers/4.6.0": {},
       "System.ComponentModel.Annotations/5.0.0": {},
       "System.IdentityModel.Tokens.Jwt/7.1.2": {
@@ -396,7 +417,8 @@
       "Library.Application/1.0.0": {
         "dependencies": {
           "AutoMapper": "14.0.0",
-          "Library.Domain": "1.0.0"
+          "Library.Domain": "1.0.0",
+          "Scrutor": "6.1.0"
         },
         "runtime": {
           "Library.Application.dll": {
@@ -568,6 +590,13 @@
       "path": "microsoft.extensions.dependencyinjection.abstractions/9.0.4",
       "hashPath": "microsoft.extensions.dependencyinjection.abstractions.9.0.4.nupkg.sha512"
     },
+    "Microsoft.Extensions.DependencyModel/8.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mUBDZZRgZrSyFOsJ2qJJ9fXfqd/kXJwf3AiDoqLD9m6TjY5OO/vLNOb9fb4juC0487eq4hcGN/M2Rh/CKS7QYw==",
+      "path": "microsoft.extensions.dependencymodel/8.0.2",
+      "hashPath": "microsoft.extensions.dependencymodel.8.0.2.nupkg.sha512"
+    },
     "Microsoft.Extensions.Diagnostics.Abstractions/8.0.1": {
       "type": "package",
       "serviceable": true,
@@ -700,6 +729,13 @@
       "sha512": "sha512-+FWlwd//+Tt56316p00hVePBCouXyEzT86Jb3+AuRotTND0IYn0OO3obs1gnQEs/txEnt+rF2JBGLItTG+Be6A==",
       "path": "microsoft.win32.registry/4.5.0",
       "hashPath": "microsoft.win32.registry.4.5.0.nupkg.sha512"
+    },
+    "Scrutor/6.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-m4+0RdgnX+jeiaqteq9x5SwEtuCjWG0KTw1jBjCzn7V8mCanXKoeF8+59E0fcoRbAjdEq6YqHFCmxZ49Kvqp3g==",
+      "path": "scrutor/6.1.0",
+      "hashPath": "scrutor.6.1.0.nupkg.sha512"
     },
     "System.Buffers/4.6.0": {
       "type": "package",

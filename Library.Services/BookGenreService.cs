@@ -50,7 +50,7 @@ namespace Library.Services
             if (bookGenre == null)
                 throw new ArgumentNullException("BookGenre не может быть null");
 
-            return await _repository.UpdateBookGenreAsync(bookGenre.IdBookGenre,_mapper.Map<BookGenre>(bookGenre), token);
+            return await _repository.UpdateBookGenreAsync(bookGenre.Id,_mapper.Map<BookGenre>(bookGenre), token);
         }
     }
 }

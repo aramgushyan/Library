@@ -1,7 +1,7 @@
 [
   {
     "ContainingType": "Library.Controllers.AccountController",
-    "Method": "VerifyLogin",
+    "Method": "Login",
     "RelativePath": "api/auth/login",
     "HttpMethod": "POST",
     "IsController": true,
@@ -37,7 +37,7 @@
   },
   {
     "ContainingType": "Library.Controllers.AccountController",
-    "Method": "RefreshTokenClient",
+    "Method": "UpdateToken",
     "RelativePath": "api/auth/RefreshToken",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -369,7 +369,7 @@
   },
   {
     "ContainingType": "Library.Controllers.BookLendingController",
-    "Method": "AddBookLendingId",
+    "Method": "AddBookLendingAsync",
     "RelativePath": "api/bookLendings",
     "HttpMethod": "POST",
     "IsController": true,
@@ -395,7 +395,7 @@
   },
   {
     "ContainingType": "Library.Controllers.BookLendingController",
-    "Method": "UpdateBookLending",
+    "Method": "UpdateBookLendingAsync",
     "RelativePath": "api/bookLendings",
     "HttpMethod": "PUT",
     "IsController": true,

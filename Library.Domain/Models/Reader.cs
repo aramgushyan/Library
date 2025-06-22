@@ -10,7 +10,7 @@ namespace Library.Domain.Models
     public class Reader
     {
         [Key]
-        public int IdReader { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(50)]

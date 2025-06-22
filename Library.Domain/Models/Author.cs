@@ -11,7 +11,7 @@ namespace Library.Domain.Models
     public class Author
     {
         [Key]
-        public int IdAuthor { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(100)]

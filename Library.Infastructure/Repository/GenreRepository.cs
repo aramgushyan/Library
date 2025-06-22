@@ -18,12 +18,18 @@ namespace Library.Infastructure.Repository
             _context = context;
         }
 
+        /// <summary>
+        /// Добавляет новый жанр.
+        /// </summary>
+        /// <param name="genre">Данные жанра.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>Id добавленного жанра.</returns>
         public async Task<int> AddGenreAsync(Genre genre, CancellationToken token)
         {
             await _context.Genres.AddAsync(genre, token);
             await _context.SaveChangesAsync(token);
 
-            return genre.IdGenre;
+            return genre.Id;
         }
 
         public async Task<bool> DeleteGenreAsync(int id, CancellationToken token)
@@ -31,23 +37,41 @@ namespace Library.Infastructure.Repository
             var genre = await _context.Genres.FindAsync(id, token);
             if (genre != null) 
             {
-                await _context.Genres.Where(g => g.IdGenre == id).ExecuteDeleteAsync(token);
+                await _context.Genres.Where(g => g.Id == id).ExecuteDeleteAsync(token);
 
                 return true;
             }
             return false;
         }
 
+        /// <summary>
+        /// Получает жанр по Id.
+        /// </summary>
+        /// <param name="id">Id жанра.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>Жанр или null, если не найден.</returns>
         public async Task<Genre> GetGenreByIdAsync(int id, CancellationToken token)
         {
             return await _context.Genres.FindAsync(id, token);
         }
 
+        /// <summary>
+        /// Возвращает список всех жанров.
+        /// </summary>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>Список жанров.</returns>
         public async Task<List<Genre>> GetAllGenresAsync(CancellationToken token)
         {
             return await _context.Genres.ToListAsync(token);
         }
 
+        /// <summary>
+        /// Обновляет данные жанра.
+        /// </summary>
+        /// <param name="id">Id жанра.</param>
+        /// <param name="genre">Новые данные жанра.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>True, если жанр найден и обновлён.</returns>
         public async Task<bool> UpdateGenreAsync(int id, Genre genre, CancellationToken token)
         {
             var previousGenre = await _context.Genres.FindAsync(id, token);
@@ -55,15 +79,24 @@ namespace Library.Infastructure.Repository
                 return false;
 
             previousGenre.Name = genre.Name;
+
+            _context.Genres.Update(previousGenre);
+
             await _context.SaveChangesAsync(token);
 
             return true;
         }
 
+        /// <summary>
+        /// Возвращает список названий книг, связанных с жанром.
+        /// </summary>
+        /// <param name="id">Id жанра.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>Список названий книг.</returns>
         public async Task<List<string>> GetBooksByGenreIdAsync(int id, CancellationToken token)
         {
-            return await _context.BookGenres.Where(bg => bg.IdBookGenre == id)
-                .Join(_context.Books, bg => bg.BookId, b => b.IdBook, (bg, b) => b.Title).ToListAsync(token);
+            return await _context.BookGenres.Where(bg => bg.Id == id)
+                .Join(_context.Books, bg => bg.BookId, b => b.Id, (bg, b) => b.Title).ToListAsync(token);
         }
     }
 }

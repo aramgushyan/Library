@@ -10,7 +10,7 @@ namespace Library.Application.Dto
 {
     public class ShowBookLendingDto
     {
-        public int IdBookLending { get; set; }
+        public int Id { get; set; }
         public int ReaderId { get; set; }
         public int InstanceId { get; set; }
         public DateOnly DateIssue { get; set; }
@@ -23,7 +23,7 @@ namespace Library.Application.Dto
 
     public class ShowBookLendingWithoutDetailsDto
     {
-        public int IdBookLending { get; set; }
+        public int Id { get; set; }
         public int ReaderId { get; set; }
         public int InstanceId { get; set; }
         public DateOnly DateIssue { get; set; }
@@ -42,7 +42,7 @@ namespace Library.Application.Dto
 
     public class UpdateBookLendingDto
     {
-        public int IdBookLending { get; set; }
+        public int Id { get; set; }
         public int ReaderId { get; set; }
         public int InstanceId { get; set; }
         public DateOnly DateIssue { get; set; }

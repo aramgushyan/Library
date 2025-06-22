@@ -66,7 +66,7 @@ namespace Library.Services
             if (bookDto == null)
                 throw new ArgumentNullException("BookDto не может быть null");
 
-            return await _repository.UpdateBookAsync(bookDto.IdBook, _mapper.Map<Book>(bookDto), token);
+            return await _repository.UpdateBookAsync(bookDto.Id, _mapper.Map<Book>(bookDto), token);
         }
     }
 }

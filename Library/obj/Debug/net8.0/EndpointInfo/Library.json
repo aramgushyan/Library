@@ -2087,7 +2087,7 @@
       "ShowAuthorBookDto": {
         "type": "object",
         "properties": {
-          "idAuthorBook": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -2109,7 +2109,7 @@
       "ShowAuthorDto": {
         "type": "object",
         "properties": {
-          "idAuthor": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -2138,7 +2138,7 @@
       "ShowBookDto": {
         "type": "object",
         "properties": {
-          "idBook": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -2173,7 +2173,7 @@
       "ShowBookGenreDto": {
         "type": "object",
         "properties": {
-          "idBookGenre": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -2196,7 +2196,7 @@
       "ShowBookLendingDto": {
         "type": "object",
         "properties": {
-          "idBookLending": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -2235,7 +2235,7 @@
       "ShowBookLendingWithoutDetailsDto": {
         "type": "object",
         "properties": {
-          "idBookLending": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -2266,7 +2266,7 @@
       "ShowEmployeeDto": {
         "type": "object",
         "properties": {
-          "idEmployee": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -2311,7 +2311,7 @@
       "ShowEmployeeForTokensDto": {
         "type": "object",
         "properties": {
-          "idEmployee": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -2364,7 +2364,7 @@
       "ShowEmployeeWithoutDetailsDto": {
         "type": "object",
         "properties": {
-          "idEmployee": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -2390,7 +2390,7 @@
       "ShowGenreDto": {
         "type": "object",
         "properties": {
-          "idGenre": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -2411,7 +2411,7 @@
       "ShowInstanceDto": {
         "type": "object",
         "properties": {
-          "idInstance": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -2441,7 +2441,7 @@
       "ShowInstanceWithoutDetailsDto": {
         "type": "object",
         "properties": {
-          "idInstance": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -2463,7 +2463,7 @@
       "ShowLibraryDto": {
         "type": "object",
         "properties": {
-          "idLibrary": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -2499,7 +2499,7 @@
       "ShowLibraryWithoutDetailsDto": {
         "type": "object",
         "properties": {
-          "idLibrary": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -2521,7 +2521,7 @@
       "ShowReaderDto": {
         "type": "object",
         "properties": {
-          "idReader": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -2562,7 +2562,7 @@
       "ShowReaderWithoutDetailsDto": {
         "type": "object",
         "properties": {
-          "idReader": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -2584,7 +2584,7 @@
       "UpdateAuthorBookDto": {
         "type": "object",
         "properties": {
-          "idAuthorBook": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -2639,7 +2639,7 @@
         ],
         "type": "object",
         "properties": {
-          "idBook": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -2654,7 +2654,7 @@
       "UpdateBookGenreDto": {
         "type": "object",
         "properties": {
-          "idBookGenre": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -2677,7 +2677,7 @@
       "UpdateBookLendingDto": {
         "type": "object",
         "properties": {
-          "idBookLending": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -2714,7 +2714,7 @@
         ],
         "type": "object",
         "properties": {
-          "idEmployee": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -2766,7 +2766,7 @@
         ],
         "type": "object",
         "properties": {
-          "idGenre": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -2784,7 +2784,7 @@
         ],
         "type": "object",
         "properties": {
-          "idInstance": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -2810,7 +2810,7 @@
         ],
         "type": "object",
         "properties": {
-          "idLibrary": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -2842,7 +2842,7 @@
         ],
         "type": "object",
         "properties": {
-          "idReader": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },

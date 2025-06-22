@@ -24,11 +24,11 @@ namespace Library.Infastructure.Migrations
 
             modelBuilder.Entity("Library.Domain.Models.Author", b =>
                 {
-                    b.Property<int>("IdAuthor")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdAuthor"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -44,18 +44,18 @@ namespace Library.Infastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.HasKey("IdAuthor");
+                    b.HasKey("Id");
 
                     b.ToTable("Authors");
                 });
 
             modelBuilder.Entity("Library.Domain.Models.AuthorBook", b =>
                 {
-                    b.Property<int>("IdAuthorBook")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdAuthorBook"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AuthorId")
                         .HasColumnType("integer");
@@ -66,7 +66,7 @@ namespace Library.Infastructure.Migrations
                     b.Property<string>("Comment")
                         .HasColumnType("text");
 
-                    b.HasKey("IdAuthorBook");
+                    b.HasKey("Id");
 
                     b.HasIndex("AuthorId");
 
@@ -77,28 +77,28 @@ namespace Library.Infastructure.Migrations
 
             modelBuilder.Entity("Library.Domain.Models.Book", b =>
                 {
-                    b.Property<int>("IdBook")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdBook"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("IdBook");
+                    b.HasKey("Id");
 
                     b.ToTable("Books");
                 });
 
             modelBuilder.Entity("Library.Domain.Models.BookGenre", b =>
                 {
-                    b.Property<int>("IdBookGenre")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdBookGenre"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("BookId")
                         .HasColumnType("integer");
@@ -109,7 +109,7 @@ namespace Library.Infastructure.Migrations
                     b.Property<int?>("SequenceNumber")
                         .HasColumnType("integer");
 
-                    b.HasKey("IdBookGenre");
+                    b.HasKey("Id");
 
                     b.HasIndex("BookId");
 
@@ -120,11 +120,11 @@ namespace Library.Infastructure.Migrations
 
             modelBuilder.Entity("Library.Domain.Models.BookLending", b =>
                 {
-                    b.Property<int>("IdBookLending")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdBookLending"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateOnly>("DateIssue")
                         .HasColumnType("date");
@@ -141,7 +141,7 @@ namespace Library.Infastructure.Migrations
                     b.Property<int>("ReturnPeriod")
                         .HasColumnType("integer");
 
-                    b.HasKey("IdBookLending");
+                    b.HasKey("Id");
 
                     b.HasIndex("InstanceId");
 
@@ -152,11 +152,11 @@ namespace Library.Infastructure.Migrations
 
             modelBuilder.Entity("Library.Domain.Models.Employee", b =>
                 {
-                    b.Property<int>("IdEmployee")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdEmployee"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateOnly>("DateBirth")
                         .HasColumnType("date");
@@ -202,7 +202,7 @@ namespace Library.Infastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("IdEmployee");
+                    b.HasKey("Id");
 
                     b.HasIndex("LibraryId");
 
@@ -211,29 +211,29 @@ namespace Library.Infastructure.Migrations
 
             modelBuilder.Entity("Library.Domain.Models.Genre", b =>
                 {
-                    b.Property<int>("IdGenre")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdGenre"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
-                    b.HasKey("IdGenre");
+                    b.HasKey("Id");
 
                     b.ToTable("Genres");
                 });
 
             modelBuilder.Entity("Library.Domain.Models.Instance", b =>
                 {
-                    b.Property<int>("IdInstance")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdInstance"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("BookId")
                         .HasColumnType("integer");
@@ -245,7 +245,7 @@ namespace Library.Infastructure.Migrations
                     b.Property<int>("LibraryId")
                         .HasColumnType("integer");
 
-                    b.HasKey("IdInstance");
+                    b.HasKey("Id");
 
                     b.HasIndex("BookId");
 
@@ -256,11 +256,11 @@ namespace Library.Infastructure.Migrations
 
             modelBuilder.Entity("Library.Domain.Models.LibraryModel", b =>
                 {
-                    b.Property<int>("IdLibrary")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdLibrary"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("House")
                         .HasColumnType("integer");
@@ -274,18 +274,18 @@ namespace Library.Infastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.HasKey("IdLibrary");
+                    b.HasKey("Id");
 
                     b.ToTable("Libraries");
                 });
 
             modelBuilder.Entity("Library.Domain.Models.Reader", b =>
                 {
-                    b.Property<int>("IdReader")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdReader"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateOnly>("DateBirth")
                         .HasColumnType("date");
@@ -312,7 +312,7 @@ namespace Library.Infastructure.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
-                    b.HasKey("IdReader");
+                    b.HasKey("Id");
 
                     b.ToTable("Readers");
                 });

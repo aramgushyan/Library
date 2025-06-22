@@ -10,5 +10,8 @@ namespace Library.Application
     {
         public string SecretKey { get; set; } = null!;
         public int ExpirationMinutes { get; set; }
+        public string Issuer { get; set; }
+        public string Audience { get; set; }
+
     }
 }

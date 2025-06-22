@@ -877,6 +877,18 @@
           }
         }
       },
+      "Scrutor/6.1.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.4",
+          "Microsoft.Extensions.DependencyModel": "9.0.4"
+        },
+        "runtime": {
+          "lib/net8.0/Scrutor.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.0.0"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/8.1.4": {
         "dependencies": {
           "Microsoft.Extensions.ApiDescription.Server": "6.0.5",
@@ -1086,7 +1098,8 @@
       "Library.Application/1.0.0": {
         "dependencies": {
           "AutoMapper": "14.0.0",
-          "Library.Domain": "1.0.0"
+          "Library.Domain": "1.0.0",
+          "Scrutor": "6.1.0"
         },
         "runtime": {
           "Library.Application.dll": {
@@ -1109,7 +1122,8 @@
           "Library.Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore": "9.0.4",
           "Microsoft.Extensions.Logging.Console": "9.0.4",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.4"
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.4",
+          "Scrutor": "6.1.0"
         },
         "runtime": {
           "Library.Infastructure.dll": {
@@ -1124,7 +1138,8 @@
           "Library.Domain": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.17",
           "Microsoft.AspNetCore.Identity": "2.3.1",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.4"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.4",
+          "Scrutor": "6.1.0"
         },
         "runtime": {
           "Library.Services.dll": {
@@ -1616,6 +1631,13 @@
       "sha512": "sha512-mw5vcY2IEc7L+IeGrxpp/J5OSnCcjkjAgJYCm/eD52wpZze8zsSifdqV7zXslSMmfJG2iIUGZyo3KuDtEFKwMQ==",
       "path": "npgsql.entityframeworkcore.postgresql/9.0.4",
       "hashPath": "npgsql.entityframeworkcore.postgresql.9.0.4.nupkg.sha512"
+    },
+    "Scrutor/6.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-m4+0RdgnX+jeiaqteq9x5SwEtuCjWG0KTw1jBjCzn7V8mCanXKoeF8+59E0fcoRbAjdEq6YqHFCmxZ49Kvqp3g==",
+      "path": "scrutor/6.1.0",
+      "hashPath": "scrutor.6.1.0.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore/8.1.4": {
       "type": "package",

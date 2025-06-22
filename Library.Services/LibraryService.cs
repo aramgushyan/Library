@@ -64,7 +64,7 @@ namespace Library.Services
             if (libraryDto == null)
                 throw new ArgumentNullException("Библиотека не может быть null");
 
-            return await _repository.UpdateLibraryAsync(libraryDto.IdLibrary, _mapper.Map<LibraryModel>(libraryDto), token);
+            return await _repository.UpdateLibraryAsync(libraryDto.Id, _mapper.Map<LibraryModel>(libraryDto), token);
         }
 
         private List<BookAndInstancesDto> GetBookAndInstances(List<Instance> instances) 

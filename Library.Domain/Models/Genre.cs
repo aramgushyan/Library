@@ -10,7 +10,7 @@ namespace Library.Domain.Models
     public class Genre
     {
         [Key]
-        public int IdGenre { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(50)]

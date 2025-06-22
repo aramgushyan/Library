@@ -20,8 +20,10 @@ namespace Library.Extensions
             {
                 options.TokenValidationParameters = new TokenValidationParameters()
                 {
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
+                    ValidateIssuer = true,
+                    ValidIssuer = settings.Issuer,
+                    ValidateAudience = true,
+                    ValidAudience = settings.Audience,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(settings.SecretKey)),

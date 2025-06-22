@@ -1,6 +1,7 @@
 ﻿using Library.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System.Reflection;
 
 namespace Library.Infastructure
 {
@@ -22,19 +23,7 @@ namespace Library.Infastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<AuthorBook>().HasOne(ab => ab.Author).WithMany().HasForeignKey(ab => ab.AuthorId).OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<AuthorBook>().HasOne(ab => ab.Book).WithMany().HasForeignKey(ab => ab.BookId).OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<BookGenre>().HasOne(bg => bg.Genre).WithMany().HasForeignKey(bg => bg.GenreId).OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<BookGenre>().HasOne(bg => bg.Book).WithMany().HasForeignKey(bg => bg.BookId).OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<BookLending>().HasOne(bl => bl.Reader).WithMany().HasForeignKey(bl => bl.ReaderId).OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<BookLending>().HasOne(bl => bl.Instance).WithMany().HasForeignKey(bl => bl.InstanceId).OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Employee>().HasOne(e => e.Library).WithMany().HasForeignKey(e => e.LibraryId).OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Instance>().HasOne(i => i.Library).WithMany().HasForeignKey(i => i.LibraryId).OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<Instance>().HasOne(i => i.Book).WithMany().HasForeignKey(i => i.BookId).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
     }

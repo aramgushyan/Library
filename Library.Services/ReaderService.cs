@@ -59,7 +59,7 @@ namespace Library.Services
             if (reader == null)
                 throw new ArgumentNullException("Reader не может быть null");
 
-            return await _repository.UpdateReaderAsync(reader.IdReader, _mapper.Map<Reader>(reader), token);
+            return await _repository.UpdateReaderAsync(reader.Id, _mapper.Map<Reader>(reader), token);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Library.Domain.Models
     public class LibraryModel
     {
         [Key]
-        public int IdLibrary { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(100)]

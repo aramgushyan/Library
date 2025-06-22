@@ -10,7 +10,7 @@ namespace Library.Domain.Models
     public class Book
     {
         [Key]
-        public int IdBook { get; set; }
+        public int Id { get; set; }
         [Required]
         public string Title { get; set; }
 

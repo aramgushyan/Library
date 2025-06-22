@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Library.Application.Dto
 {
     public class ShowLibraryDto
     {
-        public int IdLibrary { get; set; }
+        public int Id { get; set; }
         public string Street { get; set; }
         public int House { get; set; }
         public string PhoneNumber { get; set; }
@@ -20,7 +15,7 @@ namespace Library.Application.Dto
 
     public class ShowLibraryWithoutDetailsDto
     {
-        public int IdLibrary { get; set; }
+        public int Id { get; set; }
         public string Street { get; set; }
         public int House { get; set; }
         public string PhoneNumber { get; set; }
@@ -42,7 +37,7 @@ namespace Library.Application.Dto
 
     public class UpdateLibraryDto
     {
-        public int IdLibrary { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(100)]

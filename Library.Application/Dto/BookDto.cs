@@ -9,7 +9,7 @@ namespace Library.Application.Dto
 {
     public class ShowBookDto
     {
-        public int IdBook { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
 
         public List<string> Authors { get; set; }
@@ -20,7 +20,7 @@ namespace Library.Application.Dto
 
     public class ShowBookWithoutDetailsDto
     {
-        public int IdBook { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
 
     }
@@ -34,7 +34,7 @@ namespace Library.Application.Dto
 
     public class UpdateBookDto
     {
-        public int IdBook { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(100)]

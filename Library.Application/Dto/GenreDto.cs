@@ -9,14 +9,14 @@ namespace Library.Application.Dto
 {
     public class ShowGenreDto
     {
-        public int IdGenre { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public List<string> Books { get; set; }
     }
 
     public class ShowGenreWithoutBooksDto
     {
-        public int IdGenre { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
     }
 
@@ -29,7 +29,7 @@ namespace Library.Application.Dto
 
     public class UpdateGenreDto
     {
-        public int IdGenre { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(50)]

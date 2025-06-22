@@ -46,6 +46,12 @@ namespace Library.Controllers
             return Ok(library);
         }
 
+        /// <summary>
+        /// Добавляет новую библиотеку.
+        /// </summary>
+        /// <param name="libraryDto">Данные новой библиотеки.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>ID созданной библиотеки.</returns>
         [Authorize(Roles = "Admin,Librarian")]
         [HttpPost]
         public async Task<IActionResult> AddLibraryAsync([FromBody] AddLibraryDto libraryDto, CancellationToken token) 
@@ -56,6 +62,12 @@ namespace Library.Controllers
             return Ok(await _libraryService.AddAsync(libraryDto, token));
         }
 
+        /// <summary>
+        /// Удаляет библиотеку по Id.
+        /// </summary>
+        /// <param name="id">Id библиотеки для удаления.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>Результат удаления.</returns>
         [Authorize(Roles = "Admin,Librarian")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteLibraryByIdAsync(int id, CancellationToken token) 
@@ -66,6 +78,12 @@ namespace Library.Controllers
             return NotFound();
         }
 
+        /// <summary>
+        /// Обновляет данные библиотеки.
+        /// </summary>
+        /// <param name="libraryDto">Обновлённые данные библиотеки.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>Результат обновления.</returns>
         [Authorize(Roles = "Admin,Librarian")]
         [HttpPut]
         public async Task<IActionResult> UpdateLibraryByIdAsync([FromBody] UpdateLibraryDto libraryDto, CancellationToken token) 

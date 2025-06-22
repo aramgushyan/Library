@@ -61,7 +61,7 @@ namespace Library.Services
             if (genreDto == null)
                 throw new ArgumentNullException("Жанр не может быть null");
 
-            return await _repository.UpdateGenreAsync(genreDto.IdGenre, _mapper.Map<Genre>(genreDto), token);
+            return await _repository.UpdateGenreAsync(genreDto.Id, _mapper.Map<Genre>(genreDto), token);
         }
     }
 }

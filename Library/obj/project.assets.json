@@ -921,7 +921,7 @@
           "System.Text.Json": "9.0.4"
         },
         "compile": {
-          "lib/net8.0/_._": {
+          "lib/net8.0/Microsoft.Extensions.DependencyModel.dll": {
             "related": ".xml"
           }
         },
@@ -1403,6 +1403,23 @@
           }
         }
       },
+      "Scrutor/6.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.1",
+          "Microsoft.Extensions.DependencyModel": "8.0.2"
+        },
+        "compile": {
+          "lib/net8.0/Scrutor.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Scrutor.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/8.1.4": {
         "type": "package",
         "dependencies": {
@@ -1865,7 +1882,8 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "AutoMapper": "14.0.0",
-          "Library.Domain": "1.0.0"
+          "Library.Domain": "1.0.0",
+          "Scrutor": "6.1.0"
         },
         "compile": {
           "bin/placeholder/Library.Application.dll": {}
@@ -1892,7 +1910,8 @@
           "Library.Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore": "9.0.4",
           "Microsoft.Extensions.Logging.Console": "9.0.4",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.4"
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.4",
+          "Scrutor": "6.1.0"
         },
         "compile": {
           "bin/placeholder/Library.Infastructure.dll": {}
@@ -1909,7 +1928,8 @@
           "Library.Domain": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.17",
           "Microsoft.AspNetCore.Identity": "2.3.1",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.4"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.4",
+          "Scrutor": "6.1.0"
         },
         "compile": {
           "bin/placeholder/Library.Services.dll": {}
@@ -4372,6 +4392,27 @@
         "npgsql.entityframeworkcore.postgresql.9.0.4.nupkg.sha512",
         "npgsql.entityframeworkcore.postgresql.nuspec",
         "postgresql.png"
+      ]
+    },
+    "Scrutor/6.1.0": {
+      "sha512": "m4+0RdgnX+jeiaqteq9x5SwEtuCjWG0KTw1jBjCzn7V8mCanXKoeF8+59E0fcoRbAjdEq6YqHFCmxZ49Kvqp3g==",
+      "type": "package",
+      "path": "scrutor/6.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net462/Scrutor.dll",
+        "lib/net462/Scrutor.pdb",
+        "lib/net462/Scrutor.xml",
+        "lib/net8.0/Scrutor.dll",
+        "lib/net8.0/Scrutor.pdb",
+        "lib/net8.0/Scrutor.xml",
+        "lib/netstandard2.0/Scrutor.dll",
+        "lib/netstandard2.0/Scrutor.pdb",
+        "lib/netstandard2.0/Scrutor.xml",
+        "scrutor.6.1.0.nupkg.sha512",
+        "scrutor.nuspec"
       ]
     },
     "Swashbuckle.AspNetCore/8.1.4": {

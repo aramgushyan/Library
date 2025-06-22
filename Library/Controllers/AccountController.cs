@@ -20,6 +20,12 @@ namespace Library.Controllers
         }
 
 
+        /// <summary>
+        /// Верифицирует данные и выдаёт JWT и refresh токен.
+        /// </summary>
+        /// <param name="accountDto">Данные для входа</param>
+        /// <param name="tokenCan">Токен отмены.</param>
+        /// <returns>Информация о пользователе</returns>
         [HttpPost("login")]
         public async Task<ActionResult<ShowEmployeeForTokensDto>> Login(AccountDto accountDto, CancellationToken tokenCan )
         {
@@ -39,6 +45,10 @@ namespace Library.Controllers
             return Ok(employee);
         }
 
+        /// <summary>
+        /// Выходит из системы, удаляя JWT и refresh токен из куки.
+        /// </summary>
+        /// <returns>Результат выхода из системы.</returns>
         [Authorize]
         [HttpPost("logout")]
         public IActionResult Logout()
@@ -49,7 +59,11 @@ namespace Library.Controllers
             return NoContent();
         }
 
-
+        /// <summary>
+        /// Обновляет JWT и refresh токен по действующему refresh токену из куки.
+        /// </summary>
+        /// <param name="tokenCanc">Токен отмены.</param>
+        /// <returns>Результат обновления токена.</returns>
         [HttpPut("RefreshToken")]
         public async Task<IActionResult> UpdateToken(CancellationToken tokenCanc)
         {

@@ -67,7 +67,7 @@ namespace Library.Services
             if(employee == null)
                 throw new ArgumentNullException("Employee не может быть null");
 
-            return await _repository.UpdateEmployeeByIdAsync(employee.IdEmployee, _mapper.Map<Employee>(employee), token);
+            return await _repository.UpdateEmployeeByIdAsync(employee.Id, _mapper.Map<Employee>(employee), token);
         }
     }
 }

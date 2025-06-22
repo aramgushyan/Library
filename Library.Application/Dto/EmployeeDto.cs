@@ -10,7 +10,7 @@ namespace Library.Application.Dto
 {
     public class ShowEmployeeDto
     {
-        public int IdEmployee { get; set; }
+        public int Id { get; set; }
         public int LibraryId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
@@ -26,7 +26,7 @@ namespace Library.Application.Dto
 
     public class ShowEmployeeForTokensDto
     {
-        public int IdEmployee { get; set; }
+        public int Id { get; set; }
         public int LibraryId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
@@ -44,7 +44,7 @@ namespace Library.Application.Dto
 
     public class ShowEmployeeWithoutDetailsDto
     {
-        public int IdEmployee { get; set; }
+        public int Id { get; set; }
         public int LibraryId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
@@ -86,7 +86,7 @@ namespace Library.Application.Dto
 
     public class UpdateEmployeeDto 
     {
-        public int IdEmployee { get; set; }
+        public int Id { get; set; }
         public int LibraryId { get; set; }
 
         [Required]
