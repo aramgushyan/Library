@@ -16,6 +16,10 @@ namespace Library.Controllers
             _loadService = loadService;
         }
 
+        /// <summary>
+        /// Создаёт файл с таблицами.
+        /// </summary>
+        /// <param name="token">Токен отмены.</param>
         [HttpGet("toXML")]
         public async Task<IActionResult> ExportDatabase(CancellationToken token)
         {

@@ -48,7 +48,11 @@ namespace Library.Services
             _readerService = readerService;
         }
 
-
+        /// <summary>
+        /// Создаёт Excel-файл,который состоит из таблиц с данными.
+        /// </summary>
+        /// <param name="path">Путь, по которому будет сохранён файл.</param>
+        /// <param name="token">Токен отмены. </param>
         public async Task ExportTablesAsync(string path, CancellationToken token) 
         {
             var authors = await _authorService.GetAllAsync(token);
