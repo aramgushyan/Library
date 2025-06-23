@@ -16,10 +16,11 @@ namespace Library.Extensions
                 scan.FromAssemblyOf<IAuthorService>()
                 .AddClasses(classes => classes.Where(classes => classes.Name.EndsWith("Service")))
                 .AsImplementedInterfaces().WithScopedLifetime();
+
+                scan.FromAssemblyOf<IAuthorService>()
+                .AddClasses(classes => classes.Where(classes => classes.Name.EndsWith("Service")));
             }
             );
-
-            services.AddScoped<LoadService>();
 
             return services;
         }
