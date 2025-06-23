@@ -1,115 +1,270 @@
 ﻿using Library.Domain.Enums;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Application.Dto
 {
+    /// <summary>
+    /// DTO для отображения сотрудника.
+    /// </summary>
     public class ShowEmployeeDto
     {
+        /// <summary>
+        /// Id сотрудника.
+        /// </summary>
         public int Id { get; set; }
+
+        /// <summary>
+        /// Id библиотеки.
+        /// </summary>
         public int LibraryId { get; set; }
+
+        /// <summary>
+        /// Имя.
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Фамилия.
+        /// </summary>
         public string Surname { get; set; }
+
+        /// <summary>
+        /// Отчество.
+        /// </summary>
         public string? Patronymic { get; set; }
+
+        /// <summary>
+        /// Дата рождения.
+        /// </summary>
         public DateOnly DateBirth { get; set; }
+
+        /// <summary>
+        /// Номер телефона.
+        /// </summary>
         public string PhoneNumber { get; set; }
+
+        /// <summary>
+        /// Адрес электронной почты.
+        /// </summary>
         public string Email { get; set; }
 
+        /// <summary>
+        /// Роль.
+        /// </summary>
         public Role Role { get; set; }
 
+        /// <summary>
+        /// Название библиотеки.
+        /// </summary>
         public string Library { get; set; }
     }
 
+    /// <summary>
+    /// DTO для отображения сотрудника с токенами.
+    /// </summary>
     public class ShowEmployeeForTokensDto
     {
+        /// <summary>
+        /// Id сотрудника.
+        /// </summary>
         public int Id { get; set; }
+
+        /// <summary>
+        /// Id библиотеки.
+        /// </summary>
         public int LibraryId { get; set; }
+
+        /// <summary>
+        /// Имя.
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Фамилия.
+        /// </summary>
         public string Surname { get; set; }
+
+        /// <summary>
+        /// Отчество.
+        /// </summary>
         public string? Patronymic { get; set; }
+
+        /// <summary>
+        /// Логин.
+        /// </summary>
         public string Login { get; set; }
+
+        /// <summary>
+        /// Время окончания действия токена.
+        /// </summary>
         public DateTime ExpireTime { get; set; }
+
+        /// <summary>
+        /// Дата рождения.
+        /// </summary>
         public DateOnly DateBirth { get; set; }
+
+        /// <summary>
+        /// Номер телефона.
+        /// </summary>
         public string PhoneNumber { get; set; }
+
+        /// <summary>
+        /// Адрес электронной почты.
+        /// </summary>
         public string Email { get; set; }
 
+        /// <summary>
+        /// Роль.
+        /// </summary>
         public Role Role { get; set; }
 
+        /// <summary>
+        /// Название библиотеки.
+        /// </summary>
         public string Library { get; set; }
     }
 
+    /// <summary>
+    /// DTO для отображения сотрудника.
+    /// </summary>
     public class ShowEmployeeWithoutDetailsDto
     {
+        /// <summary>
+        /// Id сотрудника.
+        /// </summary>
         public int Id { get; set; }
+
+        /// <summary>
+        /// Id библиотеки.
+        /// </summary>
         public int LibraryId { get; set; }
+
+        /// <summary>
+        /// Имя.
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Фамилия.
+        /// </summary>
         public string Surname { get; set; }
+
+        /// <summary>
+        /// Отчество.
+        /// </summary>
         public string? Patronymic { get; set; }
     }
 
+    /// <summary>
+    /// DTO для добавления сотрудника.
+    /// </summary>
     public class AddEmployeeDto
     {
-        [Required]
-        [StringLength(10)]
+        /// <summary>
+        /// Логин.
+        /// </summary>
         public string Login { get; set; }
 
-        [Required]
-        [StringLength(128)]
+        /// <summary>
+        /// Хеш пароля.
+        /// </summary>
         public string PasswordHash { get; set; }
 
+        /// <summary>
+        /// Id библиотеки.
+        /// </summary>
         public int LibraryId { get; set; }
 
-        [Required]
-        [StringLength(50)]
+        /// <summary>
+        /// Имя.
+        /// </summary>
         public string Name { get; set; }
 
-        [Required]
-        [StringLength(50)]
+        /// <summary>
+        /// Фамилия.
+        /// </summary>
         public string Surname { get; set; }
+
+        /// <summary>
+        /// Отчество.
+        /// </summary>
         public string? Patronymic { get; set; }
+
+        /// <summary>
+        /// Дата рождения.
+        /// </summary>
         public DateOnly DateBirth { get; set; }
 
-        [Required]
-        [Phone]
+        /// <summary>
+        /// Номер телефона.
+        /// </summary>
         public string PhoneNumber { get; set; }
 
-        [Required]
-        [EmailAddress]
+        /// <summary>
+        /// Адрес электронной почты.
+        /// </summary>
         public string Email { get; set; }
 
+        /// <summary>
+        /// Роль.
+        /// </summary>
         public Role Role { get; set; }
     }
 
-    public class UpdateEmployeeDto 
+    /// <summary>
+    /// DTO для обновления сотрудника.
+    /// </summary>
+    public class UpdateEmployeeDto
     {
+        /// <summary>
+        /// Id сотрудника.
+        /// </summary>
         public int Id { get; set; }
+
+        /// <summary>
+        /// Id библиотеки.
+        /// </summary>
         public int LibraryId { get; set; }
 
-        [Required]
-        [StringLength(50)]
+        /// <summary>
+        /// Имя.
+        /// </summary>
         public string Name { get; set; }
 
-        [Required]
-        [StringLength(50)]
+        /// <summary>
+        /// Фамилия.
+        /// </summary>
         public string Surname { get; set; }
+
+        /// <summary>
+        /// Отчество.
+        /// </summary>
         public string? Patronymic { get; set; }
+
+        /// <summary>
+        /// Дата рождения.
+        /// </summary>
         public DateOnly DateBirth { get; set; }
 
-        [Required]
-        [Phone]
+        /// <summary>
+        /// Номер телефона.
+        /// </summary>
         public string PhoneNumber { get; set; }
 
-        [Required]
-        [EmailAddress]
+        /// <summary>
+        /// Адрес электронной почты.
+        /// </summary>
         public string Email { get; set; }
 
+        /// <summary>
+        /// Роль.
+        /// </summary>
         public Role Role { get; set; }
 
+        /// <summary>
+        /// Название библиотеки.
+        /// </summary>
         public string Library { get; set; }
     }
-
 }

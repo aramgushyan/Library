@@ -1,14 +1,18 @@
-﻿    using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Library.Application.Dto
+﻿namespace Library.Application.Dto
 {
+    /// <summary>
+    /// DTO для отображения книги и списка её экземпляров.
+    /// </summary>
     public class BookAndInstancesDto
     {
+        /// <summary>
+        /// Название книги.
+        /// </summary>
         public string BookTitle { get; set; }
+
+        /// <summary>
+        /// Список номеров экземпляров книги.
+        /// </summary>
         public List<string> BookNumbers { get; set; }
     }
 }

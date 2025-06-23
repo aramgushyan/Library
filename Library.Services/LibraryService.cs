@@ -1,13 +1,8 @@
-﻿using Library.Domain.Interfaces;
-using Library.Domain.Models;
+﻿using AutoMapper;
 using Library.Application.Dto;
+using Library.Domain.Interfaces;
+using Library.Domain.Models;
 using Library.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
 
 namespace Library.Services
 {
@@ -22,6 +17,12 @@ namespace Library.Services
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Добавляет новую библиотеку.
+        /// </summary>
+        /// <param name="libraryDto">Данные библиотеки.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>Id добавленной библиотеки.</returns>
         public async Task<int> AddAsync(AddLibraryDto libraryDto, CancellationToken token)
         {
             if (libraryDto == null)
@@ -30,17 +31,33 @@ namespace Library.Services
             return await _repository.AddLibraryAsync(_mapper.Map<LibraryModel>(libraryDto), token);
         }
 
+        /// <summary>
+        /// Удаляет библиотеку по id.
+        /// </summary>
+        /// <param name="id">id библиотеки.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>True, если удаление прошло успешно.</returns>
         public async Task<bool> DeleteAsync(int id, CancellationToken token)
         {
             return await  _repository.DeleteLibraryAsync(id, token);
         }
 
+        /// <summary>
+        /// Получает список всех библиотек.
+        /// </summary>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>Список библиотек.</returns>
         public async Task<List<ShowLibraryWithoutDetailsDto>> GetAllAsync(CancellationToken token)
         {
             return  _mapper.Map<List<ShowLibraryWithoutDetailsDto>>(await _repository.GetAllLibrariesAsync(token));
         }
 
-        public  async Task<ShowLibraryDto> GetAsync(int id, CancellationToken token)
+        /// <summary>
+        /// Получает библиотеку по id.
+        /// </summary>
+        /// <param name="id">id библиотеки.</param>
+        /// <param name="token">Токен отмены.</param>
+        public async Task<ShowLibraryDto> GetAsync(int id, CancellationToken token)
         {
             var library = await _repository.GetLibraryByIdAsync(id, token);
             if (library == null)
@@ -59,6 +76,12 @@ namespace Library.Services
             
         }
 
+        /// <summary>
+        /// Обновляет данные библиотеки по id.
+        /// </summary>
+        /// <param name="libraryDto">Новые данные библиотеки.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>True, если обновление прошло успешно.</returns>
         public async Task<bool> UpdateAsync(UpdateLibraryDto libraryDto, CancellationToken token)
         {
             if (libraryDto == null)
@@ -67,6 +90,11 @@ namespace Library.Services
             return await _repository.UpdateLibraryAsync(libraryDto.Id, _mapper.Map<LibraryModel>(libraryDto), token);
         }
 
+        /// <summary>
+        /// Группирует книги и их номера экземпляров.
+        /// </summary>
+        /// <param name="instances">Список экземпляров.</param>
+        /// <returns>Список с названиями книг и номерами экземпляров.</returns>
         private List<BookAndInstancesDto> GetBookAndInstances(List<Instance> instances) 
         {
             if (instances == null)

@@ -167,3 +167,11 @@ C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\Microsoft.Identi
 C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\Scrutor.dll
+C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\ClosedXML.dll
+C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\ClosedXML.Parser.dll
+C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\DocumentFormat.OpenXml.dll
+C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\DocumentFormat.OpenXml.Framework.dll
+C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\ExcelNumberFormat.dll
+C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\RBush.dll
+C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\SixLabors.Fonts.dll
+C:\Users\Арам\source\repos\Library\Library\bin\Debug\net8.0\System.IO.Packaging.dll

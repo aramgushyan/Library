@@ -3,11 +3,6 @@ using Library.Application.Dto;
 using Library.Domain.Interfaces;
 using Library.Domain.Models;
 using Library.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Services
 {
@@ -22,6 +17,12 @@ namespace Library.Services
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Добавляет новый экземпляр.
+        /// </summary>
+        /// <param name="instance">Данные экземпляра.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>Id добавленного экземпляра.</returns>
         public async Task<int> AddAsync(AddInstanceDto instance, CancellationToken token)
         {
             if (instance == null)
@@ -30,16 +31,32 @@ namespace Library.Services
             return await _repository.AddInstanceAsync(_mapper.Map<Instance>(instance), token);
         }
 
+        /// <summary>
+        /// Удаляет экземпляр по id.
+        /// </summary>
+        /// <param name="id">id экземпляра.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>True, если удаление прошло успешно.</returns>
         public async Task<bool> DeleteAsync(int id, CancellationToken token)
         {
             return await _repository.DeleteInstanceAsync(id, token);
         }
 
+        /// <summary>
+        /// Получает список всех экземпляров.
+        /// </summary>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>Список экземпляров.</returns>
         public async Task<List<ShowInstanceWithoutDetailsDto>> GetAllAsync(CancellationToken token)
         {
             return _mapper.Map<List<ShowInstanceWithoutDetailsDto>>(await _repository.GetAllInstancesAsync(token));
         }
 
+        /// <summary>
+        /// Получает экземпляр по id.
+        /// </summary>
+        /// <param name="id">id экземпляра.</param>
+        /// <param name="token">Токен отмены.</param>
         public async Task<ShowInstanceDto> GetAsync(int id, CancellationToken token)
         {
             var instance = await _repository.GetInstanceByIdAsync(id, token);
@@ -58,6 +75,12 @@ namespace Library.Services
 
         }
 
+        /// <summary>
+        /// Обновляет данные экземпляра по id.
+        /// </summary>
+        /// <param name="instance">Новые данные экземпляра.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>True, если обновление прошло успешно.</returns>
         public async Task<bool> UpdateAsync(UpdateInstanceDto instance, CancellationToken token)
         {
             if (instance == null)

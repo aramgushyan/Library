@@ -19,6 +19,8 @@ namespace Library.Extensions
             }
             );
 
+            services.AddScoped<LoadService>();
+
             return services;
         }
     }

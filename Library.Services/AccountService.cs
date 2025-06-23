@@ -3,11 +3,6 @@ using Library.Application.Dto;
 using Library.Domain.Interfaces;
 using Library.Domain.Models;
 using Library.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Services
 {
@@ -24,11 +19,24 @@ namespace Library.Services
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Получает данные сотрудника по переданному токену.
+        /// </summary>
+        /// <param name="refreshToken">Строка токена.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>Данные сотрудника.</returns
         public async Task<ShowEmployeeForTokensDto> GetAsync(string refreshToken, CancellationToken token)
         {
             return _mapper.Map<ShowEmployeeForTokensDto>(await _repository.GetByRefreshAsync(refreshToken, token));
         }
 
+        /// <summary>
+        /// Обновляет токен сотрудника.
+        /// </summary>
+        /// <param name="oldEmployee">Старые данные сотрудника.</param>
+        /// <param name="refreshToken">Новый токен.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>True, если обновление прошло успешно.</returns>
         public async Task<bool> UpdateAsync(ShowEmployeeForTokensDto oldEmployee, string refreshToken, CancellationToken token)
         {
             oldEmployee.ExpireTime = DateTime.UtcNow.AddDays(7);
@@ -38,6 +46,13 @@ namespace Library.Services
             return await _repository.UpdateAsync(employee, token);
         }
 
+        /// <summary>
+        /// Проверяет логин и пароль.
+        /// </summary>
+        /// <param name="accountDto">Введённые данные сотрудника.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <param name="refreshToken">Новый токен обновления.</param>
+        /// <returns>Данные сотрудника при успешной проверке, иначе null.</returns>
         public async Task<ShowEmployeeForTokensDto> VerifyHashedPasswordAsync(AccountDto accountDto,CancellationToken token, string refreshToken)
         {
             var employee = await _repository.GetByLoginAsync(accountDto.Login, token);

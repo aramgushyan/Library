@@ -3,11 +3,6 @@ using Library.Application.Dto;
 using Library.Domain.Models;
 using Library.Infastructure.Repository;
 using Library.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Services
 {
@@ -22,6 +17,12 @@ namespace Library.Services
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Добавляет выдачу книги.
+        /// </summary>
+        /// <param name="bookLending">Данные выдачи.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>id добавленной выдачи.</returns>
         public async Task<int> AddAsync(AddBookLendingDto bookLending, CancellationToken token)
         {
             if (bookLending == null)
@@ -30,16 +31,33 @@ namespace Library.Services
            return await _repository.AddBookLendingAsync(_mapper.Map<BookLending>(bookLending), token);
         }
 
+        /// <summary>
+        /// Удаляет выдачу книги по id.
+        /// </summary>
+        /// <param name="id">id выдачи.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>True, если удаление успешно.</returns>
         public async Task<bool> DeleteAsync(int id, CancellationToken token)
         {
             return await _repository.DeleteBookLendingAsync(id, token);
         }
 
+        /// <summary>
+        /// Возвращает список всех выдач без деталей.
+        /// </summary>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>Список выдач.</returns>
         public async Task<List<ShowBookLendingWithoutDetailsDto>> GetAllAsync(CancellationToken token)
         {
             return _mapper.Map<List<ShowBookLendingWithoutDetailsDto>>(await _repository.GetAllBookLendingAsync(token));
         }
 
+        /// <summary>
+        /// Возвращает выдачу книги по id с данными читателя и экземпляра.
+        /// </summary>
+        /// <param name="id">id выдачи.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>Данные выдачи или null, если не найдена.</returns>
         public async Task<ShowBookLendingDto> GetAsync(int id, CancellationToken token)
         {
             var bookLending = await _repository.GetBookLendingByIdAsync(id, token);
@@ -57,6 +75,12 @@ namespace Library.Services
             return bookLendingDto;
         }
 
+        /// <summary>
+        /// Обновляет данные выдачи книги по id.
+        /// </summary>
+        /// <param name="bookLending">Новые данные выдачи.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>True, если обновление успешно.</returns>
         public async Task<bool> UpdateAsync(UpdateBookLendingDto bookLending, CancellationToken token)
         {
             if (bookLending == null)

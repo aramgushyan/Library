@@ -650,6 +650,16 @@
     ]
   },
   {
+    "ContainingType": "Library.Controllers.ExportController",
+    "Method": "ExportDatabase",
+    "RelativePath": "api/exportFile/toXML",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Library.Controllers.GenreController",
     "Method": "GetAllGenresAsync",
     "RelativePath": "api/genres",

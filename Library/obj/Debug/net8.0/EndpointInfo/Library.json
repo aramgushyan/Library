@@ -1099,6 +1099,18 @@
         }
       }
     },
+    "/api/exportFile/toXML": {
+      "get": {
+        "tags": [
+          "Export"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/genres/{id}": {
       "get": {
         "tags": [
@@ -1895,39 +1907,27 @@
         "additionalProperties": false
       },
       "AddEmployeeDto": {
-        "required": [
-          "email",
-          "login",
-          "name",
-          "passwordHash",
-          "phoneNumber",
-          "surname"
-        ],
         "type": "object",
         "properties": {
           "login": {
-            "maxLength": 10,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "passwordHash": {
-            "maxLength": 128,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "libraryId": {
             "type": "integer",
             "format": "int32"
           },
           "name": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "surname": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "patronymic": {
             "type": "string",
@@ -1938,14 +1938,12 @@
             "format": "date"
           },
           "phoneNumber": {
-            "minLength": 1,
             "type": "string",
-            "format": "tel"
+            "nullable": true
           },
           "email": {
-            "minLength": 1,
             "type": "string",
-            "format": "email"
+            "nullable": true
           },
           "role": {
             "$ref": "#/components/schemas/Role"
@@ -2706,12 +2704,6 @@
         "additionalProperties": false
       },
       "UpdateEmployeeDto": {
-        "required": [
-          "email",
-          "name",
-          "phoneNumber",
-          "surname"
-        ],
         "type": "object",
         "properties": {
           "id": {
@@ -2723,14 +2715,12 @@
             "format": "int32"
           },
           "name": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "surname": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "patronymic": {
             "type": "string",
@@ -2741,14 +2731,12 @@
             "format": "date"
           },
           "phoneNumber": {
-            "minLength": 1,
             "type": "string",
-            "format": "tel"
+            "nullable": true
           },
           "email": {
-            "minLength": 1,
             "type": "string",
-            "format": "email"
+            "nullable": true
           },
           "role": {
             "$ref": "#/components/schemas/Role"

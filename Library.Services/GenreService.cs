@@ -1,13 +1,8 @@
-﻿using Library.Domain.Interfaces;
-using Library.Domain.Models;
+﻿using AutoMapper;
 using Library.Application.Dto;
+using Library.Domain.Interfaces;
+using Library.Domain.Models;
 using Library.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
 
 namespace Library.Services
 {
@@ -22,6 +17,12 @@ namespace Library.Services
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Добавляет новый жанр.
+        /// </summary>
+        /// <param name="genreDto">Данные жанра.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>Id добавленного жанра.</returns>
         public async Task<int> AddAsync(AddGenreDto genreDto, CancellationToken token)
         {
             if (genreDto == null)
@@ -30,11 +31,23 @@ namespace Library.Services
             return await _repository.AddGenreAsync(_mapper.Map<Genre>(genreDto), token);
         }
 
+        /// <summary>
+        /// Удаляет жанр по id.
+        /// </summary>
+        /// <param name="id">id жанра.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>True, если удаление прошло успешно.</returns>
         public async Task<bool> DeleteAsync(int id, CancellationToken token)
         {
             return await _repository.DeleteGenreAsync(id, token);
         }
 
+        /// <summary>
+        /// Получает жанр по id.
+        /// </summary>
+        /// <param name="id">id жанра.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>Данные жанра.</returns>
         public async Task<ShowGenreDto> GetAsync(int id, CancellationToken token)
         {
             var genre = await _repository.GetGenreByIdAsync(id, token);
@@ -49,6 +62,11 @@ namespace Library.Services
             return genreDto;
         }
 
+        /// <summary>
+        /// Получает список всех жанров.
+        /// </summary>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>Список жанров.</returns>
         public async Task<List<ShowGenreWithoutBooksDto>> GetAllAsync(CancellationToken token)
         {
             var genres = await _repository.GetAllGenresAsync(token);
@@ -56,6 +74,12 @@ namespace Library.Services
             return _mapper.Map<List<ShowGenreWithoutBooksDto>>(genres);
         }
 
+        /// <summary>
+        /// Обновляет данные жанра по id.
+        /// </summary>
+        /// <param name="genreDto">Новые данные жанра.</param>
+        /// <param name="token">Токен отмены.</param>
+        /// <returns>True, если обновление прошло успешно.</returns>
         public async Task<bool> UpdateAsync(UpdateGenreDto genreDto, CancellationToken token)
         {
             if (genreDto == null)
