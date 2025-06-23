@@ -33,8 +33,7 @@ namespace Library.Services
             IGenreService genreService,
             IInstanceService instanceService,
             ILibraryService libraryService,
-            IReaderService readerService,
-            IMapper mapper
+            IReaderService readerService
         )
         {
             _authorService = authorService;
