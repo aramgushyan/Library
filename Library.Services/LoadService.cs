@@ -11,41 +11,11 @@ namespace Library.Services
 {
     public class LoadService
     {
-        private readonly IAuthorService _authorService;
-        private readonly IAuthorBookService _authorBookService;
-        private readonly IBookGenreService _bookGenreService;
-        private readonly IBookLendingService _bookLendingService;
-        private readonly IBookService _bookService;
-        private readonly IEmployeeService _employeeService;
-        private readonly IGenreService _genreService;
-        private readonly IInstanceService _instanceService;
-        private readonly ILibraryService _libraryService;
-        private readonly IReaderService _readerService;
-
-        public LoadService(
-            IAccountService accountService,
-            IAuthorService authorService,
-            IAuthorBookService authorBookService,
-            IBookGenreService bookGenreService,
-            IBookLendingService bookLendingService,
-            IBookService bookService,
-            IEmployeeService employeeService,
-            IGenreService genreService,
-            IInstanceService instanceService,
-            ILibraryService libraryService,
-            IReaderService readerService
-        )
+        ILoadRepository _repository;
+        public LoadService(ILoadRepository repository
+            )
         {
-            _authorService = authorService;
-            _authorBookService = authorBookService;
-            _bookGenreService = bookGenreService;
-            _bookLendingService = bookLendingService;
-            _bookService = bookService;
-            _employeeService = employeeService;
-            _genreService = genreService;
-            _instanceService = instanceService;
-            _libraryService = libraryService;
-            _readerService = readerService;
+            _repository = repository;
         }
 
         /// <summary>
@@ -53,31 +23,18 @@ namespace Library.Services
         /// </summary>
         /// <param name="path">Путь, по которому будет сохранён файл.</param>
         /// <param name="token">Токен отмены. </param>
-        public async Task ExportTablesAsync(string path, CancellationToken token) 
-        {
-            var authors = await _authorService.GetAllAsync(token);
-            var books = await _bookService.GetAllAsync(token);
-            var genres = await _genreService.GetAllAsync(token);
-            var authorBooks = await _authorBookService.GetAllAsync(token);
-            var bookGenres = await _bookGenreService.GetAllAsync(token);
-            var bookLendings = await _bookLendingService.GetAllAsync(token);
-            var employees = await _employeeService.GetAllAsync(token);
-            var instances = await _instanceService.GetAllAsync(token);
-            var libraries = await _libraryService.GetAllAsync(token);
-            var readers = await _readerService.GetAllAsync(token);
+        public void ExportTables(string path, CancellationToken token)
+        { 
+
+            var tables = _repository.GetTables();
 
             var excelWorkBook = new XLWorkbook();
 
-            AddSheet(excelWorkBook, authors, "Authors");
-            AddSheet(excelWorkBook, books, "Books");
-            AddSheet(excelWorkBook, genres, "Genres");
-            AddSheet(excelWorkBook, authorBooks, "AuthorBooks");
-            AddSheet(excelWorkBook, bookGenres, "BookGenres");
-            AddSheet(excelWorkBook, bookLendings, "BookLendings");
-            AddSheet(excelWorkBook, employees, "Employees");
-            AddSheet(excelWorkBook, instances, "Instances");
-            AddSheet(excelWorkBook, libraries, "Libraries");
-            AddSheet(excelWorkBook, readers, "Readers");
+            foreach (var table in tables) 
+            {
+                AddSheet(excelWorkBook,table, table.FirstOrDefault().GetType().Name);
+            }
+            
 
             excelWorkBook.SaveAs(path);
         }

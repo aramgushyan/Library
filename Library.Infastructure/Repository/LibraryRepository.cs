@@ -2,11 +2,6 @@
 using Library.Domain.Models;
 using Library.Infastructure.Helpers;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Infastructure.Repository
 {
@@ -27,6 +22,9 @@ namespace Library.Infastructure.Repository
         /// <returns>Id добавленной библиотеки.</returns>
         public async Task<int> AddLibraryAsync(LibraryModel library, CancellationToken token)
         {
+            if(library == null)
+                throw new ArgumentNullException("LibraryModel не может быть null");
+
             await _context.Libraries.AddAsync(library, token);
             await _context.SaveChangesAsync(token);
 
@@ -102,6 +100,9 @@ namespace Library.Infastructure.Repository
         /// <returns>True, если обновление выполнено.</returns>
         public async Task<bool> UpdateLibraryAsync(int id, LibraryModel newLibrary, CancellationToken token)
         {
+            if (newLibrary == null)
+                throw new ArgumentNullException("LibraryModel не может быть null");
+
             var library = await _context.Libraries.FindAsync(id, token);
             if (library == null)
                 return false;

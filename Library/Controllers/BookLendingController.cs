@@ -10,7 +10,7 @@ namespace Library.Controllers
     [Route("api/bookLendings")]
     public class BookLendingController : ControllerBase
     {
-        private IBookLendingService _service;
+        private readonly IBookLendingService _service;
 
         public BookLendingController(IBookLendingService service)
         {

@@ -58,11 +58,11 @@ namespace Library.Services.Jwt
         public void AppendJwtCookie(string token, string refreshToken, HttpResponse response)
         {
             var cookie = new CookieOptions();
-            cookie.Expires = DateTime.UtcNow.AddMinutes(20);
+            cookie.Expires = DateTime.UtcNow.AddMinutes(_options.ExpirationMinutes);
             response.Cookies.Append("jwt", token, cookie);
 
             var refreshCookie = new CookieOptions();
-            refreshCookie.Expires = DateTime.UtcNow.AddDays(7);
+            refreshCookie.Expires = DateTime.UtcNow.AddDays(_options.ExpirationDaysForRefresh);
             response.Cookies.Append("refresh", refreshToken, refreshCookie);
         }
     }

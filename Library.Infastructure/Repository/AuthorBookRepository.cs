@@ -26,8 +26,12 @@ namespace Library.Infastructure.Repository
         /// <returns>Id созданной записи.</returns>
         public async Task<int> AddAuthorBookAsync(AuthorBook authorbook, CancellationToken token)
         {
+            if (authorbook == null)
+                throw new ArgumentNullException("AuthorBook не может быть null");
+
             await _context.AuthorBooks.AddAsync(authorbook, token);
             await _context.SaveChangesAsync(token);
+
             return authorbook.Id;
         }
 
@@ -76,6 +80,9 @@ namespace Library.Infastructure.Repository
         /// <returns>True, если обновление прошло успешно, иначе false.</returns>
         public async Task<bool> UpdateAuthorBookAsync(int id, AuthorBook authorbook, CancellationToken token)
         {
+            if(authorbook == null)
+                throw new ArgumentNullException("AuthorBook не может быть null");
+
             var previousAuthorBook = await _context.AuthorBooks.FindAsync(id, token);
             if (previousAuthorBook == null)
                 return false;

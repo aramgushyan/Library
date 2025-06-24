@@ -48,6 +48,9 @@ namespace Library.Infastructure.Repository
         /// <returns>True, если обновление прошло успешно, иначе false.</returns>
         public async Task<bool> UpdateAsync(Employee employee,CancellationToken token)
         {
+            if(employee == null)
+                throw new ArgumentNullException("Employee не может быть null");
+
             var previousEmployee = await _context.Employees.FindAsync(employee.Id, token);
             if (previousEmployee == null)
                 return false;

@@ -1,12 +1,6 @@
 ﻿using Library.Domain.Interfaces;
 using Library.Domain.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Infastructure.Repository
 {
@@ -27,6 +21,9 @@ namespace Library.Infastructure.Repository
         /// <returns>Id добавленного экземпляра.</returns>
         public async Task<int> AddInstanceAsync(Instance instance, CancellationToken token)
         {
+            if (instance == null)
+                throw new ArgumentNullException("Instance не может быть null");
+
             await _context.Instances.AddAsync(instance, token);
             await _context.SaveChangesAsync(token);
 
@@ -73,7 +70,8 @@ namespace Library.Infastructure.Repository
         /// <returns>Адрес.</returns>
         public async Task<string> GetLibraryByIdAsync(int id, CancellationToken token) 
         {
-            return await _context.Libraries.Where(l => l.Id == id).Select(l => string.Join(" ", l.Street, l.Id.ToString())).FirstOrDefaultAsync(token);
+            return await _context.Libraries.Where(l => l.Id == id)
+                .Select(l => string.Join(" ", l.Street, l.House)).FirstOrDefaultAsync(token);
         }
 
         /// <summary>
@@ -96,6 +94,9 @@ namespace Library.Infastructure.Repository
         /// <returns>True, если обновление прошло успешно.</returns>
         public async Task<bool> UpdateInstanceAsync(int id, Instance instance, CancellationToken token)
         {
+            if (instance == null)
+                throw new ArgumentNullException("Instance не может быть null");
+
             var previousInstance = await _context.Instances.FindAsync(id,token);
 
             if (previousInstance == null)

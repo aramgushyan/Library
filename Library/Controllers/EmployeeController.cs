@@ -57,7 +57,7 @@ namespace Library.Controllers
         [HttpGet]
         public async Task<ActionResult<List<ShowEmployeeWithoutDetailsDto>>> GetAllEmployeesAsync(CancellationToken token) 
         {
-            return await _service.GetAllAsync(token);
+            return Ok(await _service.GetAllAsync(token));
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Library.Controllers
             if(!ModelState.IsValid)
                 return BadRequest();
 
-            return await _service.AddAsync(employee, token);
+            return Ok(await _service.AddAsync(employee, token));
         }
 
         /// <summary>

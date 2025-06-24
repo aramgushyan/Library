@@ -29,6 +29,7 @@ namespace Library.Services
         public async Task<int> AddAsync(AddEmployeeDto employee, CancellationToken token)
         {
             if (employee == null)
+
                 throw new ArgumentNullException("Employee не может быть null");
 
             var employeeDto = _mapper.Map<Employee>(employee);

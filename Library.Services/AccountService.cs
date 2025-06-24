@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using Library.Application;
 using Library.Application.Dto;
 using Library.Domain.Interfaces;
 using Library.Domain.Models;
 using Library.Services.Interfaces;
+using Microsoft.Extensions.Options;
 
 namespace Library.Services
 {
@@ -11,12 +13,14 @@ namespace Library.Services
         private readonly IPasswordService _passwordService;
         private readonly IAccountRepository _repository;
         private readonly IMapper _mapper;
+        private readonly JwtOptions _jwtOptions;
 
-        public AccountService(IPasswordService passwordService, IAccountRepository repository, IMapper mapper) 
+        public AccountService(IPasswordService passwordService, IAccountRepository repository, IMapper mapper, IOptions<JwtOptions> options)
         {
             _passwordService = passwordService;
             _repository = repository;
             _mapper = mapper;
+            _jwtOptions = options.Value;
         }
 
         /// <summary>
@@ -24,7 +28,7 @@ namespace Library.Services
         /// </summary>
         /// <param name="refreshToken">Строка токена.</param>
         /// <param name="token">Токен отмены.</param>
-        /// <returns>Данные сотрудника.</returns
+        /// <returns>Данные сотрудника.</returns>
         public async Task<ShowEmployeeForTokensDto> GetAsync(string refreshToken, CancellationToken token)
         {
             return _mapper.Map<ShowEmployeeForTokensDto>(await _repository.GetByRefreshAsync(refreshToken, token));
@@ -39,7 +43,10 @@ namespace Library.Services
         /// <returns>True, если обновление прошло успешно.</returns>
         public async Task<bool> UpdateAsync(ShowEmployeeForTokensDto oldEmployee, string refreshToken, CancellationToken token)
         {
-            oldEmployee.ExpireTime = DateTime.UtcNow.AddDays(7);
+            if (oldEmployee == null)
+                throw new ArgumentNullException("Employee не может быть null");
+
+            oldEmployee.ExpireTime = DateTime.UtcNow.AddDays(_jwtOptions.ExpirationDaysForRefresh);
             var employee = _mapper.Map<Employee>(oldEmployee);
             employee.RefreshToken = refreshToken;
 
@@ -55,16 +62,19 @@ namespace Library.Services
         /// <returns>Данные сотрудника при успешной проверке, иначе null.</returns>
         public async Task<ShowEmployeeForTokensDto> VerifyHashedPasswordAsync(AccountDto accountDto,CancellationToken token, string refreshToken)
         {
+            if(accountDto == null)
+                throw new ArgumentNullException("Введите логин и пароль");
+
             var employee = await _repository.GetByLoginAsync(accountDto.Login, token);
 
             if (employee == null)
-                throw new KeyNotFoundException();
+                throw new KeyNotFoundException("Пользователь не найден");
 
             if (!_passwordService.VerifyPassword(employee, employee.PasswordHash, accountDto.PasswordHash))
                 return null;
             
             employee.RefreshToken = refreshToken;
-            employee.ExpireTime = DateTime.UtcNow.AddDays(7);
+            employee.ExpireTime = DateTime.UtcNow.AddDays(_jwtOptions.ExpirationDaysForRefresh);
 
             await _repository.UpdateAsync(employee, token);
 

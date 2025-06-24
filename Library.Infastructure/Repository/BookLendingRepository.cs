@@ -26,6 +26,9 @@ namespace Library.Infastructure.Repository
         /// <returns>ID созданной записи.</returns>
         public async Task<int> AddBookLendingAsync(BookLending bookLending, CancellationToken token)
         {
+            if (bookLending == null)
+                throw new ArgumentNullException("BookLending не может быть null");
+
             await _context.BookLendings.AddAsync(bookLending, token);
             await _context.SaveChangesAsync(token);
 
@@ -74,7 +77,7 @@ namespace Library.Infastructure.Repository
         /// </summary>
         /// <param name="id">ID читателя.</param>
         /// <param name="token">Токен отмены.</param>
-        /// <returns>ФИО читателя.</return
+        /// <returns>ФИО читателя.</returns>
         public async Task<string> GetReaderByIdAsync(int id, CancellationToken token)
         {
             return await _context.Readers.Where(r => r.Id == id).Select(r => NameHelper.GetFullName(r.Name, r.Surname, r.Patronymic)).FirstOrDefaultAsync(token);
@@ -89,6 +92,9 @@ namespace Library.Infastructure.Repository
         /// <returns>Результат обновления.</returns>
         public async Task<bool> UpdateBookLendingAsync(int id, BookLending bookLending, CancellationToken token)
         {
+            if(bookLending == null)
+                throw new ArgumentNullException("BookLending не может быть null");
+
             var previousBookLending = await _context.BookLendings.FindAsync(id, token);
 
             if (previousBookLending == null)

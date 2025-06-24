@@ -26,6 +26,9 @@ namespace Library.Infastructure.Repository
         /// <returns>Id добавленного жанра.</returns>
         public async Task<int> AddGenreAsync(Genre genre, CancellationToken token)
         {
+            if (genre == null)
+                throw new ArgumentNullException("Genre не может быть null");
+
             await _context.Genres.AddAsync(genre, token);
             await _context.SaveChangesAsync(token);
 
@@ -74,6 +77,9 @@ namespace Library.Infastructure.Repository
         /// <returns>True, если жанр найден и обновлён.</returns>
         public async Task<bool> UpdateGenreAsync(int id, Genre genre, CancellationToken token)
         {
+            if (genre == null)
+                throw new ArgumentNullException("Genre не может быть null");
+
             var previousGenre = await _context.Genres.FindAsync(id, token);
             if (previousGenre == null) 
                 return false;
@@ -95,7 +101,7 @@ namespace Library.Infastructure.Repository
         /// <returns>Список названий книг.</returns>
         public async Task<List<string>> GetBooksByGenreIdAsync(int id, CancellationToken token)
         {
-            return await _context.BookGenres.Where(bg => bg.Id == id)
+            return await _context.BookGenres.Where(bg => bg.GenreId == id)
                 .Join(_context.Books, bg => bg.BookId, b => b.Id, (bg, b) => b.Title).ToListAsync(token);
         }
     }

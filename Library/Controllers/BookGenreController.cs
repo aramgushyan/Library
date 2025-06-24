@@ -41,7 +41,7 @@ namespace Library.Controllers
         [HttpGet]
         public async Task<ActionResult<List<ShowBookGenreDto>>> GetAllBookGenresAsync(CancellationToken token)
         {
-            return await _service.GetAllAsync(token);
+            return Ok(await _service.GetAllAsync(token));
         }
 
         /// <summary>

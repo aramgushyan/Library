@@ -1,11 +1,6 @@
 ﻿using Library.Domain.Interfaces;
 using Library.Domain.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Infastructure.Repository
 {
@@ -27,6 +22,9 @@ namespace Library.Infastructure.Repository
 
         public async Task<int> AddReaderAsync(Reader reader, CancellationToken token)
         {
+            if(reader == null)
+                throw new ArgumentNullException("Reader не может быть null");
+
             await _context.Readers.AddAsync(reader, token);
             await _context.SaveChangesAsync(token);
 
@@ -88,6 +86,9 @@ namespace Library.Infastructure.Repository
         /// <returns>True, если обновление выполнено.</returns>
         public async Task<bool> UpdateReaderAsync(int id, Reader reader, CancellationToken token)
         {
+            if (reader == null)
+                throw new ArgumentNullException("Reader не может быть null");
+
             var previousReader = await _context.Readers.FindAsync(id, token);
 
             if (previousReader == null)

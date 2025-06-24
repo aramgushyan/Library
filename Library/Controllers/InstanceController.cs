@@ -73,7 +73,7 @@ namespace Library.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            return await _service.AddAsync(instanceDto, token);
+            return Ok(await _service.AddAsync(instanceDto, token));
         }
 
         /// <summary>

@@ -10,7 +10,7 @@ namespace Library.Controllers
     [Route("api/authors")]
     public class AuthorController : ControllerBase
     {
-        private IAuthorService _service;
+        private readonly IAuthorService _service;
 
         public AuthorController (IAuthorService service) 
         {

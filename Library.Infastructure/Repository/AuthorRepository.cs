@@ -27,8 +27,10 @@ namespace Library.Infastructure.Repository
         /// <returns>ID созданного автора.</returns>
         public async Task<int> AddAuthorAsync(Author author, CancellationToken token)
         {
-            await _library.Authors.AddAsync(author, token);
+            if (author == null)
+                throw new ArgumentNullException("Author не может быть null");
 
+            await _library.Authors.AddAsync(author, token);
             await _library.SaveChangesAsync(token);
 
             return author.Id;
@@ -87,6 +89,10 @@ namespace Library.Infastructure.Repository
         /// <returns>Результат обновления.</returns>
         public async Task<bool> UpdateAuthorAsync(int id, Author author, CancellationToken token)
         {
+
+            if (author == null)
+                throw new ArgumentNullException("Author не может быть null");
+
             var pastAuthor = await _library.Authors.FindAsync(id, token);
 
             if (pastAuthor != null)

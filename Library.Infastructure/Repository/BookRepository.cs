@@ -23,9 +23,12 @@ namespace Library.Infastructure.Repository
         /// Добавляет новую книгу в базу данных.
         /// </summary>
         /// <param name="book">Данные книги для добавления.</param>
-        /// <param name="token">Токен отмены.
+        /// <param name="token">Токен отмены.</param>
         public async Task<int> AddBookAsync(Book book, CancellationToken token)
         {
+            if (book == null)
+                throw new ArgumentNullException("Book не может быть null");
+
             await _context.Books.AddAsync(book,token);
             await _context.SaveChangesAsync(token);
 
@@ -81,12 +84,15 @@ namespace Library.Infastructure.Repository
         /// <returns>true — если обновление прошло успешно, иначе false.</returns>
         public async Task<bool> UpdateBookAsync(int id, Book book, CancellationToken token)
         {
+            if(book == null)
+                throw new ArgumentNullException("Book не может быть null");
+
             var previousBook = await _context.Books.FindAsync(id, token);
             if (previousBook != null)
             {
                 previousBook.Title= book.Title;
 
-                _context.Books.Remove(previousBook);
+                _context.Books.Update(previousBook);
 
                 await _context.SaveChangesAsync(token);
                 return true;

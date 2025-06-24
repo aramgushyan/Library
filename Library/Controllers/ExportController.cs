@@ -23,7 +23,7 @@ namespace Library.Controllers
         [HttpGet("toXML")]
         public async Task<IActionResult> ExportDatabase(CancellationToken token)
         {
-            await _loadService.ExportTablesAsync(path, token);
+            _loadService.ExportTables(path, token);
 
             return NoContent();
         }

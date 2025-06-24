@@ -26,6 +26,9 @@ namespace Library.Infastructure.Repository
         /// <returns>ID добавленной записи.</returns>
         public async Task<int> AddBookGenreAsync(BookGenre bookGenre, CancellationToken token)
         {
+            if (bookGenre == null)
+                throw new ArgumentNullException("BookGenre не может быть null");
+
             await _context.BookGenres.AddAsync(bookGenre, token);
             await _context.SaveChangesAsync(token);
 
@@ -73,6 +76,9 @@ namespace Library.Infastructure.Repository
         /// <returns>True, если обновление прошло успешно, иначе false.</returns>
         public async Task<bool> UpdateBookGenreAsync(int id, BookGenre bookGenre, CancellationToken token)
         {
+            if(bookGenre == null)
+                throw new ArgumentNullException("BookGenre не может быть null");
+
             var previousBookGenre = await _context.BookGenres.FindAsync(id, token);
 
             if (previousBookGenre == null)

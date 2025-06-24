@@ -26,6 +26,9 @@ namespace Library.Infastructure.Repository
         /// <returns>Id добавленного сотрудника.</returns>
         public async Task<int> AddEmployeeAsync(Employee employee, CancellationToken token)
         {
+            if (employee == null)
+                throw new ArgumentNullException("Employee не может быть null");
+
             await _context.Employees.AddAsync(employee, token);
             await _context.SaveChangesAsync(token);
 
@@ -88,7 +91,10 @@ namespace Library.Infastructure.Repository
 
         public async Task<bool> UpdateEmployeeByIdAsync(int id ,Employee employee, CancellationToken token)
         {
-            var previousEmployee = await _context.Employees.FindAsync(id);
+            if(employee == null)
+                throw new ArgumentNullException("Employee не может быть null");
+
+            var previousEmployee = await _context.Employees.FindAsync(id, token);
 
             if (previousEmployee == null)
                 return false;

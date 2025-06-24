@@ -26,6 +26,7 @@ namespace Library.Services
         public async Task<int> AddAsync(AddLibraryDto libraryDto, CancellationToken token)
         {
             if (libraryDto == null)
+
                 throw new ArgumentNullException("Библиотека не может быть null");
 
             return await _repository.AddLibraryAsync(_mapper.Map<LibraryModel>(libraryDto), token);

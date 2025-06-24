@@ -14,7 +14,7 @@ namespace Library.Extensions
             var settings = config.GetSection("JwtOptions").Get<JwtOptions>();
 
             if (settings == null)
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("Определите JWT настройки");
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
